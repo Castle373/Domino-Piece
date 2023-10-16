@@ -6,7 +6,7 @@ package dominopiece;
 
 /**
  *
- * @author diego
+ * @author diego, Adan
  */
 public class DominoPiece {
 
