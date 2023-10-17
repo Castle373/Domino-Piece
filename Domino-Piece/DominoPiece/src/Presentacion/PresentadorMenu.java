@@ -9,10 +9,19 @@ package Presentacion;
  * @author eduar
  */
 public class PresentadorMenu implements IPresentadorMenu {
-
+    
+    private IPresentadorCrear presentadorCrear;
+    
+    public PresentadorMenu() {
+        presentadorCrear = new PresentadorCrear();
+    }
+    
+    
     @Override
     public void crearPartida() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        presentadorCrear.mostrarPantalla();
     }
+    
+    
     
 }

@@ -9,5 +9,6 @@ package Presentacion;
  * @author eduar
  */
 public interface IPresentadorMenu {
+    
     public void crearPartida();
 }
