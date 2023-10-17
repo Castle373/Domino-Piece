@@ -25,6 +25,10 @@ public class PresentadorCrear implements IPresentadorCrear{
         pantallaCrear = new vistaCrear();
     }
     
+    public void mostrarPantalla(){
+        pantallaCrear.setVisible(true);
+    }
+    
     @Override
     public void crearPartida(int fichasIniciales) {
         Partida partida = modeloCrear.crearPartida(fichasIniciales);
