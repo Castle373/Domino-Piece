@@ -4,6 +4,10 @@
  */
 package Vista;
 
+import Presentacion.IPresentadorCrear;
+import Presentacion.PresentadorCrear;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author marcos
@@ -13,7 +17,10 @@ public class vistaCrear extends javax.swing.JFrame {
     /**
      * Creates new form vistaCrear
      */
+    private IPresentadorCrear presentadorCrear;
+
     public vistaCrear() {
+        presentadorCrear = new PresentadorCrear();
         initComponents();
     }
 
@@ -125,18 +132,17 @@ public class vistaCrear extends javax.swing.JFrame {
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         // TODO add your handling code here:
+        selectCrear();
     }//GEN-LAST:event_btnIniciarActionPerformed
 
-    public void crearPartida(){
-        
+    public void selectCrear() {
+        String seleccion = cbFichas.getSelectedItem().toString();
+        int fichasIniciales = Integer.parseInt(seleccion);
+        presentadorCrear.crearPartida(fichasIniciales);
     }
-    
-    public void muestraMensajeError(){
-        
-    }
-    
-    public void abrirPantallaUnirse(){
-        
+
+    public void muestraMensajeError() {
+        JOptionPane.showMessageDialog(rootPane, "Error", "ERROR", HEIGHT);
     }
     
     /**

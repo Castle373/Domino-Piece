@@ -24,6 +24,11 @@ public class Partida {
     public Partida() {
     }
 
+    public Partida(int numeroFichas) {
+        this.numeroFichas = numeroFichas;
+        this.jugadores = new ArrayList<>();
+    }
+
     public int getNumeroFichas() {
         return numeroFichas;
     }

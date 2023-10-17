@@ -4,15 +4,18 @@
  */
 package Presentacion;
 
+import Vista.vistaUnirse;
+
 /**
  *
  * @author marcos
  */
-public class PresentadorUnirse implements IPresentadorUnirse{
+public class PresentadorUnirse implements IPresentadorUnirse {
 
     @Override
     public void mostrarPantallaUnirse() {
-        
+        vistaUnirse pantallaUnirse = new vistaUnirse();
+        pantallaUnirse.setVisible(true);
     }
-    
+
 }

@@ -4,20 +4,41 @@
  */
 package Presentacion;
 
+import Modelo.ModeloCrear;
+import Vista.vistaCrear;
+import Vista.vistaUnirse;
+import dominio_domino.Partida;
+
 /**
  *
- * @author marco
+ * @author marcos
  */
 public class PresentadorCrear implements IPresentadorCrear{
 
+    private ModeloCrear modeloCrear;
+    private IPresentadorUnirse presentadorUnirse;
+    private vistaCrear pantallaCrear;
+    
+    public PresentadorCrear(){
+        modeloCrear = new ModeloCrear();
+        presentadorUnirse = new PresentadorUnirse();
+        pantallaCrear = new vistaCrear();
+    }
+    
     @Override
-    public void crearPartida() {
-        
+    public void crearPartida(int fichasIniciales) {
+        Partida partida = modeloCrear.crearPartida(fichasIniciales);
+        if (partida == null){
+            pantallaCrear.muestraMensajeError();
+        } else{
+            presentadorUnirse.mostrarPantallaUnirse();
+        }
     }
 
     @Override
     public void mostrarPantallaUnirse() {
-        
+        presentadorUnirse.mostrarPantallaUnirse();
+        pantallaCrear.dispose();
     }
     
 }

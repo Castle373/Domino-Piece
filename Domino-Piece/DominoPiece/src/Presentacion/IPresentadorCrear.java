@@ -9,6 +9,6 @@ package Presentacion;
  * @author marcos
  */
 public interface IPresentadorCrear {
-    public void crearPartida();
+    public void crearPartida(int fichasIniciales);
     public void mostrarPantallaUnirse();
 }
