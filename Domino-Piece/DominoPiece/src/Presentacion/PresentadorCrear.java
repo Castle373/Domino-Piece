@@ -13,28 +13,29 @@ import dominio_domino.Partida;
  *
  * @author marcos
  */
-public class PresentadorCrear implements IPresentadorCrear{
+public class PresentadorCrear implements IPresentadorCrear {
 
     private ModeloCrear modeloCrear;
     private IPresentadorUnirse presentadorUnirse;
     private vistaCrear pantallaCrear;
-    
-    public PresentadorCrear(){
+
+    public PresentadorCrear() {
         modeloCrear = new ModeloCrear();
         presentadorUnirse = new PresentadorUnirse();
         pantallaCrear = new vistaCrear();
     }
-    
-    public void mostrarPantalla(){
+
+    @Override
+    public void mostrarPantalla() {
         pantallaCrear.setVisible(true);
     }
-    
+
     @Override
     public void crearPartida(int fichasIniciales) {
         Partida partida = modeloCrear.crearPartida(fichasIniciales);
-        if (partida == null){
+        if (partida == null) {
             pantallaCrear.muestraMensajeError();
-        } else{
+        } else {
             presentadorUnirse.mostrarPantallaUnirse();
         }
     }
@@ -44,5 +45,5 @@ public class PresentadorCrear implements IPresentadorCrear{
         presentadorUnirse.mostrarPantallaUnirse();
         pantallaCrear.dispose();
     }
-    
+
 }
