@@ -3,7 +3,7 @@ package dominio_domino;
 
 /**
  *
- * @author IVAN, Diego, CORNEJO, Marcos
+ * @author IVAN(lider), Diego, CORNEJO, Marcos
  */
 public class Dominio_Domino {
 
