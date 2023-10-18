@@ -20,7 +20,6 @@ public class vistaCrear extends javax.swing.JFrame {
     private IPresentadorCrear presentadorCrear;
 
     public vistaCrear() {
-        presentadorCrear = new PresentadorCrear();
         initComponents();
     }
 
@@ -55,7 +54,7 @@ public class vistaCrear extends javax.swing.JFrame {
         jLabel2.setText("Número de fichas:");
 
         cbFichas.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        cbFichas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6 ", "7", " " }));
+        cbFichas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6 ", "7" }));
 
         btnIniciar.setBackground(new java.awt.Color(255, 153, 153));
         btnIniciar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -132,6 +131,7 @@ public class vistaCrear extends javax.swing.JFrame {
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         // TODO add your handling code here:
+        presentadorCrear = new PresentadorCrear();
         selectCrear();
     }//GEN-LAST:event_btnIniciarActionPerformed
 
