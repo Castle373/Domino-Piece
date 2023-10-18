@@ -1,5 +1,6 @@
 package dominio_domino;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +11,10 @@ import java.util.List;
 public class Jugador {
 
     private String nombre;
-    private String avatar;
+    private Image avatar;
     private List<FichaJugador> fichasJugador;
 
-    public Jugador(String nombre, String avatar) {
+    public Jugador(String nombre, Image avatar) {
         this.nombre = nombre;
         this.avatar = avatar;
         this.fichasJugador = new ArrayList<>();
@@ -30,13 +31,15 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    public String getAvatar() {
+    public Image getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(Image avatar) {
         this.avatar = avatar;
     }
+
+   
 
     public List<FichaJugador> getFichasJugador() {
         return fichasJugador;

@@ -22,7 +22,7 @@ public class PresentadorCrear implements IPresentadorCrear {
     public PresentadorCrear() {
         modeloCrear = new ModeloCrear();
         presentadorUnirse = new PresentadorUnirse();
-        pantallaCrear = new vistaCrear();
+        pantallaCrear = new vistaCrear(this);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class PresentadorCrear implements IPresentadorCrear {
         if (partida == null) {
             pantallaCrear.muestraMensajeError();
         } else {
-            presentadorUnirse.mostrarPantallaUnirse();
+           mostrarPantallaUnirse();
         }
     }
 

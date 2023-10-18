@@ -11,4 +11,5 @@ package Presentacion;
 public interface IPresentadorMenu {
     
     public void crearPartida();
+    public void mostrarMenu();
 }

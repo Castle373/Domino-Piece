@@ -4,7 +4,10 @@
  */
 package Presentacion;
 
+import Modelo.ModeloUnirse;
 import Vista.vistaUnirse;
+import dominio_domino.Partida;
+import java.awt.Image;
 
 /**
  *
@@ -12,10 +15,37 @@ import Vista.vistaUnirse;
  */
 public class PresentadorUnirse implements IPresentadorUnirse {
 
+    private ModeloUnirse modelo;
+    private IPresentacionJuego presentadorJuego;
+    private vistaUnirse vista;
+
+    public PresentadorUnirse() {
+        vista = new vistaUnirse(this);
+        modelo = new ModeloUnirse();
+        presentadorJuego = new PresentacionJuego();
+    }
+
     @Override
     public void mostrarPantallaUnirse() {
-        vistaUnirse pantallaUnirse = new vistaUnirse();
-        pantallaUnirse.setVisible(true);
+        vista.setVisible(true);
     }
+
+    @Override
+    public void crearJugador(String nombre, Image avatar) {
+        modelo.crearJugador(nombre, avatar);
+        
+        if (modelo.recuperaPartida()==null) {
+            vista.muestraMensajeError();
+        }else{
+            mostrarPantallaJuego();
+        }   
+    }
+
+    @Override
+    public void mostrarPantallaJuego() {
+        presentadorJuego.mostrarPantallaJuego();
+        vista.dispose();
+    }
+    
 
 }

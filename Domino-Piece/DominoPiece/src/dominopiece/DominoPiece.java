@@ -4,6 +4,9 @@
  */
 package dominopiece;
 
+import Presentacion.IPresentadorMenu;
+import Presentacion.PresentadorMenu;
+
 /**
  *
  * @author diego, Adan, Marcos
@@ -14,7 +17,8 @@ public class DominoPiece {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        IPresentadorMenu presentador= new PresentadorMenu();
+        presentador.mostrarMenu();
     }
     
 }

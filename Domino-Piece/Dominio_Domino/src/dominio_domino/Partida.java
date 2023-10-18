@@ -22,6 +22,7 @@ public class Partida {
     }
 
     public Partida() {
+        this.jugadores = new ArrayList<>();
     }
 
     public Partida(int numeroFichas) {

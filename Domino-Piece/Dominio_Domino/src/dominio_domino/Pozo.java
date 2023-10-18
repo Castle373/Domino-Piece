@@ -44,15 +44,15 @@ public class Pozo {
     }
     
 
-//    public Ficha obtenerFichaAleatoria() {
-//        if (fichasPozo.isEmpty()) {
-//            return null; // No quedan fichas en el pozo
-//        }
-//
-//        int indiceAleatorio = random.nextInt(fichasPozo.size());
-//
-//        Ficha fichaAleatoria = fichasPozo.remove(indiceAleatorio); // Elimina la ficha del arreglo
-//        return fichaAleatoria;
-//    }
+    public Ficha obtenerFichaAleatoria() {
+        if (fichasPozo.isEmpty()) {
+            return null; // No quedan fichas en el pozo
+        }
+        Random random = new Random();
+        int indiceAleatorio = random.nextInt(fichasPozo.size());
+
+        Ficha fichaAleatoria = fichasPozo.remove(indiceAleatorio); // Elimina la ficha del arreglo
+        return fichaAleatoria;
+    }
     
 }

@@ -4,10 +4,15 @@
  */
 package Presentacion;
 
+import dominio_domino.Partida;
+import java.awt.Image;
+
 /**
  *
  * @author marcos
  */
 public interface IPresentadorUnirse {
     public void mostrarPantallaUnirse();
+    public void crearJugador(String nombre, Image avatar);
+    public void mostrarPantallaJuego();
 }

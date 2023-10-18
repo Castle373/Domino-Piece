@@ -4,16 +4,22 @@
  */
 package Vista;
 
+import Presentacion.IPresentadorUnirse;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author marcos
  */
 public class vistaUnirse extends javax.swing.JFrame {
-
+    private IPresentadorUnirse presentador;
     /**
      * Creates new form vistaUnirse
      */
-    public vistaUnirse() {
+    public vistaUnirse(IPresentadorUnirse presentador) {
+        this.presentador=presentador;
         initComponents();
     }
 
@@ -26,16 +32,17 @@ public class vistaUnirse extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnAvatar1 = new javax.swing.JButton();
-        btnAvatar2 = new javax.swing.JButton();
-        btnAvatar3 = new javax.swing.JButton();
-        btnAvatar4 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        chbxAvatar1 = new javax.swing.JCheckBox();
+        chbxAvatar2 = new javax.swing.JCheckBox();
+        chbxAvatar3 = new javax.swing.JCheckBox();
+        chbxAvatar4 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,14 +51,6 @@ public class vistaUnirse extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Escoge tu avatar");
-
-        btnAvatar1.setText("Avatar 1");
-
-        btnAvatar2.setText("Avatar 2");
-
-        btnAvatar3.setText("Avatar 3");
-
-        btnAvatar4.setText("Avatar 4");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -63,11 +62,25 @@ public class vistaUnirse extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Unirse a partida");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(255, 102, 102));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Volver a menu");
+
+        buttonGroup1.add(chbxAvatar1);
+        chbxAvatar1.setSelected(true);
+
+        buttonGroup1.add(chbxAvatar2);
+
+        buttonGroup1.add(chbxAvatar3);
+
+        buttonGroup1.add(chbxAvatar4);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,6 +88,12 @@ public class vistaUnirse extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addGap(119, 119, 119)
@@ -82,23 +101,17 @@ public class vistaUnirse extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(188, 188, 188)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1)
+                            .addGap(194, 194, 194)
+                            .addComponent(chbxAvatar1)
+                            .addGap(132, 132, 132)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(btnAvatar1)
-                                    .addGap(54, 54, 54)
-                                    .addComponent(btnAvatar2)
-                                    .addGap(55, 55, 55)
-                                    .addComponent(btnAvatar3)))
-                            .addGap(58, 58, 58)
-                            .addComponent(btnAvatar4)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(chbxAvatar2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(chbxAvatar3))
+                                .addComponent(jButton1))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(chbxAvatar4))))
                 .addContainerGap(627, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -112,15 +125,15 @@ public class vistaUnirse extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAvatar3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAvatar4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
+                .addGap(75, 75, 75)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chbxAvatar2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(chbxAvatar3)
+                    .addComponent(chbxAvatar4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(chbxAvatar1))
+                .addGap(95, 95, 95)
                 .addComponent(jButton1)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -138,46 +151,42 @@ public class vistaUnirse extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    crearJugador();
+    }//GEN-LAST:event_jButton1ActionPerformed
+   
+    public void crearJugador(){
+        String nombre = txtNombre.getText();
+        Image avatar=null;
+        if (chbxAvatar1.isSelected()) {
+            avatar = new ImageIcon(getClass().getResource("/img")).getImage();        
+        }
+        if (chbxAvatar2.isSelected()) {
+            avatar = new ImageIcon(getClass().getResource("/img")).getImage();
+        }
+        if (chbxAvatar3.isSelected()) {
+           avatar = new ImageIcon(getClass().getResource("/img")).getImage();
+        }
+        if (chbxAvatar4.isSelected()) {
+            avatar = new ImageIcon(getClass().getResource("/img")).getImage();
+        }
+        presentador.crearJugador(nombre, avatar);
+    }
+    
+    public void muestraMensajeError() {
+        JOptionPane.showMessageDialog(rootPane, "Error", "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(vistaUnirse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(vistaUnirse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(vistaUnirse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vistaUnirse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new vistaUnirse().setVisible(true);
-            }
-        });
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAvatar1;
-    private javax.swing.JButton btnAvatar2;
-    private javax.swing.JButton btnAvatar3;
-    private javax.swing.JButton btnAvatar4;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox chbxAvatar1;
+    private javax.swing.JCheckBox chbxAvatar2;
+    private javax.swing.JCheckBox chbxAvatar3;
+    private javax.swing.JCheckBox chbxAvatar4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
