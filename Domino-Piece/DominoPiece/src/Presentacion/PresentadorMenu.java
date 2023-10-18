@@ -14,6 +14,7 @@ import Vista.VistaMenu;
 public class PresentadorMenu implements IPresentadorMenu {
     
     private IPresentadorCrear presentadorCrear;
+    private IPresentadorUnirse presentadorUnirse;
     private VistaMenu vista;
     private ModeloMenu modelo;
     
@@ -21,12 +22,19 @@ public class PresentadorMenu implements IPresentadorMenu {
         vista= new VistaMenu(this);
         modelo = new ModeloMenu();
         presentadorCrear = new PresentadorCrear();
+        presentadorUnirse= new PresentadorUnirse();
+        
     }
     
     
     @Override
     public void crearPartida() {
         presentadorCrear.mostrarPantalla();
+        vista.dispose();
+    }
+    @Override
+    public void unirsePartida(){
+        presentadorUnirse.mostrarPantallaUnirse();
         vista.dispose();
     }
 

@@ -6,6 +6,7 @@ package Vista;
 
 import Presentacion.IPresentadorMenu;
 import Presentacion.PresentadorMenu;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -106,17 +107,23 @@ public class VistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCrearPartidaActionPerformed
 
     private void botonUnirsePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUnirsePartidaActionPerformed
-        // TODO add your handling code here:
+       selectUnirsePartida();
     }//GEN-LAST:event_botonUnirsePartidaActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        System.exit(0);
+       salir();
     }//GEN-LAST:event_botonSalirActionPerformed
     
     public void selectCrearPartida(){
         presentadorMenu.crearPartida();
     }
-    
+    public void selectUnirsePartida(){
+        JOptionPane.showMessageDialog(rootPane, "EncontroPartida");
+        presentadorMenu.unirsePartida();
+    }
+    public void salir(){
+        System.exit(0);
+    }
     
     /**
      * @param args the command line arguments

@@ -27,6 +27,7 @@ public class VistaJuego extends javax.swing.JFrame {
         this.presentador = presentador;
         tablero = new TableroGrafico();
         initComponents();
+        btnRobar.setVisible(false);
 
     }
 
@@ -348,6 +349,7 @@ public class VistaJuego extends javax.swing.JFrame {
         add(tablero);
         this.setContentPane(tablero);
         tablero.add(btnRobar);
+        btnRobar.setVisible(true);
     }
 
     public void inicioVotacion() {
