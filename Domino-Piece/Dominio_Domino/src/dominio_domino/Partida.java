@@ -20,13 +20,16 @@ public class Partida {
         this.pozo = pozo;
         this.jugadores = new ArrayList<>();
     }
-    
+
     public Partida() {
     }
 
     public Partida(int numeroFichas) {
         this.numeroFichas = numeroFichas;
         this.jugadores = new ArrayList<>();
+        if (!validarPartida()) {
+            throw new IllegalArgumentException("El número de fichas iniciales debe ser diferente de 0");
+        }
     }
 
     public int getNumeroFichas() {
@@ -58,4 +61,7 @@ public class Partida {
         jugadores.add(jugador);
     }
 
+    private boolean validarPartida() {
+        return getNumeroFichas() != 0;
+    }
 }

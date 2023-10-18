@@ -18,7 +18,7 @@ public class vistaCrear extends javax.swing.JFrame {
      * Creates new form vistaCrear
      */
     private IPresentadorCrear presentadorCrear;
-
+    
     public vistaCrear() {
         initComponents();
     }
@@ -70,6 +70,11 @@ public class vistaCrear extends javax.swing.JFrame {
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("IMAGEN");
@@ -133,7 +138,12 @@ public class vistaCrear extends javax.swing.JFrame {
         // TODO add your handling code here:
         presentadorCrear = new PresentadorCrear();
         selectCrear();
+        this.dispose();
     }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     public void selectCrear() {
         String seleccion = cbFichas.getSelectedItem().toString();
@@ -142,7 +152,7 @@ public class vistaCrear extends javax.swing.JFrame {
     }
 
     public void muestraMensajeError() {
-        JOptionPane.showMessageDialog(rootPane, "Error", "ERROR", HEIGHT);
+        JOptionPane.showMessageDialog(rootPane, "Error", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
     
     /**
