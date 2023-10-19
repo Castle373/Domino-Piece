@@ -12,14 +12,14 @@ import javax.swing.JOptionPane;
  *
  * @author marcos
  */
-public class vistaCrear extends javax.swing.JFrame {
+public class VistaCrear extends javax.swing.JFrame {
 
     /**
-     * Creates new form vistaCrear
+     * Creates new form VistaCrear
      */
     private IPresentadorCrear presentadorCrear;
     
-    public vistaCrear(IPresentadorCrear presentadorCrear) {
+    public VistaCrear(IPresentadorCrear presentadorCrear) {
         this.presentadorCrear= presentadorCrear;
         initComponents();
     }
@@ -42,7 +42,6 @@ public class vistaCrear extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1300, 600));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 0));
 

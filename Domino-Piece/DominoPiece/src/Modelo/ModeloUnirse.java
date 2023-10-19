@@ -6,6 +6,8 @@ package Modelo;
 
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
+import dominio_domino.Pozo;
+import dominio_domino.Tablero;
 import java.awt.Image;
 
 /**
@@ -13,18 +15,27 @@ import java.awt.Image;
  * @author diego
  */
 public class ModeloUnirse {
+
+    private Partida partida;
+    private Tablero tablero;
+    private Pozo pozo;
     
-    private Jugador jugador;
-    public ModeloUnirse(){
-        
+    public ModeloUnirse() {
     }
-    public Jugador crearJugador(String nombre, Image avatar){
-        jugador = new Jugador(nombre, avatar);
+
+    public void guardarPartida(Partida partida) {
+        this.partida = partida;
+    }
+    
+    public Jugador crearJugador(String nombre, Image avatar) {
+        Jugador jugador = new Jugador(nombre, avatar);
+        partida.addJugador(jugador);
         return jugador;
     }
-    public Partida recuperaPartida(){
-        Partida partida = new Partida();
+
+    public Partida recuperaPartida() {
         return partida;
     }
     
+
 }

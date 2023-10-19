@@ -5,8 +5,8 @@
 package Presentacion;
 
 import Modelo.ModeloCrear;
-import Vista.vistaCrear;
-import Vista.vistaUnirse;
+import Vista.VistaCrear;
+import Vista.VistaUnirse;
 import dominio_domino.Partida;
 
 /**
@@ -17,12 +17,12 @@ public class PresentadorCrear implements IPresentadorCrear {
 
     private ModeloCrear modeloCrear;
     private IPresentadorUnirse presentadorUnirse;
-    private vistaCrear pantallaCrear;
+    private VistaCrear pantallaCrear;
 
     public PresentadorCrear() {
         modeloCrear = new ModeloCrear();
         presentadorUnirse = new PresentadorUnirse();
-        pantallaCrear = new vistaCrear(this);
+        pantallaCrear = new VistaCrear(this);
     }
 
     @Override
@@ -36,14 +36,25 @@ public class PresentadorCrear implements IPresentadorCrear {
         if (partida == null) {
             pantallaCrear.muestraMensajeError();
         } else {
-           mostrarPantallaUnirse();
+            mostrarPantallaUnirse();
         }
     }
 
     @Override
     public void mostrarPantallaUnirse() {
         presentadorUnirse.mostrarPantallaUnirse();
+        enviarPartida();
         pantallaCrear.dispose();
+    }
+
+    @Override
+    public void enviarPartida() {
+        presentadorUnirse.guardarPartida(obtenerPartida());
+    }
+
+    @Override
+    public Partida obtenerPartida() {
+        return modeloCrear.recuperarPartida();
     }
 
 }

@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
  *
  * @author marcos
  */
-public class vistaUnirse extends javax.swing.JFrame {
+public class VistaUnirse extends javax.swing.JFrame {
     private IPresentadorUnirse presentador;
     /**
      * Creates new form vistaUnirse
      */
-    public vistaUnirse(IPresentadorUnirse presentador) {
+    public VistaUnirse(IPresentadorUnirse presentador) {
         this.presentador=presentador;
         initComponents();
     }
@@ -159,7 +159,8 @@ public class vistaUnirse extends javax.swing.JFrame {
         String nombre = txtNombre.getText();
         Image avatar=null;
         if (chbxAvatar1.isSelected()) {
-            avatar = new ImageIcon(getClass().getResource("/img")).getImage();        
+            avatar = new ImageIcon(getClass().getResource("/img")).getImage();    
+   
         }
         if (chbxAvatar2.isSelected()) {
             avatar = new ImageIcon(getClass().getResource("/img")).getImage();

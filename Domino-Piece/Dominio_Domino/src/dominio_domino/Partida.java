@@ -25,6 +25,14 @@ public class Partida {
         this.jugadores = new ArrayList<>();
     }
 
+    public Pozo getPozo() {
+        return pozo;
+    }
+
+    public void setPozo(Pozo pozo) {
+        this.pozo = pozo;
+    }
+
     public Partida(int numeroFichas) {
         this.numeroFichas = numeroFichas;
         this.jugadores = new ArrayList<>();

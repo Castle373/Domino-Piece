@@ -17,7 +17,8 @@ import javax.swing.ImageIcon;
 public class Pozo {
 
     private List<FichaPozo> fichasPozo = new ArrayList<>();
-  //  private Random random = new Random();
+    //  private Random random = new Random();
+
     public Pozo() {
         // Inicializa el pozo con 28 fichas
 
@@ -42,17 +43,16 @@ public class Pozo {
 
         fichasPozo.add(fichaP);
     }
-    
 
-    public Ficha obtenerFichaAleatoria() {
+    public FichaPozo obtenerFichaAleatoria() {
         if (fichasPozo.isEmpty()) {
             return null; // No quedan fichas en el pozo
         }
         Random random = new Random();
         int indiceAleatorio = random.nextInt(fichasPozo.size());
 
-        Ficha fichaAleatoria = fichasPozo.remove(indiceAleatorio); // Elimina la ficha del arreglo
+        FichaPozo fichaAleatoria = fichasPozo.remove(indiceAleatorio); // Elimina la ficha del arreglo
         return fichaAleatoria;
     }
-    
+
 }

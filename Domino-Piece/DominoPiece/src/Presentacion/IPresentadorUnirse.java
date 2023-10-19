@@ -15,4 +15,10 @@ public interface IPresentadorUnirse {
     public void mostrarPantallaUnirse();
     public void crearJugador(String nombre, Image avatar);
     public void mostrarPantallaJuego();
+    public void guardarPartida(Partida partida);
+    public void enviarPartida();
+    public Partida obtenerPartida();
+    
+   
+    
 }

@@ -4,6 +4,8 @@
  */
 package Presentacion;
 
+import dominio_domino.Partida;
+
 /**
  *
  * @author marcos
@@ -12,4 +14,6 @@ public interface IPresentadorCrear {
     public void mostrarPantalla();
     public void crearPartida(int fichasIniciales);
     public void mostrarPantallaUnirse();
+    public Partida obtenerPartida();
+    public void enviarPartida();
 }

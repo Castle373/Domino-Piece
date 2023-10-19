@@ -6,6 +6,8 @@ package Vista;
 
 import Graficos.TableroGrafico;
 import Presentacion.IPresentacionJuego;
+import dominio_domino.FichaPozo;
+import dominio_domino.FichaTablero;
 import dominio_domino.Pozo;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
@@ -324,7 +326,7 @@ public class VistaJuego extends javax.swing.JFrame {
         Insets insets = this.getInsets();
         int adjustedX = evt.getX() - insets.left;
         int adjustedY = evt.getY() - insets.top;
-        tablero.validaMovimiento(new MouseEvent(evt.getComponent(), evt.getID(), evt.getWhen(), evt.getModifiersEx(), adjustedX, adjustedY, evt.getClickCount(), evt.isPopupTrigger()));
+        realizarMovimiento(new MouseEvent(evt.getComponent(), evt.getID(), evt.getWhen(), evt.getModifiersEx(), adjustedX, adjustedY, evt.getClickCount(), evt.isPopupTrigger()));
 
     }//GEN-LAST:event_formMouseReleased
 
@@ -337,8 +339,64 @@ public class VistaJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_formMousePressed
 
     private void btnRobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRobarActionPerformed
-        tablero.robarFicha();
+        robarFicha();
     }//GEN-LAST:event_btnRobarActionPerformed
+
+    public void agregarFichaMano(FichaPozo fichaPozo) {
+        tablero.agregarFichaJugador(fichaPozo);
+    }
+
+    public void robarFicha() {
+        presentador.robarFicha();
+    }
+
+    public int validaHitbox(MouseEvent e) {
+        return tablero.validaHitbox(e);
+    }
+
+    public void mostrarMensajeError(String error) {
+        JOptionPane.showMessageDialog(rootPane, error);
+    }
+
+    public void realizarMovimiento(MouseEvent e) {
+        int valida = validaHitbox(e);
+        if (valida == 0) {
+            
+            return;
+        }
+        System.out.println(valida);
+        FichaTablero f = tablero.obtenerFichaTablero();
+        boolean validaFicha = false;
+
+        switch (valida) {
+            case 1:
+                validaFicha = presentador.realizaMovimiento(f, valida);
+                break;
+            case 2:
+                validaFicha = presentador.realizaMovimiento(f, valida);
+                break;
+            case 3:
+                validaFicha = presentador.realizaMovimiento(f, valida);
+                break;
+        }
+        System.out.println(validaFicha);
+        if (validaFicha) {
+            switch (valida) {
+                case 1:
+                    tablero.colocarInicial(f);
+                    break;
+                case 2:
+                    tablero.colocarTrenDerecha(f);
+                    break;
+                case 3:
+                    tablero.colocarTrenIzquierda(f);
+                    break;
+            }
+        } else {
+            tablero.resetearFichaSeleccionada();
+        }
+    }
+
     public void iniciarJuego() {
         Jugador1.setVisible(false);
         Jugador2.setVisible(false);
@@ -346,6 +404,7 @@ public class VistaJuego extends javax.swing.JFrame {
         Jugador4.setVisible(false);
         tablero = new TableroGrafico();
         add(tablero);
+        presentador.iniciarPartida();
         this.setContentPane(tablero);
         tablero.add(btnRobar);
     }

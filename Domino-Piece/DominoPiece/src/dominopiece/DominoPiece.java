@@ -9,7 +9,7 @@ import Presentacion.PresentadorMenu;
 
 /**
  *
- * @author diego, Adan, Marcos
+ * @author Ivan(LIDER),diego, Adan, Marcos
  */
 public class DominoPiece {
 
@@ -19,6 +19,7 @@ public class DominoPiece {
     public static void main(String[] args) {
         IPresentadorMenu presentador= new PresentadorMenu();
         presentador.mostrarMenu();
+        System.out.println("s");
     }
     
 }

@@ -11,9 +11,15 @@ import dominio_domino.Partida;
  * @author marcos
  */
 public class ModeloCrear {
-    
-    public Partida crearPartida(int fichasIniciales){
-        Partida partida = new Partida(fichasIniciales);
+
+    private Partida partida;
+
+    public Partida crearPartida(int fichasIniciales) {
+        partida = new Partida(fichasIniciales);
+        return partida;
+    }
+
+    public Partida recuperarPartida() {
         return partida;
     }
 }

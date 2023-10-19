@@ -5,7 +5,7 @@
 package Presentacion;
 
 import Modelo.ModeloUnirse;
-import Vista.vistaUnirse;
+import Vista.VistaUnirse;
 import dominio_domino.Partida;
 import java.awt.Image;
 
@@ -14,38 +14,54 @@ import java.awt.Image;
  * @author marcos
  */
 public class PresentadorUnirse implements IPresentadorUnirse {
-
+    
     private ModeloUnirse modelo;
     private IPresentacionJuego presentadorJuego;
-    private vistaUnirse vista;
-
+    private VistaUnirse vista;
+    
     public PresentadorUnirse() {
-        vista = new vistaUnirse(this);
+        vista = new VistaUnirse(this);
         modelo = new ModeloUnirse();
-        presentadorJuego = new PresentacionJuego();
+        presentadorJuego = new PresentadorJuego();
     }
-
+    
     @Override
     public void mostrarPantallaUnirse() {
         vista.setVisible(true);
     }
-
+    
     @Override
     public void crearJugador(String nombre, Image avatar) {
         modelo.crearJugador(nombre, avatar);
         
-        if (modelo.recuperaPartida()==null) {
+        if (modelo.recuperaPartida() == null) {
             vista.muestraMensajeError();
-        }else{
+        } else {
             mostrarPantallaJuego();
-        }   
+        }        
     }
-
+    
     @Override
     public void mostrarPantallaJuego() {
         presentadorJuego.mostrarPantallaJuego();
+        enviarPartida();
         vista.dispose();
     }
     
+    @Override
+    public void guardarPartida(Partida partida) {
+        modelo.guardarPartida(partida);
+    }
 
+    @Override
+    public void enviarPartida() {
+       presentadorJuego.guardarPartida(obtenerPartida());
+    }
+
+    @Override
+    public Partida obtenerPartida() {
+       return modelo.recuperaPartida();
+    }
+
+    
 }
