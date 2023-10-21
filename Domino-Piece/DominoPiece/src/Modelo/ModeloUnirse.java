@@ -17,6 +17,7 @@ import java.awt.Image;
 public class ModeloUnirse {
 
     private Partida partida;
+    private Jugador jugador;
     private Tablero tablero;
     private Pozo pozo;
     
@@ -27,15 +28,21 @@ public class ModeloUnirse {
         this.partida = partida;
     }
     
-    public Jugador crearJugador(String nombre, Image avatar) {
-        Jugador jugador = new Jugador(nombre, avatar);
+    public void crearJugador(String nombre, Image avatar) {
+        Jugador jugador2 = new Jugador("juan", avatar);
+        jugador = new Jugador(nombre, avatar);
+        
         partida.addJugador(jugador);
-        return jugador;
+        partida.addJugador(jugador2);
     }
 
     public Partida recuperaPartida() {
         return partida;
     }
     
-
+    public Jugador obtenerJugador() {
+        
+        return jugador;
+    }
+    
 }

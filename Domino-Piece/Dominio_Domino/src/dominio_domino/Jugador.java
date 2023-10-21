@@ -39,8 +39,6 @@ public class Jugador {
         this.avatar = avatar;
     }
 
-   
-
     public List<FichaJugador> getFichasJugador() {
         return fichasJugador;
     }
@@ -54,4 +52,8 @@ public class Jugador {
         fichasJugador.add(fichaJ);
     }
 
+    public boolean removerFichaJugador(FichaJugador fichaJ) {
+
+        return fichasJugador.remove(fichaJ);
+    }
 }

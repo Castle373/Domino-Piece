@@ -6,8 +6,11 @@ package Vista;
 
 import Graficos.TableroGrafico;
 import Presentacion.IPresentacionJuego;
+import dominio_domino.Ficha;
+import dominio_domino.FichaJugador;
 import dominio_domino.FichaPozo;
 import dominio_domino.FichaTablero;
+import dominio_domino.Jugador;
 import dominio_domino.Pozo;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
@@ -30,7 +33,7 @@ public class VistaJuego extends javax.swing.JFrame {
         tablero = new TableroGrafico();
         initComponents();
         btnRobar.setVisible(false);
-
+        
     }
 
     /**
@@ -64,6 +67,7 @@ public class VistaJuego extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 102));
+        setMinimumSize(new java.awt.Dimension(1300, 600));
         setPreferredSize(new java.awt.Dimension(1300, 600));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -71,9 +75,6 @@ public class VistaJuego extends javax.swing.JFrame {
             }
         });
         addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
             }
@@ -311,43 +312,32 @@ public class VistaJuego extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formKeyReleased
 
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-
-    }//GEN-LAST:event_formMouseClicked
-
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        Insets insets = this.getInsets();
-        int adjustedX = evt.getX() - insets.left;
-        int adjustedY = evt.getY() - insets.top;
-        tablero.arrastrarFicha(new MouseEvent(evt.getComponent(), evt.getID(), evt.getWhen(), evt.getModifiersEx(), adjustedX, adjustedY, evt.getClickCount(), evt.isPopupTrigger()));
-
+        arrastrarFicha(evt);
     }//GEN-LAST:event_formMouseDragged
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
-        Insets insets = this.getInsets();
-        int adjustedX = evt.getX() - insets.left;
-        int adjustedY = evt.getY() - insets.top;
-        realizarMovimiento(new MouseEvent(evt.getComponent(), evt.getID(), evt.getWhen(), evt.getModifiersEx(), adjustedX, adjustedY, evt.getClickCount(), evt.isPopupTrigger()));
 
+        realizarMovimiento(evt);
     }//GEN-LAST:event_formMouseReleased
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        Insets insets = this.getInsets();
-        int adjustedX = evt.getX() - insets.left;
-        int adjustedY = evt.getY() - insets.top;
-        tablero.moverFicha(new MouseEvent(evt.getComponent(), evt.getID(), evt.getWhen(), evt.getModifiersEx(), adjustedX, adjustedY, evt.getClickCount(), evt.isPopupTrigger()));
-
+        agarrarFicha(evt);
     }//GEN-LAST:event_formMousePressed
 
     private void btnRobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRobarActionPerformed
         robarFicha();
     }//GEN-LAST:event_btnRobarActionPerformed
 
-    public void agregarFichaMano(FichaPozo fichaPozo) {
-        tablero.agregarFichaJugador(fichaPozo);
+    public void pintarFichas() {
+        tablero.repintarFichasJugador();
     }
 
     public void robarFicha() {
+        if (!isTurno()) {
+            JOptionPane.showMessageDialog(rootPane, "No es tu Turno");
+          return ;
+        }
         presentador.robarFicha();
     }
 
@@ -359,14 +349,46 @@ public class VistaJuego extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, error);
     }
 
-    public void realizarMovimiento(MouseEvent e) {
-        int valida = validaHitbox(e);
+    public void agarrarFicha(MouseEvent evt) {
+        if (!isTurno()) {
+            JOptionPane.showMessageDialog(rootPane, "No es tu Turno");
+          return ;
+        }
+        Insets insets = this.getInsets();
+        int adjustedX = evt.getX() - insets.left;
+        int adjustedY = evt.getY() - insets.top;
+        tablero.moverFicha(new MouseEvent(evt.getComponent(), evt.getID(), evt.getWhen(), evt.getModifiersEx(), adjustedX, adjustedY, evt.getClickCount(), evt.isPopupTrigger()));
+
+    }
+
+    public void arrastrarFicha(MouseEvent evt) {
+        if (!isTurno()) {
+            JOptionPane.showMessageDialog(rootPane, "No es tu Turno");
+          return ;
+        }
+        Insets insets = this.getInsets();
+        int adjustedX = evt.getX() - insets.left;
+        int adjustedY = evt.getY() - insets.top;
+        tablero.arrastrarFicha(new MouseEvent(evt.getComponent(), evt.getID(), evt.getWhen(), evt.getModifiersEx(), adjustedX, adjustedY, evt.getClickCount(), evt.isPopupTrigger()));
+
+    }
+
+    public void realizarMovimiento(MouseEvent evt) {
+        if (!isTurno()) {
+            JOptionPane.showMessageDialog(rootPane, "No es tu Turno");
+          return ;
+        }
+        Insets insets = this.getInsets();
+        int adjustedX = evt.getX() - insets.left;
+        int adjustedY = evt.getY() - insets.top;
+
+        int valida = validaHitbox(new MouseEvent(evt.getComponent(), evt.getID(), evt.getWhen(), evt.getModifiersEx(), adjustedX, adjustedY, evt.getClickCount(), evt.isPopupTrigger()));
         if (valida == 0) {
-            
+
             return;
         }
-        System.out.println(valida);
-        FichaTablero f = tablero.obtenerFichaTablero();
+        FichaJugador ficha = tablero.obtenerFichaSeleccionada();
+        FichaTablero f = new FichaTablero(ficha.getImagen(), ficha.getPuntoAbajo(), ficha.getPuntoArriba());
         boolean validaFicha = false;
 
         switch (valida) {
@@ -380,7 +402,9 @@ public class VistaJuego extends javax.swing.JFrame {
                 validaFicha = presentador.realizaMovimiento(f, valida);
                 break;
         }
-        System.out.println(validaFicha);
+        if (!validaFicha) {
+            tablero.resetearFichaSeleccionada();
+        }
         if (validaFicha) {
             switch (valida) {
                 case 1:
@@ -393,8 +417,7 @@ public class VistaJuego extends javax.swing.JFrame {
                     tablero.colocarTrenIzquierda(f);
                     break;
             }
-        } else {
-            tablero.resetearFichaSeleccionada();
+            presentador.eliminarFichaJugador(ficha);
         }
     }
 
@@ -403,12 +426,12 @@ public class VistaJuego extends javax.swing.JFrame {
         Jugador2.setVisible(false);
         Jugador3.setVisible(false);
         Jugador4.setVisible(false);
-        tablero = new TableroGrafico();
         add(tablero);
         presentador.iniciarPartida();
         this.setContentPane(tablero);
         tablero.add(btnRobar);
         btnRobar.setVisible(true);
+        tablero.agregarFichasIniciales();
     }
 
     public void inicioVotacion() {
@@ -420,6 +443,14 @@ public class VistaJuego extends javax.swing.JFrame {
             // El usuario hizo clic en "No" o cerró el cuadro de diálogo
             JOptionPane.showMessageDialog(null, "Operación cancelada.");
         }
+    }
+
+    public boolean isTurno() {
+        return presentador.isTurno();
+    }
+
+    public void asignarJugadorJugando(Jugador jugador) {
+        tablero.setJugador(jugador);
     }
     /**
      * @param args the command line arguments

@@ -6,6 +6,7 @@ package Presentacion;
 
 import Modelo.ModeloUnirse;
 import Vista.VistaUnirse;
+import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import java.awt.Image;
 
@@ -33,7 +34,7 @@ public class PresentadorUnirse implements IPresentadorUnirse {
     @Override
     public void crearJugador(String nombre, Image avatar) {
         modelo.crearJugador(nombre, avatar);
-        
+  
         if (modelo.recuperaPartida() == null) {
             vista.muestraMensajeError();
         } else {
@@ -44,7 +45,9 @@ public class PresentadorUnirse implements IPresentadorUnirse {
     @Override
     public void mostrarPantallaJuego() {
         presentadorJuego.mostrarPantallaJuego();
+        
         enviarPartida();
+        enviarJugador();
         vista.dispose();
     }
     
@@ -61,6 +64,16 @@ public class PresentadorUnirse implements IPresentadorUnirse {
     @Override
     public Partida obtenerPartida() {
        return modelo.recuperaPartida();
+    }
+
+    @Override
+    public void enviarJugador() {
+       presentadorJuego.guardarJugador(obtenerJugador());
+    }
+
+    @Override
+    public Jugador obtenerJugador() {
+        return modelo.obtenerJugador();
     }
 
     

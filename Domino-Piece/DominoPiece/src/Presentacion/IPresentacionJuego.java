@@ -4,8 +4,10 @@
  */
 package Presentacion;
 
+import dominio_domino.FichaJugador;
 import dominio_domino.FichaPozo;
 import dominio_domino.FichaTablero;
+import dominio_domino.Jugador;
 import dominio_domino.Partida;
 
 /**
@@ -16,14 +18,18 @@ public interface IPresentacionJuego {
     public void mostrarPantallaJuego();
     public boolean realizaMovimiento(FichaTablero ficha,int lado);
     public void guardarPartida(Partida partida);
-    
+    public void guardarJugador(Jugador jugador);
     public void iniciarPartida();
     
     public void crearPozo();
     public void reparteFichas();
     public void reparteFichasExtras();
-    public void verificaFichas();
+    public boolean verificaFichas();
     public void crearTablero();
     public void robarFicha();
-    
+  
+    public void eliminarFichaJugador(FichaJugador ficha);
+    public void pasarTurno();
+    public Jugador jugadorTurno();
+    public boolean isTurno();
 }

@@ -25,6 +25,7 @@ public class Pozo {
         for (int puntoAbajo = 0; puntoAbajo <= 6; puntoAbajo++) {
             for (int puntoArriba = 0; puntoArriba <= puntoAbajo; puntoArriba++) {
                 String imagePath = "/img/Domino" + puntoAbajo + "_" + puntoArriba + ".png";
+                
                 Image domino = new ImageIcon(getClass().getResource(imagePath)).getImage();
                 fichasPozo.add(new FichaPozo(domino, puntoAbajo, puntoArriba));
             }

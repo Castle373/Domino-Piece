@@ -13,16 +13,56 @@ public class Partida {
     private List<Jugador> jugadores;
     private Tablero tablero;
     private Pozo pozo;
+    private int turno;
 
     public Partida(int numeroFichas, Tablero tablero, Pozo pozo) {
         this.numeroFichas = numeroFichas;
         this.tablero = tablero;
         this.pozo = pozo;
         this.jugadores = new ArrayList<>();
+        this.turno = 0;
     }
 
     public Partida() {
+        this.turno = 0;
         this.jugadores = new ArrayList<>();
+    }
+
+    public List<Jugador> determinarTurnos() {
+        FichaJugador mulaMasGrande = null;
+        Jugador jugadorConMulaMasGrande = null;
+        for (Jugador jugador : jugadores) {
+            for (FichaJugador f : jugador.getFichasJugador()) {
+                if (f.isMula()) {
+                    if (mulaMasGrande == null || f.getPuntoArriba() > mulaMasGrande.getPuntoArriba()) {
+                        mulaMasGrande = f;
+                        jugadorConMulaMasGrande = jugador;
+                    }
+                }
+            }
+        }
+        jugadores.remove(jugadorConMulaMasGrande);
+        jugadores.add(0, jugadorConMulaMasGrande);
+        return jugadores;
+    }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public void setTurno(int turno) {
+        this.turno = turno;
+    }
+
+    public void pasarTurno() {
+        turno++;
+        if (turno > (jugadores.size() - 1)) {
+            turno = 0;
+        }
+    }
+
+    public Jugador jugadorTurno() {
+        return jugadores.get(turno);
     }
 
     public Pozo getPozo() {
@@ -73,4 +113,5 @@ public class Partida {
     private boolean validarPartida() {
         return getNumeroFichas() != 0;
     }
+
 }

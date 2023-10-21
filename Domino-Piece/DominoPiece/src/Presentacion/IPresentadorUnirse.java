@@ -4,6 +4,7 @@
  */
 package Presentacion;
 
+import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import java.awt.Image;
 
@@ -18,7 +19,7 @@ public interface IPresentadorUnirse {
     public void guardarPartida(Partida partida);
     public void enviarPartida();
     public Partida obtenerPartida();
-    
-   
+    public void enviarJugador();
+    public Jugador  obtenerJugador();
     
 }
