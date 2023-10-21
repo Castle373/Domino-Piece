@@ -9,6 +9,7 @@ import dominio_domino.FichaPozo;
 import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
+import java.util.List;
 
 /**
  *
@@ -20,6 +21,7 @@ public interface IPresentacionJuego {
     public void guardarPartida(Partida partida);
     public void guardarJugador(Jugador jugador);
     public void iniciarPartida();
+    public List<Jugador> listaJugadores();
     
     public void crearPozo();
     public void reparteFichas();

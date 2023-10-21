@@ -11,6 +11,7 @@ import dominio_domino.FichaPozo;
 import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
+import java.util.List;
 
 /**
  *
@@ -30,6 +31,7 @@ public class PresentadorJuego implements IPresentacionJuego {
     @Override
     public void mostrarPantallaJuego() {
         vista.setVisible(true);
+       vista.mostrarJugadores();
     }
 
     @Override
@@ -82,7 +84,6 @@ public class PresentadorJuego implements IPresentacionJuego {
         FichaPozo f = modelo.robarFicha();
         
         if (f != null) {
-            System.out.println("ola");
             vista.pintarFichas();
         } else {
             vista.mostrarMensajeError("No hay Fichas en el pozo");
@@ -114,6 +115,11 @@ public class PresentadorJuego implements IPresentacionJuego {
     @Override
     public boolean isTurno() {
        return modelo.isTurno();
+    }
+
+    @Override
+    public List<Jugador> listaJugadores() {
+       return modelo.getListJugadores();
     }
     
 }

@@ -66,7 +66,7 @@ public class TableroGrafico extends JPanel {
 
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
-        System.out.println(this.jugador.getNombre());
+        
     }
 
     public FichasMano getFichasJugador() {

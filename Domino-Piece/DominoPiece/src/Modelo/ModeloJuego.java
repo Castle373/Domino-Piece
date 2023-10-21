@@ -42,7 +42,9 @@ public class ModeloJuego {
     public Partida recuperaPartida() {
         return partida;
     }
-
+    public List<Jugador> getListJugadores(){
+        return partida.getJugadores();
+    }
     public boolean validaMovimiento(FichaTablero ficha, int lado) {
         Tablero tablero = partida.getTablero();
         switch (lado) {

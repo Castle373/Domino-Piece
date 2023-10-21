@@ -44,10 +44,9 @@ public class PresentadorUnirse implements IPresentadorUnirse {
     
     @Override
     public void mostrarPantallaJuego() {
-        presentadorJuego.mostrarPantallaJuego();
-        
         enviarPartida();
         enviarJugador();
+        presentadorJuego.mostrarPantallaJuego();
         vista.dispose();
     }
     

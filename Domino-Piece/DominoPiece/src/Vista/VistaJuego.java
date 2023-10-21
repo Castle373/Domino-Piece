@@ -14,6 +14,7 @@ import dominio_domino.Jugador;
 import dominio_domino.Pozo;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,19 +47,19 @@ public class VistaJuego extends javax.swing.JFrame {
     private void initComponents() {
 
         Jugador1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblJugador1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         Jugador2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lblJugador2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         Jugador3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        lblJugador3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         Jugador4 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        lblJugador4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
@@ -68,7 +69,6 @@ public class VistaJuego extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 102));
         setMinimumSize(new java.awt.Dimension(1300, 600));
-        setPreferredSize(new java.awt.Dimension(1300, 600));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
@@ -93,7 +93,7 @@ public class VistaJuego extends javax.swing.JFrame {
 
         Jugador1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel1.setText("Jugador:");
+        lblJugador1.setText("Jugador:");
 
         jLabel2.setText("IMAGEN AVATAR");
 
@@ -109,7 +109,7 @@ public class VistaJuego extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblJugador1)
                 .addContainerGap(235, Short.MAX_VALUE))
         );
         Jugador1Layout.setVerticalGroup(
@@ -122,13 +122,13 @@ public class VistaJuego extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(Jugador1Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblJugador1)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
         Jugador2.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel3.setText("Jugador:");
+        lblJugador2.setText("Jugador:");
 
         jLabel4.setText("IMAGEN AVATAR");
 
@@ -144,7 +144,7 @@ public class VistaJuego extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(lblJugador2)
                 .addContainerGap(235, Short.MAX_VALUE))
         );
         Jugador2Layout.setVerticalGroup(
@@ -157,13 +157,13 @@ public class VistaJuego extends javax.swing.JFrame {
                         .addComponent(jLabel4))
                     .addGroup(Jugador2Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(jLabel3)))
+                        .addComponent(lblJugador2)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
         Jugador3.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel5.setText("Jugador:");
+        lblJugador3.setText("Jugador:");
 
         jLabel6.setText("IMAGEN AVATAR");
 
@@ -179,7 +179,7 @@ public class VistaJuego extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(lblJugador3)
                 .addContainerGap(235, Short.MAX_VALUE))
         );
         Jugador3Layout.setVerticalGroup(
@@ -192,13 +192,13 @@ public class VistaJuego extends javax.swing.JFrame {
                         .addComponent(jLabel6))
                     .addGroup(Jugador3Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(jLabel5)))
+                        .addComponent(lblJugador3)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
         Jugador4.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel7.setText("Jugador:");
+        lblJugador4.setText("Jugador:");
 
         jLabel8.setText("IMAGEN AVATAR");
 
@@ -214,7 +214,7 @@ public class VistaJuego extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addComponent(lblJugador4)
                 .addContainerGap(235, Short.MAX_VALUE))
         );
         Jugador4Layout.setVerticalGroup(
@@ -227,7 +227,7 @@ public class VistaJuego extends javax.swing.JFrame {
                         .addComponent(jLabel8))
                     .addGroup(Jugador4Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(jLabel7)))
+                        .addComponent(lblJugador4)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
@@ -329,6 +329,24 @@ public class VistaJuego extends javax.swing.JFrame {
         robarFicha();
     }//GEN-LAST:event_btnRobarActionPerformed
 
+    public void mostrarJugadores(){
+        List<Jugador> list= presentador.listaJugadores();
+        for (int i = 0; i < list.size(); i++) {
+            if (i==0) {
+                lblJugador1.setText(list.get(0).getNombre());
+            }
+            if (i==1) {
+                lblJugador2.setText(list.get(1).getNombre());
+            }
+            if (i==2) {
+                lblJugador3.setText(list.get(2).getNombre());
+            }
+            if (i==3) {
+                lblJugador4.setText(list.get(3).getNombre());
+            }
+        }
+        
+    }
     public void pintarFichas() {
         tablero.repintarFichasJugador();
     }
@@ -464,18 +482,18 @@ public class VistaJuego extends javax.swing.JFrame {
     private javax.swing.JPanel Jugador4;
     private javax.swing.JButton btnRobar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JLabel lblJugador1;
+    private javax.swing.JLabel lblJugador2;
+    private javax.swing.JLabel lblJugador3;
+    private javax.swing.JLabel lblJugador4;
     // End of variables declaration//GEN-END:variables
 }

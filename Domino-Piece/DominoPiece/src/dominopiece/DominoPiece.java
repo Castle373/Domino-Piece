@@ -19,7 +19,7 @@ public class DominoPiece {
     public static void main(String[] args) {
         IPresentadorMenu presentador= new PresentadorMenu();
         presentador.mostrarMenu();
-       
+       //En la esta Prueba Se puede crear una partida, cuando la creas
     }
     
 }
