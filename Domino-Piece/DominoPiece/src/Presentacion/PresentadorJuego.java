@@ -48,9 +48,6 @@ public class PresentadorJuego implements IPresentacionJuego {
     public void iniciarPartida() {
         crearPozo();
         reparteFichas();
-        while (!verificaFichas()) {
-            reparteFichasExtras();
-        }
         crearTablero();
     }
 
@@ -63,17 +60,6 @@ public class PresentadorJuego implements IPresentacionJuego {
     public void reparteFichas() {
         modelo.reparteFichas();
     }
-
-    @Override
-    public void reparteFichasExtras() {
-        modelo.reparteFichasExtras();
-    }
-
-    @Override
-    public boolean verificaFichas() {
-        return modelo.verificaFichas();
-    }
-
     @Override
     public void crearTablero() {
         modelo.crearTablero();
@@ -120,6 +106,11 @@ public class PresentadorJuego implements IPresentacionJuego {
     @Override
     public List<Jugador> listaJugadores() {
        return modelo.getListJugadores();
+    }
+
+    @Override
+    public void setListaJugadores(List<Jugador> jugadores) {
+       modelo.setListJugadores(jugadores);
     }
     
 }

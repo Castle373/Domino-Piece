@@ -124,7 +124,9 @@ public class VistaMenu extends javax.swing.JFrame {
     public void salir(){
         System.exit(0);
     }
-    
+    public void mostrarError(String m){
+        JOptionPane.showMessageDialog(rootPane, m);
+    }
     /**
      * @param args the command line arguments
      */

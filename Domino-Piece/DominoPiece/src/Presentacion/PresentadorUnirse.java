@@ -9,6 +9,7 @@ import Vista.VistaUnirse;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import java.awt.Image;
+import java.net.Socket;
 
 /**
  *
@@ -75,5 +76,10 @@ public class PresentadorUnirse implements IPresentadorUnirse {
         return modelo.obtenerJugador();
     }
 
+    @Override
+    public void guardarSocket(Socket Socket) {
+       modelo.setSocket(Socket);
+    }
+    
     
 }

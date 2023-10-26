@@ -4,16 +4,22 @@
  */
 package Modelo;
 
+import Socketss.Cliente;
+import Socketss.JugadorProtocolo;
 import dominio_domino.Partida;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author marcos
  */
 public class ModeloCrear {
-
+    private Cliente cliente;
     private Partida partida;
-
+    private Socket socket;
     public Partida crearPartida(int fichasIniciales) {
         partida = new Partida(fichasIniciales);
         return partida;
@@ -22,4 +28,26 @@ public class ModeloCrear {
     public Partida recuperarPartida() {
         return partida;
     }
+    public Cliente crearConexion() {
+
+        try {
+
+            socket = new Socket("localhost", 1234);
+            Cliente cliente = new Cliente(socket);
+
+        } catch (IOException ex) {
+            return null;
+        }
+
+        return cliente;
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
+    
 }

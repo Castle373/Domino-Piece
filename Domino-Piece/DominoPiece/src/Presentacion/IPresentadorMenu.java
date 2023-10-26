@@ -13,5 +13,5 @@ public interface IPresentadorMenu {
     public void crearPartida();
     public void mostrarMenu();
     public void unirsePartida();
-    
+    public void enviarSocket();
 }

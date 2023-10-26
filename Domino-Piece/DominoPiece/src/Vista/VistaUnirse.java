@@ -14,12 +14,14 @@ import javax.swing.JOptionPane;
  * @author marcos
  */
 public class VistaUnirse extends javax.swing.JFrame {
+
     private IPresentadorUnirse presentador;
+
     /**
      * Creates new form vistaUnirse
      */
     public VistaUnirse(IPresentadorUnirse presentador) {
-        this.presentador=presentador;
+        this.presentador = presentador;
         initComponents();
     }
 
@@ -152,35 +154,34 @@ public class VistaUnirse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    crearJugador();
+        crearJugador();
     }//GEN-LAST:event_jButton1ActionPerformed
-   
-    public void crearJugador(){
+
+    public void crearJugador() {
         String nombre = txtNombre.getText();
-        Image avatar=null;
+        Image avatar = null;
         if (chbxAvatar1.isSelected()) {
-            avatar = new ImageIcon(getClass().getResource("/img")).getImage();    
-   
+            avatar = new ImageIcon(getClass().getResource("/img")).getImage();
         }
         if (chbxAvatar2.isSelected()) {
             avatar = new ImageIcon(getClass().getResource("/img")).getImage();
         }
         if (chbxAvatar3.isSelected()) {
-           avatar = new ImageIcon(getClass().getResource("/img")).getImage();
+            avatar = new ImageIcon(getClass().getResource("/img")).getImage();
         }
         if (chbxAvatar4.isSelected()) {
             avatar = new ImageIcon(getClass().getResource("/img")).getImage();
         }
         presentador.crearJugador(nombre, avatar);
     }
-    
+
     public void muestraMensajeError() {
         JOptionPane.showMessageDialog(rootPane, "Error", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
     /**
      * @param args the command line arguments
      */
-  
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

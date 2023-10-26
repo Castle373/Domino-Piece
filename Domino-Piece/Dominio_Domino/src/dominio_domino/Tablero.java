@@ -46,6 +46,7 @@ public class Tablero {
         }
         return fichasTablero.get(0);
     }
+    
     public boolean validaZonaInical(FichaTablero ficha){
     
         if (ficha.isMula()) {

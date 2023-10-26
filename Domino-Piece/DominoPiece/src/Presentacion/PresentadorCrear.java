@@ -8,6 +8,7 @@ import Modelo.ModeloCrear;
 import Vista.VistaCrear;
 import Vista.VistaUnirse;
 import dominio_domino.Partida;
+import java.net.Socket;
 
 /**
  *
@@ -35,7 +36,12 @@ public class PresentadorCrear implements IPresentadorCrear {
         Partida partida = modeloCrear.crearPartida(fichasIniciales);
         if (partida == null) {
             pantallaCrear.muestraMensajeError();
-        } else {
+        }
+        if (crearConexion()==null) {
+            pantallaCrear.muestraMensajeError();
+        }
+        else {
+            enviarSocket();
             mostrarPantallaUnirse();
         }
     }
@@ -55,6 +61,16 @@ public class PresentadorCrear implements IPresentadorCrear {
     @Override
     public Partida obtenerPartida() {
         return modeloCrear.recuperarPartida();
+    }
+
+    @Override
+    public Socket crearConexion() {
+     return crearConexion();
+    }
+
+    @Override
+    public void enviarSocket() {
+       presentadorUnirse.guardarSocket(modeloCrear.getSocket());
     }
 
 }

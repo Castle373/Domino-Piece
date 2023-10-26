@@ -9,6 +9,7 @@ import dominio_domino.Partida;
 import dominio_domino.Pozo;
 import dominio_domino.Tablero;
 import java.awt.Image;
+import java.net.Socket;
 
 /**
  *
@@ -20,8 +21,17 @@ public class ModeloUnirse {
     private Jugador jugador;
     private Tablero tablero;
     private Pozo pozo;
+    private Socket socket;
     
     public ModeloUnirse() {
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
     }
 
     public void guardarPartida(Partida partida) {
@@ -29,11 +39,10 @@ public class ModeloUnirse {
     }
     
     public void crearJugador(String nombre, Image avatar) {
-        Jugador jugador2 = new Jugador("juan", avatar);
         jugador = new Jugador(nombre, avatar);
         
         partida.addJugador(jugador);
-        partida.addJugador(jugador2);
+
     }
 
     public Partida recuperaPartida() {

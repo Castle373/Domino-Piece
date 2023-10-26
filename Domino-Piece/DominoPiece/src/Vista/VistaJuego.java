@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  *
  * @author diego
  */
-public class VistaJuego extends javax.swing.JFrame {
+public class VistaJuego extends javax.swing.JFrame implements IRecibir{
 
     private IPresentacionJuego presentador;
     private TableroGrafico tablero;
@@ -470,6 +470,7 @@ public class VistaJuego extends javax.swing.JFrame {
     public void asignarJugadorJugando(Jugador jugador) {
         tablero.setJugador(jugador);
     }
+    
     /**
      * @param args the command line arguments
      */
@@ -496,4 +497,9 @@ public class VistaJuego extends javax.swing.JFrame {
     private javax.swing.JLabel lblJugador3;
     private javax.swing.JLabel lblJugador4;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizar(Object o) {
+       presentador.setListaJugadores((List<Jugador>) o);
+    }
 }

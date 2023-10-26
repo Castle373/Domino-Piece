@@ -22,11 +22,9 @@ public interface IPresentacionJuego {
     public void guardarJugador(Jugador jugador);
     public void iniciarPartida();
     public List<Jugador> listaJugadores();
-    
+    public void setListaJugadores(List<Jugador> jugadores);
     public void crearPozo();
     public void reparteFichas();
-    public void reparteFichasExtras();
-    public boolean verificaFichas();
     public void crearTablero();
     public void robarFicha();
   

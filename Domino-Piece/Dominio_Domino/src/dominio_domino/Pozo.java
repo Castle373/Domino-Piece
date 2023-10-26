@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
  */
 public class Pozo {
 
-    private List<FichaPozo> fichasPozo = new ArrayList<>();
+    private List<FichaPozo> fichasPozo;
     //  private Random random = new Random();
 
     public Pozo() {
@@ -31,7 +31,10 @@ public class Pozo {
             }
         }
     }
-
+    public Pozo(List<FichaPozo> fichasPozo) {
+        this.fichasPozo = fichasPozo;   
+    }
+    
     public List<FichaPozo> getFichasPozo() {
         return fichasPozo;
     }

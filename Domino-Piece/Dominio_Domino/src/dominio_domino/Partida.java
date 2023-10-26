@@ -114,4 +114,35 @@ public class Partida {
         return getNumeroFichas() != 0;
     }
 
+    public void reparteFichas() {
+        for (int i = 0; i < this.getNumeroFichas(); i++) {
+            for (Jugador jugador : this.getJugadores()) {
+                FichaPozo f = this.getPozo().obtenerFichaAleatoria();
+                jugador.addFichasJugador(new FichaJugador(f.getImagen(), f.getPuntoAbajo(), f.getPuntoArriba()));
+            }
+        }
+        while (!verificaFichas()) {
+            reparteFichasExtras();
+        }
+    }
+
+    public void reparteFichasExtras() {
+        for (int i = 0; i < 1; i++) {
+            for (Jugador jugador : this.getJugadores()) {
+                FichaPozo f = this.getPozo().obtenerFichaAleatoria();
+                jugador.addFichasJugador(new FichaJugador(f.getImagen(), f.getPuntoAbajo(), f.getPuntoArriba()));
+            }
+        }
+    }
+
+    public boolean verificaFichas() {
+        for (Jugador jugador : this.getJugadores()) {
+            for (FichaJugador f : jugador.getFichasJugador()) {
+                if (f.isMula()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

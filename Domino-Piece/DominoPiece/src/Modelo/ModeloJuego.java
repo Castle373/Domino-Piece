@@ -31,9 +31,11 @@ public class ModeloJuego {
     public void guardarPartida(Partida partida) {
         this.partida = partida;
     }
-    public Jugador getJugador(){
+
+    public Jugador getJugador() {
         return this.jugador;
     }
+
     public void guardarJugador(Jugador jugador) {
 
         this.jugador = jugador;
@@ -42,8 +44,12 @@ public class ModeloJuego {
     public Partida recuperaPartida() {
         return partida;
     }
-    public List<Jugador> getListJugadores(){
+
+    public List<Jugador> getListJugadores() {
         return partida.getJugadores();
+    }
+    public void setListJugadores(List<Jugador> jugadores) {
+         partida.setJugadores(jugadores);
     }
     public boolean validaMovimiento(FichaTablero ficha, int lado) {
         Tablero tablero = partida.getTablero();
@@ -65,32 +71,7 @@ public class ModeloJuego {
     }
 
     public void reparteFichas() {
-        for (int i = 0; i < partida.getNumeroFichas(); i++) {
-            for (Jugador jugador : partida.getJugadores()) {
-                FichaPozo f = partida.getPozo().obtenerFichaAleatoria();
-                jugador.addFichasJugador(new FichaJugador(f.getImagen(), f.getPuntoAbajo(), f.getPuntoArriba()));
-            }
-        }
-    }
-
-    public void reparteFichasExtras() {
-        for (int i = 0; i < 1; i++) {
-            for (Jugador jugador : partida.getJugadores()) {
-                FichaPozo f = partida.getPozo().obtenerFichaAleatoria();
-                jugador.addFichasJugador(new FichaJugador(f.getImagen(), f.getPuntoAbajo(), f.getPuntoArriba()));
-            }
-        }
-    }
-
-    public boolean verificaFichas() {
-        for (Jugador jugador : partida.getJugadores()) {
-            for (FichaJugador f : jugador.getFichasJugador()) {
-                if (f.isMula()) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        partida.reparteFichas();
     }
 
     public void crearTablero() {
@@ -99,21 +80,22 @@ public class ModeloJuego {
     }
 
     public FichaPozo robarFicha() {
-        
-        FichaPozo f= partida.getPozo().obtenerFichaAleatoria();
-        if (f!=null) {
+
+        FichaPozo f = partida.getPozo().obtenerFichaAleatoria();
+        if (f != null) {
             agregarFichaJugador(f);
             return f;
-        }else{
+        } else {
             return null;
         }
-        
+
     }
-    
-    public void agregarFichaJugador(FichaPozo f){
+
+    public void agregarFichaJugador(FichaPozo f) {
         FichaJugador fichaJugador = new FichaJugador(f.getImagen(), f.getPuntoAbajo(), f.getPuntoArriba());
         jugador.addFichasJugador(fichaJugador);
     }
+
     public Jugador eliminarFicha(FichaJugador ficha) {
 
         jugador.removerFichaJugador(ficha);
@@ -130,21 +112,24 @@ public class ModeloJuego {
     }
 
     public void pasarTurno() {
-         partida.pasarTurno();
-        
+        partida.pasarTurno();
+
     }
-    public Jugador obtenerJugadorTurno(){
+
+    public Jugador obtenerJugadorTurno() {
         return partida.jugadorTurno();
     }
+
     public boolean validarFichas() {
         if (jugador.getFichasJugador().isEmpty()) {
             return false;
         }
         return true;
     }
-    public boolean isTurno(){
-        if (obtenerJugadorTurno()==getJugador()) {
-          return  true;
+
+    public boolean isTurno() {
+        if (obtenerJugadorTurno() == getJugador()) {
+            return true;
         }
         return false;
     }
