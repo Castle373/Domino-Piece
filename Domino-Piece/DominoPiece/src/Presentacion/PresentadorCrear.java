@@ -5,6 +5,7 @@
 package Presentacion;
 
 import Modelo.ModeloCrear;
+import Observer.Observer;
 import Vista.VistaCrear;
 import Vista.VistaUnirse;
 import dominio_domino.Partida;
@@ -14,7 +15,7 @@ import java.net.Socket;
  *
  * @author marcos
  */
-public class PresentadorCrear implements IPresentadorCrear {
+public class PresentadorCrear implements IPresentadorCrear,Observer{
 
     private ModeloCrear modeloCrear;
     private IPresentadorUnirse presentadorUnirse;
@@ -23,27 +24,21 @@ public class PresentadorCrear implements IPresentadorCrear {
     public PresentadorCrear() {
         modeloCrear = new ModeloCrear();
         presentadorUnirse = new PresentadorUnirse();
-        pantallaCrear = new VistaCrear(this);
+        pantallaCrear = new VistaCrear(this); 
     }
 
     @Override
     public void mostrarPantalla() {
         pantallaCrear.setVisible(true);
+        
     }
 
     @Override
     public void crearPartida(int fichasIniciales) {
-        Partida partida = modeloCrear.crearPartida(fichasIniciales);
-        if (partida == null) {
-            pantallaCrear.muestraMensajeError();
-        }
-        if (crearConexion()==null) {
-            pantallaCrear.muestraMensajeError();
-        }
-        else {
-            enviarSocket();
-            mostrarPantallaUnirse();
-        }
+        crearConexion();
+        modeloCrear.crearPartida(fichasIniciales);  
+        mostrarPantallaUnirse();
+        
     }
 
     @Override
@@ -60,17 +55,21 @@ public class PresentadorCrear implements IPresentadorCrear {
 
     @Override
     public Partida obtenerPartida() {
-        return modeloCrear.recuperarPartida();
+        return modeloCrear.getPartida();
     }
 
     @Override
     public Socket crearConexion() {
+        modeloCrear.crearConexion();
      return crearConexion();
     }
 
     @Override
-    public void enviarSocket() {
-       presentadorUnirse.guardarSocket(modeloCrear.getSocket());
+    public void update(Object loquesea) {
+        if (loquesea instanceof Partida) {
+            Partida p= (Partida) loquesea;
+            modeloCrear.setPartida(p);
+        }
     }
-
+    
 }

@@ -5,7 +5,7 @@
 package Modelo;
 
 import Socketss.Cliente;
-import Socketss.JugadorProtocolo;
+import Socketss.JugadorConexion;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;

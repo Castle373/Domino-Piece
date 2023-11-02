@@ -13,10 +13,10 @@ import dominio_dominodto.JugadorDTO;
  *
  * @author diego
  */
-public class PipeJugador implements Pipe<JugadorDTO>{
+public class PipeJugador implements Pipe{
 
     @Override
-    public void ejecutar(JugadorDTO s) {
+    public void ejecutar(Object jugador) {
        Filtro f = new FiltroJugador();
         f.ejecutar(f);
     }

@@ -8,17 +8,16 @@ import Filters.Filtro;
 import Filters.FiltroJugador;
 import dominio_domino.Jugador;
 import dominio_dominodto.JugadorDTO;
-import sink.Sink;
+
 
 /**
  *
  * @author diego
  */
-public class PipeGuardarJugador implements Pipe<Jugador> {
+public class PipeGuardarJugador implements Pipe{
 
     @Override
-    public void ejecutar(Jugador a) {
-        Sink s = Sink.getInstance();
-        s.addJugador(a);
+    public void ejecutar(Object jugador) {
+    
     }
 }

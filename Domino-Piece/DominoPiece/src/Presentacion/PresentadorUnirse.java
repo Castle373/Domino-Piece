@@ -76,10 +76,6 @@ public class PresentadorUnirse implements IPresentadorUnirse {
         return modelo.obtenerJugador();
     }
 
-    @Override
-    public void guardarSocket(Socket Socket) {
-       modelo.setSocket(Socket);
-    }
     
     
 }

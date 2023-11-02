@@ -4,9 +4,7 @@
  */
 package dominopieceserver;
 
-import Pump.Datos;
 import dominio_dominodto.JugadorDTO;
-import dominio_dominodto.NumeroFichasDTO;
 import dominio_dominodto.PartidaDTO;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -14,7 +12,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import sink.Sink;
 
 /**
  *
@@ -26,14 +23,12 @@ public class JugadorThread extends Thread {
     private ObjectOutputStream out;
     private Server server;
     private Object objecto;
-    private Datos pump;
     private Sink sink;
-    
+
     public JugadorThread(Socket socket, ObjectOutputStream out, Server server) {
         this.clientSocket = socket;
         this.out = out;
         this.server = server;
-        this.pump= new Datos();
         this.sink.getInstance();
     }
 
@@ -43,22 +38,17 @@ public class JugadorThread extends Thread {
             ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
 
             while (true) {
-                 objecto = in.readObject();
-                if (objecto instanceof NumeroFichasDTO) {
-                    Integer s = (Integer) objecto;
-                    pump.CrearPartida(s);
-                    
-                    
-                    PartidaDTO W = new PartidaDTO(sink.getPartida().getNumeroFichas());
-                    server.sendToAll(W);
-                    
+                objecto = in.readObject();
+
+                if (objecto instanceof PartidaDTO) {
+                    PartidaDTO p = (PartidaDTO) objecto;
+                    sink.CrearPartida(p);
                 }
-                if (objecto instanceof JugadorDTO) {
-//                   List<JugadorDTO> jugadores= new ArrayList<>();
-//                    for (Jugador) {
-//                        
-//                    }
-//                    W.setJugador(PartidaD)
+                 if (objecto instanceof JugadorDTO) {
+                    JugadorDTO j = (JugadorDTO) objecto;
+                    sink.agregarJugador(j);
+                    PartidaDTO partidaActual = sink.getPartidaDTO();
+                    server.sendToAll(partidaActual);
                 }
                 // Cuando se recibe un objeto, se envía a todos los clientes
 //                server.sendToAll(obj);

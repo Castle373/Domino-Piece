@@ -6,7 +6,6 @@ package Filters;
 
 import Pipes.Pipe;
 import Pipes.PipeGuardarJugador;
-import Pipes.PipeNumeroFicas;
 import dominio_domino.Jugador;
 import dominio_dominodto.JugadorDTO;
 
@@ -14,13 +13,13 @@ import dominio_dominodto.JugadorDTO;
  *
  * @author diego
  */
-public class FiltroJugador implements Filtro<JugadorDTO>{
+public class FiltroJugador implements Filtro{
 
     @Override
-    public void ejecutar(JugadorDTO objeto) {
+    public void ejecutar(Object objeto) {
        Pipe p = new PipeGuardarJugador();
-       Jugador j = new Jugador(objeto.getNombre(), objeto.getAvatar());
-        p.ejecutar(j);
+//       Jugador j = new Jugador(objeto.getNombre(), objeto.getAvatar());
+//        p.ejecutar(j);
     }
     
 }

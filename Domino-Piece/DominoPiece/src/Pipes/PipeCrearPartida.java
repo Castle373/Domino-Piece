@@ -6,7 +6,6 @@ package Pipes;
 
 import Filters.Filtro;
 import Filters.FiltroCrearPartida;
-import Filters.FiltroJugador;
 import dominio_domino.Partida;
 
 /**
@@ -20,6 +19,7 @@ public class PipeCrearPartida implements Pipe {
 
         Filtro f = new FiltroCrearPartida();
         f.ejecutar(numeroFicha);
+      
     }
 
 }

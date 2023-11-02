@@ -4,20 +4,21 @@
  */
 package Pipes;
 
-import Filters.Filtro;
-import dominio_dominodto.JugadorDTO;
-import sink.Sink;
+import Socketss.Cliente;
+import dominio_domino.Partida;
 
 /**
  *
  * @author diego
  */
-public class PipeNumeroFicas implements Pipe<Integer> {
+public class PipeFin implements Pipe {
 
     @Override
-    public void ejecutar(Integer f) {
-        Sink s = Sink.getInstance();
-        s.setNumeroFichas(f);
+    public void ejecutar(Object s) {
+        Cliente cliente = Cliente.getInstance();
+        if (s instanceof Partida) {
+            cliente.enviarAlServidor(s);
+        }
     }
 
 }

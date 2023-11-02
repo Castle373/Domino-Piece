@@ -5,7 +5,7 @@
 package Presentacion;
 
 import Modelo.ModeloMenu;
-import Socketss.JugadorProtocolo;
+import Socketss.JugadorConexion;
 import Vista.VistaMenu;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -40,7 +40,6 @@ public class PresentadorMenu implements IPresentadorMenu {
     public void unirsePartida() {
 
         if (modelo.buscarPartida() != null) {
-            this.enviarSocket();
             presentadorUnirse.mostrarPantallaUnirse();
             vista.dispose();
             
@@ -57,9 +56,5 @@ public class PresentadorMenu implements IPresentadorMenu {
 
     }
 
-    @Override
-    public void enviarSocket() {
-        presentadorUnirse.guardarSocket(modelo.getSocket());
-    }
 
 }

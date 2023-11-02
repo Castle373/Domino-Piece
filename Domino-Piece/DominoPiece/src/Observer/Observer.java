@@ -2,15 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Presentacion;
+package Observer;
 
 /**
  *
- * @author eduar
+ * @author diego
  */
-public interface IPresentadorMenu {
-    
-    public void crearPartida();
-    public void mostrarMenu();
-    public void unirsePartida();
+public interface Observer {
+    public void update(Object loquesea);
 }

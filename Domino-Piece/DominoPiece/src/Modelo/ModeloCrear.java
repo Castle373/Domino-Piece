@@ -4,8 +4,10 @@
  */
 package Modelo;
 
+import Pipes.Pipe;
+import Pipes.PipeCrearPartida;
 import Socketss.Cliente;
-import Socketss.JugadorProtocolo;
+import Socketss.JugadorConexion;
 import dominio_domino.Partida;
 import java.io.IOException;
 import java.net.Socket;
@@ -17,37 +19,32 @@ import java.util.logging.Logger;
  * @author marcos
  */
 public class ModeloCrear {
+
     private Cliente cliente;
     private Partida partida;
-    private Socket socket;
-    public Partida crearPartida(int fichasIniciales) {
-        partida = new Partida(fichasIniciales);
+ 
+
+    public void crearPartida(int fichasIniciales) {
+        Pipe pipa = new PipeCrearPartida();
+        pipa.ejecutar(fichasIniciales);
+       
+    }
+
+    public Partida getPartida() {
         return partida;
     }
 
-    public Partida recuperarPartida() {
-        return partida;
+    public void setPartida(Partida partida) {
+        this.partida = partida;
     }
+
     public Cliente crearConexion() {
 
-        try {
-
-            socket = new Socket("localhost", 1234);
-            Cliente cliente = new Cliente(socket);
-
-        } catch (IOException ex) {
-            return null;
-        }
+        Cliente cliente = Cliente.getInstance();
 
         return cliente;
     }
 
-    public Socket getSocket() {
-        return socket;
-    }
+  
 
-    public void setSocket(Socket socket) {
-        this.socket = socket;
-    }
-    
 }

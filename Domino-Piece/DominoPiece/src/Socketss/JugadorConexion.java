@@ -21,7 +21,7 @@ import javax.swing.SwingUtilities;
  *
  * @author diego
  */
-public class JugadorProtocolo extends Thread {
+public class JugadorConexion extends Thread {
 
     private Socket clientSocket;
     private ObjectInputStream in;
@@ -29,7 +29,7 @@ public class JugadorProtocolo extends Thread {
     private Object objecto;
     private IRecibir i;
 //    private Jframe frame;
-    public JugadorProtocolo(Socket socket) {
+    public JugadorConexion(Socket socket) {
         this.clientSocket = socket;
 //        this.frame = frame;
 
@@ -62,18 +62,18 @@ public class JugadorProtocolo extends Thread {
                 if (objecto instanceof PartidaDTO) {
 
                     PartidaDTO partida = (PartidaDTO) objecto;
-                    Partida p = new Partida(partida.getNumero());
-                    if (partida.getJugador().isEmpty()) {
-                        //aqui se regresa al frame Unirse
-                    } else {
-                        List<Jugador> jugadores = new ArrayList<>();
-                        for (JugadorDTO s : partida.getJugador()) {
-                            Jugador j = new Jugador(s.getNombre(), s.getAvatar());
-                            jugadores.add(j);
-                        }
-                        p.setJugadores(jugadores);
-                         //aqui se regresa al frame Partida
-                    }
+//                    Partida p = new Partida(partida.getNumero());
+//                    if (partida.getJugador().isEmpty()) {
+//                        //aqui se regresa al frame Unirse
+//                    } else {
+//                        List<Jugador> jugadores = new ArrayList<>();
+//                        for (JugadorDTO s : partida.getJugador()) {
+//                            Jugador j = new Jugador(s.getNombre(), s.getAvatar());
+//                            jugadores.add(j);
+//                        }
+//                        p.setJugadores(jugadores);
+//                         //aqui se regresa al frame Partida
+//                    }
 
                 }
 

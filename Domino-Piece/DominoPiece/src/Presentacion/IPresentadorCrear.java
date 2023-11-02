@@ -18,5 +18,4 @@ public interface IPresentadorCrear {
     public Partida obtenerPartida();
     public void enviarPartida();
     public Socket crearConexion();
-    public void enviarSocket();
 }

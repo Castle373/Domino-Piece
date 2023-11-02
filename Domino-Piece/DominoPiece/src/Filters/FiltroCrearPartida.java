@@ -6,6 +6,7 @@ package Filters;
 
 import Pipes.Pipe;
 import Pipes.PipeCrearPartida;
+import Pipes.PipeFin;
 import dominio_domino.Partida;
 
 /**
@@ -20,7 +21,9 @@ public class FiltroCrearPartida implements Filtro {
         if (numeroFichas instanceof Integer) {
             int fichasIniciales = (int) numeroFichas;
             p = new Partida(fichasIniciales);
-        }
+        } 
+        Pipe pipaFin = new PipeFin();
+        pipaFin.ejecutar(p);
         
     }
 

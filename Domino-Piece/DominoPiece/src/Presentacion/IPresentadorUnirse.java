@@ -18,7 +18,6 @@ public interface IPresentadorUnirse {
     public void crearJugador(String nombre, Image avatar);
     public void mostrarPantallaJuego();
     public void guardarPartida(Partida partida);
-    public void guardarSocket(Socket Socket);
     public void enviarPartida();
     public Partida obtenerPartida();
     public void enviarJugador();
