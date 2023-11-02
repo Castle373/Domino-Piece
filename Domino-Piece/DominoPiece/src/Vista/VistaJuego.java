@@ -13,6 +13,7 @@ import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Pozo;
 import dominio_dominodto.JugadorDTO;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
@@ -37,7 +38,7 @@ public class VistaJuego extends javax.swing.JFrame  {
         tablero = new TableroGrafico();
         initComponents();
         btnRobar.setVisible(false);
-        
+      
     }
 
     /**
@@ -68,10 +69,29 @@ public class VistaJuego extends javax.swing.JFrame  {
         jButton1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         btnRobar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        pantallaespera = new javax.swing.JPanel();
+        Jugador5 = new javax.swing.JPanel();
+        lblJugador5 = new javax.swing.JLabel();
+        lblAvatar5 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        Jugador6 = new javax.swing.JPanel();
+        lblJugador6 = new javax.swing.JLabel();
+        lblAvatar6 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        Jugador7 = new javax.swing.JPanel();
+        lblJugador7 = new javax.swing.JLabel();
+        lblAvatar7 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        Jugador8 = new javax.swing.JPanel();
+        lblJugador8 = new javax.swing.JLabel();
+        lblAvatar8 = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
+        jButton3 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        btnRobar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(0, 255, 102));
+        setBackground(new java.awt.Color(51, 51, 0));
         setMinimumSize(new java.awt.Dimension(1300, 600));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -153,70 +173,165 @@ public class VistaJuego extends javax.swing.JFrame  {
             }
         });
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        pantallaespera.setBackground(new java.awt.Color(0, 153, 0));
+        pantallaespera.setForeground(new java.awt.Color(0, 153, 0));
+
+        Jugador5.setBackground(new java.awt.Color(204, 204, 204));
+        Jugador5.setPreferredSize(new java.awt.Dimension(500, 130));
+        Jugador5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblJugador5.setText("Jugador:");
+        Jugador5.add(lblJugador5, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 44, -1, -1));
+        Jugador5.add(lblAvatar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        Jugador5.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 0, 50, 130));
+
+        Jugador6.setBackground(new java.awt.Color(204, 204, 204));
+        Jugador6.setPreferredSize(new java.awt.Dimension(500, 130));
+        Jugador6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblJugador6.setText("Jugador:");
+        Jugador6.add(lblJugador6, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 44, -1, -1));
+        Jugador6.add(lblAvatar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        Jugador6.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 50, 130));
+
+        Jugador7.setBackground(new java.awt.Color(204, 204, 204));
+        Jugador7.setPreferredSize(new java.awt.Dimension(500, 130));
+        Jugador7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblJugador7.setText("Jugador:");
+        Jugador7.add(lblJugador7, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 44, -1, -1));
+        Jugador7.add(lblAvatar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        Jugador7.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 0, 50, 130));
+
+        Jugador8.setBackground(new java.awt.Color(204, 204, 204));
+        Jugador8.setPreferredSize(new java.awt.Dimension(500, 130));
+        Jugador8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblJugador8.setText("Jugador:");
+        Jugador8.add(lblJugador8, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 44, -1, -1));
+        Jugador8.add(lblAvatar8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jSeparator8.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        Jugador8.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 50, 130));
+
+        jButton3.setText("Iniciar Votacion");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
+
+        btnRobar1.setText("Robar Ficha");
+        btnRobar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRobar1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pantallaesperaLayout = new javax.swing.GroupLayout(pantallaespera);
+        pantallaespera.setLayout(pantallaesperaLayout);
+        pantallaesperaLayout.setHorizontalGroup(
+            pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pantallaesperaLayout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pantallaesperaLayout.createSequentialGroup()
+                        .addComponent(Jugador5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(220, 220, 220)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pantallaesperaLayout.createSequentialGroup()
+                        .addComponent(Jugador6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(243, 243, 243)
+                        .addComponent(btnRobar1))
+                    .addComponent(Jugador7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Jugador8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pantallaesperaLayout.setVerticalGroup(
+            pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pantallaesperaLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Jugador5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pantallaesperaLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
+                .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Jugador6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pantallaesperaLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(btnRobar1)))
+                .addGap(17, 17, 17)
+                .addComponent(Jugador7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(Jugador8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(220, 220, 220)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(87, 87, 87)
+                        .addComponent(Jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRobar)
-                        .addGap(58, 58, 58))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel9))
-                .addGap(92, 92, 92))
+                        .addGap(87, 87, 87)
+                        .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(807, 807, 807)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(812, 812, 812)
+                        .addComponent(jLabel9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(830, 830, 830)
+                        .addComponent(btnRobar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(Jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(Jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pantallaespera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(17, 17, 17)
-                        .addComponent(Jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(481, 481, 481)
+                        .addComponent(Jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(334, 334, 334)
+                        .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(622, 622, 622)
+                        .addComponent(jLabel9))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(225, 225, 225)
-                        .addComponent(btnRobar)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnRobar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addGap(64, 64, 64)))
-                .addComponent(Jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addContainerGap())
+                        .addGap(187, 187, 187)
+                        .addComponent(Jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(Jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pantallaespera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -252,9 +367,13 @@ public class VistaJuego extends javax.swing.JFrame  {
         robarFicha();
     }//GEN-LAST:event_btnRobarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        mostrarJugadores();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnRobar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRobar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRobar1ActionPerformed
 
     public void mostrarJugadores() {
         List<JugadorDTO> list = presentador.listaJugadores();
@@ -293,7 +412,7 @@ public class VistaJuego extends javax.swing.JFrame  {
 
     public void robarFicha() {
         if (!isTurno()) {
-            JOptionPane.showMessageDialog(rootPane, "No es tu Turno");
+          
             return;
         }
         presentador.robarFicha();
@@ -320,7 +439,7 @@ public class VistaJuego extends javax.swing.JFrame  {
 
     public void arrastrarFicha(MouseEvent evt) {
         if (!isTurno()) {
-            JOptionPane.showMessageDialog(rootPane, "No es tu Turno");
+           
             return;
         }
         Insets insets = this.getInsets();
@@ -332,7 +451,7 @@ public class VistaJuego extends javax.swing.JFrame  {
 
     public void realizarMovimiento(MouseEvent evt) {
         if (!isTurno()) {
-            JOptionPane.showMessageDialog(rootPane, "No es tu Turno");
+          
             return;
         }
         Insets insets = this.getInsets();
@@ -419,22 +538,41 @@ public class VistaJuego extends javax.swing.JFrame  {
     private javax.swing.JPanel Jugador2;
     private javax.swing.JPanel Jugador3;
     private javax.swing.JPanel Jugador4;
+    private javax.swing.JPanel Jugador5;
+    private javax.swing.JPanel Jugador6;
+    private javax.swing.JPanel Jugador7;
+    private javax.swing.JPanel Jugador8;
     private javax.swing.JButton btnRobar;
+    private javax.swing.JButton btnRobar1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JLabel lblAvatar1;
     private javax.swing.JLabel lblAvatar2;
     private javax.swing.JLabel lblAvatar3;
     private javax.swing.JLabel lblAvatar4;
+    private javax.swing.JLabel lblAvatar5;
+    private javax.swing.JLabel lblAvatar6;
+    private javax.swing.JLabel lblAvatar7;
+    private javax.swing.JLabel lblAvatar8;
     private javax.swing.JLabel lblJugador1;
     private javax.swing.JLabel lblJugador2;
     private javax.swing.JLabel lblJugador3;
     private javax.swing.JLabel lblJugador4;
+    private javax.swing.JLabel lblJugador5;
+    private javax.swing.JLabel lblJugador6;
+    private javax.swing.JLabel lblJugador7;
+    private javax.swing.JLabel lblJugador8;
+    private javax.swing.JPanel pantallaespera;
     // End of variables declaration//GEN-END:variables
 
     

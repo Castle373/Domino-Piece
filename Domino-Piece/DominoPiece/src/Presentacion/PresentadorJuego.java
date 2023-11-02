@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @author diego
+ * @author diego <3
  */
 public class PresentadorJuego implements IPresentacionJuego,Observer {
 

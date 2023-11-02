@@ -43,7 +43,7 @@ public class VistaCrearPartida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 0));
+        jPanel2.setBackground(new java.awt.Color(51, 153, 0));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -54,7 +54,7 @@ public class VistaCrearPartida extends javax.swing.JFrame {
         jLabel2.setText("Número de fichas:");
 
         cbFichas.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        cbFichas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
+        cbFichas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6", "7" }));
 
         btnIniciar.setBackground(new java.awt.Color(255, 153, 153));
         btnIniciar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

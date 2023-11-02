@@ -38,15 +38,15 @@ public class JugadorThread extends Thread {
             ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
 
             while (true) {
-                System.out.println("Poniendo a escuchas");
+            
                 objecto = in.readObject();
-                System.out.println("Recibido");
+              
                 if (objecto instanceof PartidaDTO) {
                     PartidaDTO p = (PartidaDTO) objecto;
                     sink.CrearPartida(p);
                 }
                 if (objecto instanceof JugadorDTO) {
-                    System.out.println("Debio enviar");
+                 
                     JugadorDTO j = (JugadorDTO) objecto;
                     sink.agregarJugador(j);
                     PartidaDTO partidaActual = sink.getPartidaDTO();
