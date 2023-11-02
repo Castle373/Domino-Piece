@@ -118,8 +118,8 @@ public class VistaMenu extends javax.swing.JFrame {
         presentadorMenu.crearPartida();
     }
     public void selectUnirsePartida(){
-        JOptionPane.showMessageDialog(rootPane, "EncontroPartida");
         presentadorMenu.unirsePartida();
+        
     }
     public void salir(){
         System.exit(0);

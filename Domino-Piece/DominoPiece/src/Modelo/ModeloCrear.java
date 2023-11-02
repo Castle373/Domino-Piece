@@ -6,6 +6,7 @@ package Modelo;
 
 import Pipes.Pipe;
 import Pipes.PipeCrearPartida;
+import Pipes.PipeInicio;
 import Socketss.Cliente;
 import Socketss.JugadorConexion;
 import dominio_domino.Partida;
@@ -25,7 +26,7 @@ public class ModeloCrear {
  
 
     public void crearPartida(int fichasIniciales) {
-        Pipe pipa = new PipeCrearPartida();
+        Pipe pipa = new PipeInicio();
         pipa.ejecutar(fichasIniciales);
        
     }

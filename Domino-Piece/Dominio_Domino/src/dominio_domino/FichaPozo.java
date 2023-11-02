@@ -12,7 +12,7 @@ public class FichaPozo extends Ficha{
     public FichaPozo() {
     }
 
-    public FichaPozo(Image imagen, int puntoAbajo, int puntoArriba) {
+    public FichaPozo(String imagen, int puntoAbajo, int puntoArriba) {
         super(imagen, puntoAbajo, puntoArriba);
     }
     

@@ -15,7 +15,7 @@ public class FichaJugador extends Ficha{
     public FichaJugador() {
     }
 
-    public FichaJugador(Image imagen, int puntoAbajo, int puntoArriba) {
+    public FichaJugador(String imagen, int puntoAbajo, int puntoArriba) {
         super(imagen, puntoAbajo, puntoArriba);
     }
     

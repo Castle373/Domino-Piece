@@ -4,10 +4,13 @@
  */
 package Modelo;
 
+import Pipes.Pipe;
+import Pipes.PipeInicio;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import dominio_domino.Pozo;
 import dominio_domino.Tablero;
+import dominio_dominodto.JugadorDTO;
 import java.awt.Image;
 import java.net.Socket;
 
@@ -18,11 +21,11 @@ import java.net.Socket;
 public class ModeloUnirse {
 
     private Partida partida;
-    private Jugador jugador;
+    private JugadorDTO jugador;
     private Tablero tablero;
     private Pozo pozo;
     private Socket socket;
-    
+
     public ModeloUnirse() {
     }
 
@@ -37,21 +40,27 @@ public class ModeloUnirse {
     public void guardarPartida(Partida partida) {
         this.partida = partida;
     }
-    
-    public void crearJugador(String nombre, Image avatar) {
-        jugador = new Jugador(nombre, avatar);
+
+    public void crearJugador(String nombre, String avatar) {
         
-        partida.addJugador(jugador);
+        jugador = new JugadorDTO(nombre, avatar);
+        
+        Pipe pipa = new PipeInicio();
+        pipa.ejecutar(jugador);
 
     }
 
     public Partida recuperaPartida() {
         return partida;
     }
-    
-    public Jugador obtenerJugador() {
-        
+
+    public JugadorDTO getJugador() {
         return jugador;
     }
-    
+
+    public void setJugador(JugadorDTO jugador) {
+        this.jugador = jugador;
+    }
+
+   
 }

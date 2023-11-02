@@ -22,62 +22,71 @@ import java.util.logging.Logger;
  *
  * @author diego
  */
-public class Cliente implements Observable{
-    
+public class Cliente {
+
     private volatile static Cliente instance;
-    public List<Observer> listaObservable;
     private JugadorConexion j;
 
     private Cliente() {
     }
 
     public static synchronized Cliente getInstance() {
+
         if (instance == null) {
             Socket socket;
             try {
                 socket = new Socket("localhost", 1234);
-                 instance = new Cliente(socket);
-                 
-            } catch (IOException ex) {
-                Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                if (true) {
+                    
+                }
+                instance = new Cliente(socket);
+
+            } catch (IOException  ex) {
+                System.out.println("ssss");
+                return null;
             }
-           
+
         }
         return instance;
     }
 
     public Cliente(Socket socket) {
-        listaObservable=new ArrayList<>();
+
         j = new JugadorConexion(socket);
         j.start();
     }
 
     public boolean enviarAlServidor(Object objecto) {
-        if (objecto instanceof Partida) {
-            Partida p = (Partida) objecto; 
+        if (objecto instanceof PartidaDTO) {
+            PartidaDTO p = (PartidaDTO) objecto;
             try {
+
                 j.enviarAlServidor(p);
+                return true;
             } catch (IOException ex) {
                 return false;
             }
         }
-        return true;
-    }
+        if (objecto instanceof JugadorDTO) {
+            JugadorDTO p = (JugadorDTO) objecto;
+            try {
 
-    @Override
-    public void agregarObserver(Observer o) {
-        listaObservable.add(o);
-    }
+                j.enviarAlServidor(p);
 
-    @Override
-    public void eliminarObserver(Observer o) {
-         listaObservable.remove(o);
-    }
-
-    @Override
-    public void notificarObservers(Object o) {
-        for (Observer observer : listaObservable) {
-            observer.update(o);
+                return true;
+            } catch (IOException ex) {
+                System.out.println(ex);
+                return false;
+            }
         }
+        return false;
+    }
+
+    public void agregarObserver(Observer o) {
+        j.agregarObserver(o);
+    }
+
+    public void eliminarObserver(Observer o) {
+        j.eliminarObserver(o);
     }
 }

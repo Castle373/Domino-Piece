@@ -6,8 +6,10 @@ package Graficos;
 
 import dominio_domino.FichaTablero;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -22,6 +24,7 @@ public class FichaTrenGrafica implements IFichaGrafica {
     private int yOriginal;
     private int ancho;
     private int largo;
+    private Image imagen;
     private boolean seleccionada;
 
     public FichaTrenGrafica() {
@@ -36,7 +39,7 @@ public class FichaTrenGrafica implements IFichaGrafica {
         this.xOriginal = x;
         this.yOriginal = y;
         this.seleccionada = false;
-
+        this.imagen=new ImageIcon(getClass().getResource(ficha.getImagen())).getImage();
     }
 
     public int getX() {
@@ -59,19 +62,19 @@ public class FichaTrenGrafica implements IFichaGrafica {
         if (!ficha.isMula()) {
             if (ficha.isConectarAbajo()) {
                 g.rotate(Math.toRadians(90), x + (ancho / 2), y + (largo / 2)); // Rotación de 90 grados
-                g.drawImage(ficha.getImagen(), (x - (largo / 4)), (y - (ancho / 2))-2, ancho, largo, null); // Intercambia ancho y largo
+                g.drawImage(imagen, (x - (largo / 4)), (y - (ancho / 2))-2, ancho, largo, null); // Intercambia ancho y largo
                 g.rotate(-Math.toRadians(90), x + (ancho / 2), y + (largo / 2)); // Restablece la rotación
             } else {
                 g.rotate(Math.toRadians(270), x + (ancho / 2), y + (largo / 2)); // Rotación de 270 grados en sentido antihorario
 //                 g.drawImage(ficha.getImagen(), x, (y - ((int) largo / 4)), ancho, largo, null);
-                g.drawImage(ficha.getImagen(), (x +(largo / 4))-1,  (y + (ancho / 2)) +2, ancho, largo, null); // Intercambia ancho y largo
+                g.drawImage(imagen, (x +(largo / 4))-1,  (y + (ancho / 2)) +2, ancho, largo, null); // Intercambia ancho y largo
                 g.rotate(-Math.toRadians(270), x + (ancho / 2), y + (largo / 2)); // Restablece la rotación
             }
 
         } else {
 
 //            g.drawImage(ficha.getImagen(), x, y, ancho, largo, null);
-            g.drawImage(ficha.getImagen(), x, (y - ((int) largo / 4)), ancho, largo, null);
+            g.drawImage(imagen, x, (y - ((int) largo / 4)), ancho, largo, null);
         }
     }
 

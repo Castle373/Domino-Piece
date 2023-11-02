@@ -16,6 +16,7 @@ import java.util.List;
  * @author diego
  */
 public class Server {
+
     private List<ObjectOutputStream> clientOutputStreams = new ArrayList<>();
 
     public void addClientOutputStream(ObjectOutputStream outputStream) {
@@ -38,8 +39,8 @@ public class Server {
         System.out.println("Servidor inicializado en el puerto 1234");
 
         Server server = new Server();
-
-        while (true) {
+        int connectionCount = 0;
+        while (connectionCount < 4) {
             Socket s = ss.accept();
             System.out.println("Nueva conexión por parte de cliente: " + s);
 
@@ -48,6 +49,9 @@ public class Server {
 
             JugadorThread client = new JugadorThread(s, out, server);
             client.start();
+            connectionCount++;
         }
+        ss.close();
+        
     }
 }

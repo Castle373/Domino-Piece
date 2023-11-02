@@ -6,33 +6,38 @@ package Graficos;
 
 import dominio_domino.Ficha;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author diego
  */
-public class FichaManoGrafica  implements IFichaGrafica{
+public class FichaManoGrafica implements IFichaGrafica {
+
     private Ficha ficha;
     private int x;
     private int y;
     private int xOriginal;
     private int yOriginal;
-    private int ancho;  
-    private int largo; 
+    private int ancho;
+    private int largo;
     private boolean seleccionada;
-    
+    private Image imagen;
+
     public FichaManoGrafica(Ficha ficha, int x, int y) {
         this.ficha = ficha;
         this.x = x;
         this.y = y;
-        this.ancho=23;
-        this.largo=48;
+        this.ancho = 23;
+        this.largo = 48;
         this.xOriginal = x;
         this.yOriginal = y;
         this.seleccionada = false;
-        
+        this.imagen = new ImageIcon(getClass().getResource(ficha.getImagen())).getImage();
+
     }
 
     public int getxOriginal() {
@@ -68,10 +73,11 @@ public class FichaManoGrafica  implements IFichaGrafica{
     }
 
     public void pintar(Graphics2D g) {
-      
-        g.drawImage(ficha.getImagen(), x, y, null);
-        
+
+        g.drawImage(imagen, x, y, null);
+
     }
+
     public boolean isDragging() {
         return seleccionada;
     }
@@ -108,7 +114,7 @@ public class FichaManoGrafica  implements IFichaGrafica{
     public void setLargo(int largo) {
         this.largo = largo;
     }
-    
+
     public Shape getArea() {
         return new Rectangle2D.Double(x, y, ancho, largo);
     }

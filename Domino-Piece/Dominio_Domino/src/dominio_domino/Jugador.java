@@ -11,10 +11,10 @@ import java.util.List;
 public class Jugador {
 
     private String nombre;
-    private Image avatar;
+    private String avatar;
     private List<FichaJugador> fichasJugador;
 
-    public Jugador(String nombre, Image avatar) {
+    public Jugador(String nombre, String avatar) {
         this.nombre = nombre;
         this.avatar = avatar;
         this.fichasJugador = new ArrayList<>();
@@ -31,11 +31,11 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    public Image getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Image avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 

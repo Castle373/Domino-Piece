@@ -1,14 +1,14 @@
 
 package dominio_domino;
 
-import java.awt.Image;
+
 
 /**
  *
  * @author IVAN
  */
 public class Ficha {
-    protected Image imagen;
+    protected String imagen;
     protected int puntoAbajo;
     protected int puntoArriba;
     protected boolean mula;
@@ -16,18 +16,18 @@ public class Ficha {
         
     }
 
-    public Ficha(Image imagen, int puntoAbajo, int puntoArriba) {
+    public Ficha(String imagen, int puntoAbajo, int puntoArriba) {
         this.imagen = imagen;
         this.puntoAbajo = puntoAbajo;
         this.puntoArriba = puntoArriba;
         this.mula = (puntoAbajo == puntoArriba);
     }
 
-    public Image getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(Image imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 

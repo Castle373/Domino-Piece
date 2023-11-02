@@ -10,6 +10,7 @@ import Vista.VistaMenu;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,6 +41,7 @@ public class PresentadorMenu implements IPresentadorMenu {
     public void unirsePartida() {
 
         if (modelo.buscarPartida() != null) {
+            JOptionPane.showMessageDialog(null, "EncontroPartida");
             presentadorUnirse.mostrarPantallaUnirse();
             vista.dispose();
             

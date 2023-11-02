@@ -15,7 +15,7 @@ import java.net.Socket;
  *
  * @author marcos
  */
-public class PresentadorCrear implements IPresentadorCrear,Observer{
+public class PresentadorCrear implements IPresentadorCrear {
 
     private ModeloCrear modeloCrear;
     private IPresentadorUnirse presentadorUnirse;
@@ -24,21 +24,21 @@ public class PresentadorCrear implements IPresentadorCrear,Observer{
     public PresentadorCrear() {
         modeloCrear = new ModeloCrear();
         presentadorUnirse = new PresentadorUnirse();
-        pantallaCrear = new VistaCrear(this); 
+        pantallaCrear = new VistaCrear(this);
     }
 
     @Override
     public void mostrarPantalla() {
         pantallaCrear.setVisible(true);
-        
+
     }
 
     @Override
     public void crearPartida(int fichasIniciales) {
         crearConexion();
-        modeloCrear.crearPartida(fichasIniciales);  
+        modeloCrear.crearPartida(fichasIniciales);
         mostrarPantallaUnirse();
-        
+
     }
 
     @Override
@@ -59,17 +59,9 @@ public class PresentadorCrear implements IPresentadorCrear,Observer{
     }
 
     @Override
-    public Socket crearConexion() {
+    public void crearConexion() {
         modeloCrear.crearConexion();
-     return crearConexion();
+      
     }
 
-    @Override
-    public void update(Object loquesea) {
-        if (loquesea instanceof Partida) {
-            Partida p= (Partida) loquesea;
-            modeloCrear.setPartida(p);
-        }
-    }
-    
 }

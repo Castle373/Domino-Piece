@@ -6,6 +6,7 @@ package Presentacion;
 
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
+import dominio_dominodto.JugadorDTO;
 import java.awt.Image;
 import java.net.Socket;
 
@@ -15,12 +16,12 @@ import java.net.Socket;
  */
 public interface IPresentadorUnirse {
     public void mostrarPantallaUnirse();
-    public void crearJugador(String nombre, Image avatar);
+    public void crearJugador(String nombre, String avatar);
     public void mostrarPantallaJuego();
     public void guardarPartida(Partida partida);
     public void enviarPartida();
     public Partida obtenerPartida();
     public void enviarJugador();
-    public Jugador  obtenerJugador();
+    public JugadorDTO  obtenerJugador();
     
 }

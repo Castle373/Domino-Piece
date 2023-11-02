@@ -4,13 +4,14 @@
  */
 package dominio_dominodto;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author diego
  */
-public class PozoDTO {
+public class PozoDTO implements Serializable{
     private List<FichaDTO> fichasPozo;
 
     public PozoDTO() {

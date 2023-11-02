@@ -12,16 +12,19 @@ import dominio_domino.FichaPozo;
 import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Pozo;
+import dominio_dominodto.JugadorDTO;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author diego
  */
-public class VistaJuego extends javax.swing.JFrame implements IRecibir{
+public class VistaJuego extends javax.swing.JFrame  {
 
     private IPresentacionJuego presentador;
     private TableroGrafico tablero;
@@ -48,23 +51,24 @@ public class VistaJuego extends javax.swing.JFrame implements IRecibir{
 
         Jugador1 = new javax.swing.JPanel();
         lblJugador1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblAvatar1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         Jugador2 = new javax.swing.JPanel();
         lblJugador2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblAvatar2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         Jugador3 = new javax.swing.JPanel();
         lblJugador3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblAvatar3 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         Jugador4 = new javax.swing.JPanel();
         lblJugador4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblAvatar4 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         btnRobar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 102));
@@ -92,144 +96,48 @@ public class VistaJuego extends javax.swing.JFrame implements IRecibir{
         });
 
         Jugador1.setBackground(new java.awt.Color(204, 204, 204));
+        Jugador1.setPreferredSize(new java.awt.Dimension(500, 130));
+        Jugador1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblJugador1.setText("Jugador:");
-
-        jLabel2.setText("IMAGEN AVATAR");
+        Jugador1.add(lblJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 44, -1, -1));
+        Jugador1.add(lblAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        javax.swing.GroupLayout Jugador1Layout = new javax.swing.GroupLayout(Jugador1);
-        Jugador1.setLayout(Jugador1Layout);
-        Jugador1Layout.setHorizontalGroup(
-            Jugador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Jugador1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblJugador1)
-                .addContainerGap(235, Short.MAX_VALUE))
-        );
-        Jugador1Layout.setVerticalGroup(
-            Jugador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(Jugador1Layout.createSequentialGroup()
-                .addGroup(Jugador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Jugador1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel2))
-                    .addGroup(Jugador1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(lblJugador1)))
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
+        Jugador1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 0, 50, 130));
 
         Jugador2.setBackground(new java.awt.Color(204, 204, 204));
+        Jugador2.setPreferredSize(new java.awt.Dimension(500, 130));
+        Jugador2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblJugador2.setText("Jugador:");
-
-        jLabel4.setText("IMAGEN AVATAR");
+        Jugador2.add(lblJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 44, -1, -1));
+        Jugador2.add(lblAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        javax.swing.GroupLayout Jugador2Layout = new javax.swing.GroupLayout(Jugador2);
-        Jugador2.setLayout(Jugador2Layout);
-        Jugador2Layout.setHorizontalGroup(
-            Jugador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Jugador2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblJugador2)
-                .addContainerGap(235, Short.MAX_VALUE))
-        );
-        Jugador2Layout.setVerticalGroup(
-            Jugador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2)
-            .addGroup(Jugador2Layout.createSequentialGroup()
-                .addGroup(Jugador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Jugador2Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel4))
-                    .addGroup(Jugador2Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(lblJugador2)))
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
+        Jugador2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 50, 130));
 
         Jugador3.setBackground(new java.awt.Color(204, 204, 204));
+        Jugador3.setPreferredSize(new java.awt.Dimension(500, 130));
+        Jugador3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblJugador3.setText("Jugador:");
-
-        jLabel6.setText("IMAGEN AVATAR");
+        Jugador3.add(lblJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 44, -1, -1));
+        Jugador3.add(lblAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        javax.swing.GroupLayout Jugador3Layout = new javax.swing.GroupLayout(Jugador3);
-        Jugador3.setLayout(Jugador3Layout);
-        Jugador3Layout.setHorizontalGroup(
-            Jugador3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Jugador3Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblJugador3)
-                .addContainerGap(235, Short.MAX_VALUE))
-        );
-        Jugador3Layout.setVerticalGroup(
-            Jugador3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator3)
-            .addGroup(Jugador3Layout.createSequentialGroup()
-                .addGroup(Jugador3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Jugador3Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel6))
-                    .addGroup(Jugador3Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(lblJugador3)))
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
+        Jugador3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 0, 50, 130));
 
         Jugador4.setBackground(new java.awt.Color(204, 204, 204));
+        Jugador4.setPreferredSize(new java.awt.Dimension(500, 130));
+        Jugador4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblJugador4.setText("Jugador:");
-
-        jLabel8.setText("IMAGEN AVATAR");
+        Jugador4.add(lblJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 44, -1, -1));
+        Jugador4.add(lblAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        javax.swing.GroupLayout Jugador4Layout = new javax.swing.GroupLayout(Jugador4);
-        Jugador4.setLayout(Jugador4Layout);
-        Jugador4Layout.setHorizontalGroup(
-            Jugador4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Jugador4Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblJugador4)
-                .addContainerGap(235, Short.MAX_VALUE))
-        );
-        Jugador4Layout.setVerticalGroup(
-            Jugador4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator4)
-            .addGroup(Jugador4Layout.createSequentialGroup()
-                .addGroup(Jugador4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Jugador4Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel8))
-                    .addGroup(Jugador4Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(lblJugador4)))
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
+        Jugador4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 50, 130));
 
         jButton1.setText("Iniciar Votacion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -245,12 +153,19 @@ public class VistaJuego extends javax.swing.JFrame implements IRecibir{
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(87, 87, 87)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,8 +183,10 @@ public class VistaJuego extends javax.swing.JFrame implements IRecibir{
                         .addGap(58, 58, 58))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addGap(181, 181, 181))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(jLabel9))
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,9 +204,15 @@ public class VistaJuego extends javax.swing.JFrame implements IRecibir{
                     .addGroup(layout.createSequentialGroup()
                         .addGap(225, 225, 225)
                         .addComponent(btnRobar)))
-                .addGap(17, 17, 17)
-                .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(64, 64, 64)))
                 .addComponent(Jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel9)
@@ -329,24 +252,41 @@ public class VistaJuego extends javax.swing.JFrame implements IRecibir{
         robarFicha();
     }//GEN-LAST:event_btnRobarActionPerformed
 
-    public void mostrarJugadores(){
-        List<Jugador> list= presentador.listaJugadores();
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        mostrarJugadores();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void mostrarJugadores() {
+        List<JugadorDTO> list = presentador.listaJugadores();
         for (int i = 0; i < list.size(); i++) {
-            if (i==0) {
+            if (i == 0) {
                 lblJugador1.setText(list.get(0).getNombre());
+                ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(0).getAvatar()));
+                ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                lblAvatar1.setIcon(iconoRedimensionado);
             }
-            if (i==1) {
+            if (i == 1) {
                 lblJugador2.setText(list.get(1).getNombre());
+                ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(1).getAvatar()));
+                ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                lblAvatar2.setIcon(iconoRedimensionado);
             }
-            if (i==2) {
+            if (i == 2) {
                 lblJugador3.setText(list.get(2).getNombre());
+                ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(2).getAvatar()));
+                ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                lblAvatar3.setIcon(iconoRedimensionado);
             }
-            if (i==3) {
+            if (i == 3) {
                 lblJugador4.setText(list.get(3).getNombre());
+                ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(3).getAvatar()));
+                ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                lblAvatar4.setIcon(iconoRedimensionado);
             }
         }
-        
+
     }
+
     public void pintarFichas() {
         tablero.repintarFichasJugador();
     }
@@ -354,7 +294,7 @@ public class VistaJuego extends javax.swing.JFrame implements IRecibir{
     public void robarFicha() {
         if (!isTurno()) {
             JOptionPane.showMessageDialog(rootPane, "No es tu Turno");
-          return ;
+            return;
         }
         presentador.robarFicha();
     }
@@ -369,8 +309,7 @@ public class VistaJuego extends javax.swing.JFrame implements IRecibir{
 
     public void agarrarFicha(MouseEvent evt) {
         if (!isTurno()) {
-            JOptionPane.showMessageDialog(rootPane, "No es tu Turno");
-          return ;
+            return;
         }
         Insets insets = this.getInsets();
         int adjustedX = evt.getX() - insets.left;
@@ -382,7 +321,7 @@ public class VistaJuego extends javax.swing.JFrame implements IRecibir{
     public void arrastrarFicha(MouseEvent evt) {
         if (!isTurno()) {
             JOptionPane.showMessageDialog(rootPane, "No es tu Turno");
-          return ;
+            return;
         }
         Insets insets = this.getInsets();
         int adjustedX = evt.getX() - insets.left;
@@ -394,7 +333,7 @@ public class VistaJuego extends javax.swing.JFrame implements IRecibir{
     public void realizarMovimiento(MouseEvent evt) {
         if (!isTurno()) {
             JOptionPane.showMessageDialog(rootPane, "No es tu Turno");
-          return ;
+            return;
         }
         Insets insets = this.getInsets();
         int adjustedX = evt.getX() - insets.left;
@@ -470,11 +409,10 @@ public class VistaJuego extends javax.swing.JFrame implements IRecibir{
     public void asignarJugadorJugando(Jugador jugador) {
         tablero.setJugador(jugador);
     }
-    
+
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Jugador1;
@@ -483,23 +421,21 @@ public class VistaJuego extends javax.swing.JFrame implements IRecibir{
     private javax.swing.JPanel Jugador4;
     private javax.swing.JButton btnRobar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JLabel lblAvatar1;
+    private javax.swing.JLabel lblAvatar2;
+    private javax.swing.JLabel lblAvatar3;
+    private javax.swing.JLabel lblAvatar4;
     private javax.swing.JLabel lblJugador1;
     private javax.swing.JLabel lblJugador2;
     private javax.swing.JLabel lblJugador3;
     private javax.swing.JLabel lblJugador4;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void actualizar(Object o) {
-       presentador.setListaJugadores((List<Jugador>) o);
-    }
+    
 }

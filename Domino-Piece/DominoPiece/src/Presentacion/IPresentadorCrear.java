@@ -17,5 +17,5 @@ public interface IPresentadorCrear {
     public void mostrarPantallaUnirse();
     public Partida obtenerPartida();
     public void enviarPartida();
-    public Socket crearConexion();
+    public void crearConexion();
 }

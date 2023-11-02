@@ -5,19 +5,22 @@
 package Presentacion;
 
 import Modelo.ModeloJuego;
+import Observer.Observer;
 import Vista.VistaJuego;
 import dominio_domino.FichaJugador;
 import dominio_domino.FichaPozo;
 import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
+import dominio_dominodto.JugadorDTO;
+import dominio_dominodto.PartidaDTO;
 import java.util.List;
 
 /**
  *
  * @author diego
  */
-public class PresentadorJuego implements IPresentacionJuego {
+public class PresentadorJuego implements IPresentacionJuego,Observer {
 
     private ModeloJuego modelo;
 
@@ -31,7 +34,7 @@ public class PresentadorJuego implements IPresentacionJuego {
     @Override
     public void mostrarPantallaJuego() {
         vista.setVisible(true);
-       vista.mostrarJugadores();
+//       vista.mostrarJugadores();
     }
 
     @Override
@@ -78,9 +81,9 @@ public class PresentadorJuego implements IPresentacionJuego {
     }
 
     @Override
-    public void guardarJugador(Jugador jugador) {
-        modelo.guardarJugador(jugador);
-        vista.asignarJugadorJugando(jugador);
+    public void guardarJugador(JugadorDTO jugador) {
+//        modelo.guardarJugador(jugador);
+//        vista.asignarJugadorJugando(jugador);
     }
 
     @Override
@@ -100,12 +103,13 @@ public class PresentadorJuego implements IPresentacionJuego {
 
     @Override
     public boolean isTurno() {
-       return modelo.isTurno();
+        return false;
+//       return modelo.isTurno(); por el momento no esta habilitada esta accion
     }
 
     @Override
-    public List<Jugador> listaJugadores() {
-       return modelo.getListJugadores();
+    public List<JugadorDTO> listaJugadores() {
+       return modelo.getListJugadoresDTO();
     }
 
     @Override
@@ -113,4 +117,14 @@ public class PresentadorJuego implements IPresentacionJuego {
        modelo.setListJugadores(jugadores);
     }
     
+    @Override
+    public void update(Object loquesea) {
+       
+        if (loquesea instanceof PartidaDTO) {
+            PartidaDTO p= (PartidaDTO) loquesea;
+           
+            modelo.setPartida2(p);
+            vista.mostrarJugadores();
+        }
+    }
 }

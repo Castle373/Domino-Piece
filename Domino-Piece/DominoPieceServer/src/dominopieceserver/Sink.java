@@ -46,6 +46,7 @@ public class Sink {
 
     public void CrearPartida(PartidaDTO p) {
         partida = new Partida(p.getNumeroFichas());
+        System.out.println("acabo de crear la partida numero: "+partida.getNumeroFichas());
     }
     public void agregarJugador(JugadorDTO j){
         Jugador juga = new Jugador(j.getNombre(), j.getAvatar());

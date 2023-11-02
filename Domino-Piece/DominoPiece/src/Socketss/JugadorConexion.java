@@ -4,7 +4,9 @@
  */
 package Socketss;
 
-import Vista.IRecibir;
+import Observer.Observable;
+import Observer.Observer;
+
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import dominio_dominodto.JugadorDTO;
@@ -21,36 +23,32 @@ import javax.swing.SwingUtilities;
  *
  * @author diego
  */
-public class JugadorConexion extends Thread {
-
+public class JugadorConexion extends Thread  implements Observable{
+    public List<Observer> listaObservable;
     private Socket clientSocket;
     private ObjectInputStream in;
     private ObjectOutputStream clientOutput;
     private Object objecto;
-    private IRecibir i;
 //    private Jframe frame;
+
     public JugadorConexion(Socket socket) {
+        listaObservable = new ArrayList<>();
         this.clientSocket = socket;
+        
 //        this.frame = frame;
 
         try {
             in = new ObjectInputStream(clientSocket.getInputStream());
+            clientOutput= new ObjectOutputStream(clientSocket.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public IRecibir getI() {
-        return i;
-    }
 
-    public void setI(IRecibir i) {
-        this.i = i;
-    }
-
-    public synchronized void enviarAlServidor(Object mensaje) throws IOException {
+    public synchronized void enviarAlServidor(Object mensaje) throws IOException {      
         clientOutput.writeObject(mensaje);
-        clientOutput.flush();
+        clientOutput.flush();    
     }
 
     @Override
@@ -62,6 +60,7 @@ public class JugadorConexion extends Thread {
                 if (objecto instanceof PartidaDTO) {
 
                     PartidaDTO partida = (PartidaDTO) objecto;
+                    notificarObservers(partida);
 //                    Partida p = new Partida(partida.getNumero());
 //                    if (partida.getJugador().isEmpty()) {
 //                        //aqui se regresa al frame Unirse
@@ -74,8 +73,8 @@ public class JugadorConexion extends Thread {
 //                        p.setJugadores(jugadores);
 //                         //aqui se regresa al frame Partida
 //                    }
-
                 }
+                
 
             }
         } catch (IOException | ClassNotFoundException e) {
@@ -83,7 +82,21 @@ public class JugadorConexion extends Thread {
         }
     }
 
-    private synchronized void mostrarCambios() {
-
+    @Override
+    public void agregarObserver(Observer o) {
+        listaObservable.add(o);
     }
+
+    @Override
+    public void eliminarObserver(Observer o) {
+        listaObservable.remove(o);
+    }
+
+    @Override
+    public void notificarObservers(Object o) {
+        for (Observer observer : listaObservable) {
+            observer.update(o);
+        }
+    }
+
 }

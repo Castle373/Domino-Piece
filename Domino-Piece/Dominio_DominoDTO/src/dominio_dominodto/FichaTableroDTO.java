@@ -5,17 +5,18 @@
 package dominio_dominodto;
 
 import java.awt.Image;
+import java.io.Serializable;
 
 /**
  *
  * @author diego
  */
-public class FichaTableroDTO extends FichaDTO {
+public class FichaTableroDTO extends FichaDTO implements Serializable{
 
     boolean conectarAbajo;
     boolean conectarArriba;
 
-    public FichaTableroDTO(Image imagen, int puntoAbajo, int puntoArriba) {
+    public FichaTableroDTO(String imagen, int puntoAbajo, int puntoArriba) {
         super(imagen, puntoAbajo, puntoArriba);
     }
 

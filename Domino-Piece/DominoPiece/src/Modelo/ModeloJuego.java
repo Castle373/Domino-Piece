@@ -12,6 +12,8 @@ import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import dominio_domino.Pozo;
 import dominio_domino.Tablero;
+import dominio_dominodto.JugadorDTO;
+import dominio_dominodto.PartidaDTO;
 import java.util.List;
 
 /**
@@ -21,11 +23,20 @@ import java.util.List;
 public class ModeloJuego {
 
     private Partida partida;
+    private PartidaDTO partida2;
     private Jugador jugador;
     private Pozo pozo;
 
     public ModeloJuego() {
 
+    }
+
+    public PartidaDTO getPartida2() {
+        return partida2;
+    }
+
+    public void setPartida2(PartidaDTO partida2) {
+        this.partida2 = partida2;
     }
 
     public void guardarPartida(Partida partida) {
@@ -47,6 +58,9 @@ public class ModeloJuego {
 
     public List<Jugador> getListJugadores() {
         return partida.getJugadores();
+    }
+    public List<JugadorDTO> getListJugadoresDTO() {
+        return partida2.getJugadores();
     }
     public void setListJugadores(List<Jugador> jugadores) {
          partida.setJugadores(jugadores);

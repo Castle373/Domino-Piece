@@ -16,10 +16,8 @@ public class PipeCrearPartida implements Pipe {
 
     @Override
     public void ejecutar(Object numeroFicha) {
-
         Filtro f = new FiltroCrearPartida();
         f.ejecutar(numeroFicha);
-      
     }
 
 }

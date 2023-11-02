@@ -5,6 +5,7 @@
 package dominio_dominodto;
 
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,21 +13,21 @@ import java.util.List;
  *
  * @author diego
  */
-public class JugadorDTO {
+public class JugadorDTO implements Serializable{
     private String nombre;
-    private Image avatar;
+    private String avatar;
     private List<FichaDTO> fichasJugador;
 
     public JugadorDTO() {
     }
     
-    public JugadorDTO(String nombre, Image avatar) {
+    public JugadorDTO(String nombre, String avatar) {
         this.nombre = nombre;
         this.avatar = avatar;
         this.fichasJugador = new ArrayList<>();
     }
 
-    public JugadorDTO(String nombre, Image avatar, List<FichaDTO> fichasJugador) {
+    public JugadorDTO(String nombre, String avatar, List<FichaDTO> fichasJugador) {
         this.nombre = nombre;
         this.avatar = avatar;
         this.fichasJugador = fichasJugador;
@@ -40,11 +41,11 @@ public class JugadorDTO {
         this.nombre = nombre;
     }
 
-    public Image getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Image avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 

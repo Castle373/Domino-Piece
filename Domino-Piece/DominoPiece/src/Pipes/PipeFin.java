@@ -16,9 +16,8 @@ public class PipeFin implements Pipe {
     @Override
     public void ejecutar(Object s) {
         Cliente cliente = Cliente.getInstance();
-        if (s instanceof Partida) {
-            cliente.enviarAlServidor(s);
-        }
+        cliente.enviarAlServidor(s);
+
     }
 
 }

@@ -29,7 +29,7 @@ public class JugadorThread extends Thread {
         this.clientSocket = socket;
         this.out = out;
         this.server = server;
-        this.sink.getInstance();
+        this.sink = Sink.getInstance();
     }
 
     @Override
@@ -38,16 +38,19 @@ public class JugadorThread extends Thread {
             ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
 
             while (true) {
+                System.out.println("Poniendo a escuchas");
                 objecto = in.readObject();
-
+                System.out.println("Recibido");
                 if (objecto instanceof PartidaDTO) {
                     PartidaDTO p = (PartidaDTO) objecto;
                     sink.CrearPartida(p);
                 }
-                 if (objecto instanceof JugadorDTO) {
+                if (objecto instanceof JugadorDTO) {
+                    System.out.println("Debio enviar");
                     JugadorDTO j = (JugadorDTO) objecto;
                     sink.agregarJugador(j);
                     PartidaDTO partidaActual = sink.getPartidaDTO();
+                    
                     server.sendToAll(partidaActual);
                 }
                 // Cuando se recibe un objeto, se envía a todos los clientes

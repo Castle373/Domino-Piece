@@ -5,13 +5,14 @@
 package dominio_dominodto;
 
 import java.awt.Image;
+import java.io.Serializable;
 
 /**
  *
  * @author diego
  */
-public class FichaDTO {
-    protected Image imagen;
+public class FichaDTO implements Serializable{
+    protected String imagen;
     protected int puntoAbajo;
     protected int puntoArriba;
     protected boolean mula;
@@ -19,18 +20,18 @@ public class FichaDTO {
     public FichaDTO() {
     }
 
-    public FichaDTO(Image imagen, int puntoAbajo, int puntoArriba) {
+    public FichaDTO(String imagen, int puntoAbajo, int puntoArriba) {
         this.imagen = imagen;
         this.puntoAbajo = puntoAbajo;
         this.puntoArriba = puntoArriba;
         this.mula = (puntoAbajo == puntoArriba);
     }
 
-    public Image getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(Image imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 

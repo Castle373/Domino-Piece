@@ -4,13 +4,14 @@
  */
 package dominio_dominodto;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author diego
  */
-public class PartidaDTO {
+public class PartidaDTO implements Serializable{
 
     private int numeroFichas;
     private List<JugadorDTO> jugadores;

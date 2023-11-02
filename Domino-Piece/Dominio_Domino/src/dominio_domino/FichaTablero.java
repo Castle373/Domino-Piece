@@ -12,7 +12,7 @@ public class FichaTablero extends Ficha{
     public FichaTablero() {
     }
 
-    public FichaTablero(Image imagen, int puntoAbajo, int puntoArriba) {
+    public FichaTablero(String imagen, int puntoAbajo, int puntoArriba) {
         super(imagen, puntoAbajo, puntoArriba);
     }
 

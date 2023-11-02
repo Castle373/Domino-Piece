@@ -23,15 +23,8 @@ public class ModeloMenu {
 
     public Cliente buscarPartida() {
 
-        try {
-
-            socket = new Socket("localhost", 1234);
-            Cliente cliente = new Cliente(socket);
-
-        } catch (IOException ex) {
-            return null;
-        }
-
+        Cliente cliente = Cliente.getInstance();
+        
         return cliente;
     }
 

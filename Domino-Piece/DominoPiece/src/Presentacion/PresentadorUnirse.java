@@ -5,9 +5,12 @@
 package Presentacion;
 
 import Modelo.ModeloUnirse;
+import Observer.Observer;
+import Socketss.Cliente;
 import Vista.VistaUnirse;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
+import dominio_dominodto.JugadorDTO;
 import java.awt.Image;
 import java.net.Socket;
 
@@ -16,41 +19,44 @@ import java.net.Socket;
  * @author marcos
  */
 public class PresentadorUnirse implements IPresentadorUnirse {
-    
+
     private ModeloUnirse modelo;
     private IPresentacionJuego presentadorJuego;
     private VistaUnirse vista;
-    
+
     public PresentadorUnirse() {
         vista = new VistaUnirse(this);
         modelo = new ModeloUnirse();
         presentadorJuego = new PresentadorJuego();
     }
-    
+
     @Override
     public void mostrarPantallaUnirse() {
         vista.setVisible(true);
     }
-    
+
     @Override
-    public void crearJugador(String nombre, Image avatar) {
+    public void crearJugador(String nombre, String avatar) {
+        Cliente cliente=Cliente.getInstance();
+        cliente.agregarObserver((Observer) presentadorJuego);
         modelo.crearJugador(nombre, avatar);
-  
-        if (modelo.recuperaPartida() == null) {
-            vista.muestraMensajeError();
-        } else {
-            mostrarPantallaJuego();
-        }        
+
+//        if (modelo.recuperaPartida() == null) {
+//            vista.muestraMensajeError();
+//        } else {
+        mostrarPantallaJuego();
+//        }
     }
-    
+
     @Override
     public void mostrarPantallaJuego() {
-        enviarPartida();
-        enviarJugador();
+//        enviarPartida();
+//        enviarJugador();
+        
         presentadorJuego.mostrarPantallaJuego();
         vista.dispose();
     }
-    
+
     @Override
     public void guardarPartida(Partida partida) {
         modelo.guardarPartida(partida);
@@ -58,24 +64,22 @@ public class PresentadorUnirse implements IPresentadorUnirse {
 
     @Override
     public void enviarPartida() {
-       presentadorJuego.guardarPartida(obtenerPartida());
+        presentadorJuego.guardarPartida(obtenerPartida());
     }
 
     @Override
     public Partida obtenerPartida() {
-       return modelo.recuperaPartida();
+        return modelo.recuperaPartida();
     }
 
     @Override
     public void enviarJugador() {
-       presentadorJuego.guardarJugador(obtenerJugador());
+        presentadorJuego.guardarJugador(obtenerJugador());
     }
 
     @Override
-    public Jugador obtenerJugador() {
-        return modelo.obtenerJugador();
+    public JugadorDTO obtenerJugador() {
+        return modelo.getJugador();
     }
 
-    
-    
 }

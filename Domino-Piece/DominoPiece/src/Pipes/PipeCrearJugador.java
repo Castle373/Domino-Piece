@@ -5,21 +5,20 @@
 package Pipes;
 
 import Filters.Filtro;
+import Filters.FiltroCrearJugador;
 import Filters.FiltroCrearPartida;
-import Filters.FiltroJugador;
-import dominio_domino.Partida;
 
 /**
  *
  * @author diego
  */
-public class PipeCrearPartida implements Pipe {
+public class PipeCrearJugador implements Pipe {
 
     @Override
-    public void ejecutar(Object numeroFicha) {
+    public void ejecutar(Object object) {
 
-        Filtro f = new FiltroCrearPartida();
-        f.ejecutar(numeroFicha);
+        Filtro f = new FiltroCrearJugador();
+        f.ejecutar(object);
+      
     }
-
 }
