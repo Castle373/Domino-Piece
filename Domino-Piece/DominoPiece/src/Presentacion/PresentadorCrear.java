@@ -6,7 +6,7 @@ package Presentacion;
 
 import Modelo.ModeloCrear;
 import Observer.Observer;
-import Vista.VistaCrear;
+import Vista.VistaCrearPartida;
 import Vista.VistaUnirse;
 import dominio_domino.Partida;
 import java.net.Socket;
@@ -19,12 +19,12 @@ public class PresentadorCrear implements IPresentadorCrear {
 
     private ModeloCrear modeloCrear;
     private IPresentadorUnirse presentadorUnirse;
-    private VistaCrear pantallaCrear;
+    private VistaCrearPartida pantallaCrear;
 
     public PresentadorCrear() {
         modeloCrear = new ModeloCrear();
         presentadorUnirse = new PresentadorUnirse();
-        pantallaCrear = new VistaCrear(this);
+        pantallaCrear = new VistaCrearPartida(this);
     }
 
     @Override

@@ -12,14 +12,14 @@ import javax.swing.JOptionPane;
  *
  * @author marcos
  */
-public class VistaCrear extends javax.swing.JFrame {
+public class VistaCrearPartida extends javax.swing.JFrame {
 
     /**
-     * Creates new form VistaCrear
+     * Creates new form VistaCrears
      */
     private IPresentadorCrear presentadorCrear;
     
-    public VistaCrear(IPresentadorCrear presentadorCrear) {
+    public VistaCrearPartida(IPresentadorCrear presentadorCrear) {
         this.presentadorCrear= presentadorCrear;
         initComponents();
     }
