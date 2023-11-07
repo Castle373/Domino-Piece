@@ -22,6 +22,7 @@ public class VistaCrearPartida extends javax.swing.JFrame {
     public VistaCrearPartida(IPresentadorCrear presentadorCrear) {
         this.presentadorCrear= presentadorCrear;
         initComponents();
+        
     }
 
     /**

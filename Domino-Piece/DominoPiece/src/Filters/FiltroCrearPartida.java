@@ -4,6 +4,8 @@
  */
 package Filters;
 
+import Evento.CrearPartidaPF;
+import Evento.Evento;
 import Pipes.Pipe;
 import Pipes.PipeCrearPartida;
 import Pipes.PipeFin;
@@ -14,18 +16,20 @@ import dominio_dominodto.PartidaDTO;
  *
  * @author diego
  */
-public class FiltroCrearPartida implements Filtro {
+public class FiltroCrearPartida<T extends Evento> implements Filtro<T> {
 
     @Override
-    public void ejecutar(Object numeroFichas) {
+    public void ejecutar(T numeroFichas) {
         PartidaDTO p = new PartidaDTO();
-        if (numeroFichas instanceof Integer) {
-            int fichasIniciales = (int) numeroFichas;
-            p = new PartidaDTO(fichasIniciales);
-        } 
-        Pipe pipaFin = new PipeFin();
-        pipaFin.ejecutar(p);
-        
+
+        if (numeroFichas instanceof CrearPartidaPF) {
+
+            p = new PartidaDTO(((CrearPartidaPF) numeroFichas).getNumfichas());
+            ((CrearPartidaPF) numeroFichas).setData(p);
+        }
+        Pipe<T> pipaFin = new PipeFin();
+        pipaFin.ejecutar(numeroFichas);
+
     }
 
 }

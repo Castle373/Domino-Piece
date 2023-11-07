@@ -12,13 +12,12 @@ import Filters.FiltroCrearPartida;
  *
  * @author diego
  */
-public class PipeCrearJugador implements Pipe {
+public class PipeCrearJugador<T> implements Pipe<T> {
 
     @Override
-    public void ejecutar(Object object) {
-
+    public void ejecutar(T jugador) {
         Filtro f = new FiltroCrearJugador();
-        f.ejecutar(object);
+        f.ejecutar(jugador);
       
     }
 }

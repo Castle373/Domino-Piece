@@ -23,44 +23,41 @@ import javax.swing.SwingUtilities;
  *
  * @author diego
  */
-public class JugadorConexion extends Thread  implements Observable{
+public class JugadorConexion extends Thread implements Observable {
+
     public List<Observer> listaObservable;
     private Socket clientSocket;
     private ObjectInputStream in;
     private ObjectOutputStream clientOutput;
-    private Object objecto;
-//    private Jframe frame;
+    private Object objecto;;
 
     public JugadorConexion(Socket socket) {
         listaObservable = new ArrayList<>();
         this.clientSocket = socket;
-        
-//        this.frame = frame;
 
         try {
             in = new ObjectInputStream(clientSocket.getInputStream());
-            clientOutput= new ObjectOutputStream(clientSocket.getOutputStream());
+            clientOutput = new ObjectOutputStream(clientSocket.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-    public synchronized void enviarAlServidor(Object mensaje) throws IOException {      
+    public synchronized void enviarAlServidor(Object mensaje) throws IOException {
         clientOutput.writeObject(mensaje);
-        clientOutput.flush();    
+        clientOutput.flush();
     }
 
     @Override
     public void run() {
         try {
             while (true) {
-                objecto = in.readObject();
-
+                objecto = in.readObject();//escuchando al server
                 if (objecto instanceof PartidaDTO) {
 
                     PartidaDTO partida = (PartidaDTO) objecto;
                     notificarObservers(partida);
+
 //                    Partida p = new Partida(partida.getNumero());
 //                    if (partida.getJugador().isEmpty()) {
 //                        //aqui se regresa al frame Unirse
@@ -74,7 +71,6 @@ public class JugadorConexion extends Thread  implements Observable{
 //                         //aqui se regresa al frame Partida
 //                    }
                 }
-                
 
             }
         } catch (IOException | ClassNotFoundException e) {

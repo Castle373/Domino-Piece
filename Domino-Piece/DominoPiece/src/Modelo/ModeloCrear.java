@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import Evento.CrearPartidaPF;
 import Pipes.Pipe;
 import Pipes.PipeCrearPartida;
 import Pipes.PipeInicio;
@@ -26,8 +27,11 @@ public class ModeloCrear {
  
 
     public void crearPartida(int fichasIniciales) {
-        Pipe pipa = new PipeInicio();
-        pipa.ejecutar(fichasIniciales);
+        
+        
+        Pipe<CrearPartidaPF> pipa = new PipeInicio();
+        CrearPartidaPF c= new CrearPartidaPF(fichasIniciales);
+        pipa.ejecutar(c);
        
     }
 
@@ -40,9 +44,7 @@ public class ModeloCrear {
     }
 
     public Cliente crearConexion() {
-
         Cliente cliente = Cliente.getInstance();
-
         return cliente;
     }
 

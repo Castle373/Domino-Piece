@@ -109,7 +109,10 @@ public class Partida {
 
         jugadores.add(jugador);
     }
+    public void eliminarJugador(Jugador jugador) {
 
+        jugadores.remove(jugador);
+    }
     private boolean validarPartida() {
         return getNumeroFichas() != 0;
     }

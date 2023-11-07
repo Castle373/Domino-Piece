@@ -8,6 +8,6 @@ package Filters;
  *
  * @author diego
  */
-public interface Filtro{
-    public void ejecutar(Object objeto);
+public interface Filtro<T> {
+    public void ejecutar(T objeto);
 }

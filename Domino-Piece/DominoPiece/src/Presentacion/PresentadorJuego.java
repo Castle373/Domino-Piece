@@ -126,5 +126,6 @@ public class PresentadorJuego implements IPresentacionJuego,Observer {
             modelo.setPartida2(p);
             vista.mostrarJugadores();
         }
+        
     }
 }

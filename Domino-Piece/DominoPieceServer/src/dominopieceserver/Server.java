@@ -18,6 +18,7 @@ import java.util.List;
 public class Server {
 
     private List<ObjectOutputStream> clientOutputStreams = new ArrayList<>();
+    private static int connectionCount = 0;
 
     public void addClientOutputStream(ObjectOutputStream outputStream) {
         clientOutputStreams.add(outputStream);
@@ -34,24 +35,37 @@ public class Server {
         }
     }
 
+    public synchronized void desconectarClliente(ObjectOutputStream out) {
+        connectionCount--; // Decrementa el contador de conexiones
+        clientOutputStreams.remove(out); // Elimina el flujo de salida del cliente
+    }
+
     public static void main(String[] args) throws IOException {
         ServerSocket ss = new ServerSocket(1234);
+
         System.out.println("Servidor inicializado en el puerto 1234");
 
         Server server = new Server();
-        int connectionCount = 0;
+
         while (connectionCount < 4) {
-            Socket s = ss.accept();
+            
+            Socket s = ss.accept();          
+            
             System.out.println("Nueva conexión por parte de cliente: " + s);
 
             ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+            
             server.addClientOutputStream(out);
 
             JugadorThread client = new JugadorThread(s, out, server);
+            
             client.start();
             connectionCount++;
+            
         }
-        ss.close();
         
+        ss.close();
+
     }
+
 }

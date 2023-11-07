@@ -8,19 +8,28 @@ import java.awt.Image;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
  * @author diego
  */
 public class JugadorDTO implements Serializable{
+    private UUID id;
     private String nombre;
     private String avatar;
     private List<FichaDTO> fichasJugador;
 
     public JugadorDTO() {
     }
-    
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
     public JugadorDTO(String nombre, String avatar) {
         this.nombre = nombre;
         this.avatar = avatar;

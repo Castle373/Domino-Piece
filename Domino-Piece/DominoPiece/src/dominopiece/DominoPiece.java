@@ -6,6 +6,8 @@ package dominopiece;
 
 import Presentacion.IPresentadorMenu;
 import Presentacion.PresentadorMenu;
+import java.io.IOException;
+import java.net.Socket;
 
 /**
  *
@@ -16,7 +18,7 @@ public class DominoPiece {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         IPresentadorMenu presentador= new PresentadorMenu();
         presentador.mostrarMenu();
        //En la esta Prueba Se puede crear una partida, cuando la creas

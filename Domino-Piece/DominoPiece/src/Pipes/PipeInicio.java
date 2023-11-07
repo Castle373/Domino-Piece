@@ -4,6 +4,7 @@
  */
 package Pipes;
 
+import Evento.Evento;
 import Filters.Filtro;
 import Filters.FiltroCrearPartida;
 import Filters.FiltroInicio;
@@ -12,13 +13,13 @@ import Filters.FiltroInicio;
  *
  * @author diego
  */
-public class PipeInicio implements Pipe {
+public class PipeInicio<T extends Evento>  implements Pipe<T> {
+
 
     @Override
-    public void ejecutar(Object object) {
-
-        Filtro f = new FiltroInicio();
-        f.ejecutar(object);
+    public void ejecutar(T claseInicial) {
+        Filtro<T> f = new FiltroInicio();
+        f.ejecutar(claseInicial);
 
     }
 

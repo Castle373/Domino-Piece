@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import Evento.CrearPartidaPF;
+import Evento.JugadorPF;
 import Pipes.Pipe;
 import Pipes.PipeInicio;
 import dominio_domino.Jugador;
@@ -42,11 +44,10 @@ public class ModeloUnirse {
     }
 
     public void crearJugador(String nombre, String avatar) {
-        
-        jugador = new JugadorDTO(nombre, avatar);
-        
-        Pipe pipa = new PipeInicio();
-        pipa.ejecutar(jugador);
+
+        Pipe<JugadorPF> pipa = new PipeInicio();
+        JugadorPF j = new JugadorPF(nombre, avatar);
+        pipa.ejecutar(j);
 
     }
 
@@ -62,5 +63,4 @@ public class ModeloUnirse {
         this.jugador = jugador;
     }
 
-   
 }

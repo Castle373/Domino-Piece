@@ -4,6 +4,7 @@
  */
 package Pipes;
 
+import Evento.Evento;
 import Socketss.Cliente;
 import dominio_domino.Partida;
 
@@ -11,13 +12,13 @@ import dominio_domino.Partida;
  *
  * @author diego
  */
-public class PipeFin implements Pipe {
+public class PipeFin<T extends Evento> implements Pipe<T> {
 
     @Override
-    public void ejecutar(Object s) {
+    public void ejecutar(T resultado) {
+        
         Cliente cliente = Cliente.getInstance();
-        cliente.enviarAlServidor(s);
-
+        cliente.enviarAlServidor(resultado.getData());
     }
 
 }

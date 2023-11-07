@@ -12,11 +12,11 @@ import dominio_domino.Partida;
  *
  * @author diego
  */
-public class PipeCrearPartida implements Pipe {
+public class PipeCrearPartida<T> implements Pipe<T> {
 
     @Override
-    public void ejecutar(Object numeroFicha) {
-        Filtro f = new FiltroCrearPartida();
+    public void ejecutar(T numeroFicha) {
+        Filtro<T> f = new FiltroCrearPartida();
         f.ejecutar(numeroFicha);
     }
 

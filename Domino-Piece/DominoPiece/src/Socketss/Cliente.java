@@ -36,12 +36,8 @@ public class Cliente {
             Socket socket;
             try {
                 socket = new Socket("localhost", 1234);
-                if (true) {
-                    
-                }
                 instance = new Cliente(socket);
-
-            } catch (IOException  ex) {
+            } catch (IOException ex) {
                 System.out.println("ssss");
                 return null;
             }
@@ -57,28 +53,28 @@ public class Cliente {
     }
 
     public boolean enviarAlServidor(Object objecto) {
+
         if (objecto instanceof PartidaDTO) {
             PartidaDTO p = (PartidaDTO) objecto;
             try {
-
                 j.enviarAlServidor(p);
                 return true;
             } catch (IOException ex) {
                 return false;
             }
         }
+        
         if (objecto instanceof JugadorDTO) {
             JugadorDTO p = (JugadorDTO) objecto;
             try {
-
                 j.enviarAlServidor(p);
-
                 return true;
             } catch (IOException ex) {
                 System.out.println(ex);
                 return false;
             }
         }
+        
         return false;
     }
 

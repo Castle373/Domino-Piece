@@ -4,6 +4,9 @@
  */
 package Filters;
 
+import Evento.CrearPartidaPF;
+import Evento.Evento;
+import Evento.JugadorPF;
 import Pipes.Pipe;
 import Pipes.PipeCrearJugador;
 import Pipes.PipeCrearPartida;
@@ -15,20 +18,20 @@ import dominio_dominodto.JugadorDTO;
  *
  * @author diego
  */
-public class FiltroInicio implements Filtro {
+public class FiltroInicio<T extends Evento> implements Filtro<T> {
 
     @Override
-    public void ejecutar(Object objecto) {
+    public void ejecutar(T objeto) {
 
-        if (objecto instanceof Integer) {
-            Pipe pipa = new PipeCrearPartida();
-            pipa.ejecutar(objecto);
-        }
-        if (objecto instanceof JugadorDTO) {
-            Pipe pipa = new PipeCrearJugador();
-            pipa.ejecutar(objecto);
+        if (objeto instanceof CrearPartidaPF) {
+            Pipe<T> pipe = new PipeCrearPartida();
+            pipe.ejecutar(objeto);
         }
 
+        if (objeto instanceof JugadorPF) {
+            Pipe<T> pipe = new PipeCrearJugador();
+            pipe.ejecutar(objeto);
+        }
     }
 
 }

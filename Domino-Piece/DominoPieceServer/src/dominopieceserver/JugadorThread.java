@@ -20,10 +20,12 @@ import java.util.List;
 public class JugadorThread extends Thread {
 
     private Socket clientSocket;
+
     private ObjectOutputStream out;
     private Server server;
     private Object objecto;
     private Sink sink;
+    private JugadorDTO jugador;
 
     public JugadorThread(Socket socket, ObjectOutputStream out, Server server) {
         this.clientSocket = socket;
@@ -32,32 +34,41 @@ public class JugadorThread extends Thread {
         this.sink = Sink.getInstance();
     }
 
+    public void enviarPartidaActual() {
+        PartidaDTO partidaActual = sink.getPartidaDTO();
+        server.sendToAll(partidaActual);
+    }
+
     @Override
     public void run() {
         try {
             ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
 
             while (true) {
-            
-                objecto = in.readObject();
-              
+
+                objecto = in.readObject();// ATASCO
+
                 if (objecto instanceof PartidaDTO) {
                     PartidaDTO p = (PartidaDTO) objecto;
                     sink.CrearPartida(p);
                 }
                 if (objecto instanceof JugadorDTO) {
-                 
                     JugadorDTO j = (JugadorDTO) objecto;
+                    jugador = j;
                     sink.agregarJugador(j);
-                    PartidaDTO partidaActual = sink.getPartidaDTO();
-                    
-                    server.sendToAll(partidaActual);
+                    enviarPartidaActual();
                 }
                 // Cuando se recibe un objeto, se envía a todos los clientes
 //                server.sendToAll(obj);
             }
         } catch (IOException | ClassNotFoundException e) {
-            // Manejar excepciones
+            if (jugador != null) {
+                sink.eliminarJugador(jugador);
+                server.desconectarClliente(out);
+                enviarPartidaActual();
+                
+            }
+           
         }
     }
 }

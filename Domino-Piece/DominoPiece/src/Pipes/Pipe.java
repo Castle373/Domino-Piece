@@ -8,6 +8,6 @@ package Pipes;
  *
  * @author diego
  */
-public interface Pipe {
-    public void ejecutar(Object s);
+public interface Pipe<T> {
+    public void ejecutar(T s);
 }

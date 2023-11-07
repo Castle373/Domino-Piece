@@ -46,19 +46,27 @@ public class Sink {
 
     public void CrearPartida(PartidaDTO p) {
         partida = new Partida(p.getNumeroFichas());
-       
+
     }
-    public void agregarJugador(JugadorDTO j){
+
+    public void agregarJugador(JugadorDTO j) {
         Jugador juga = new Jugador(j.getNombre(), j.getAvatar());
+        juga.setId(j.getId());
         partida.addJugador(juga);
     }
+
+    public void eliminarJugador(JugadorDTO j) {
+        Jugador juga = new Jugador(j.getNombre(), j.getAvatar());
+        juga.setId(j.getId());
+        partida.eliminarJugador(juga);
+    }
+
     public PartidaDTO getPartidaDTO() {
 
         PartidaDTO partidaDTO = new PartidaDTO();
 
         partidaDTO.setNumeroFichas(partida.getNumeroFichas());
-        
-        
+
         // Copia la información de los jugadores
         List<JugadorDTO> jugadoresDTO = new ArrayList<>();
 
@@ -75,15 +83,16 @@ public class Sink {
 
             jugadorDTO.setFichasJugador(fichasDTO);
             jugadorDTO.setAvatar(jugador.getAvatar());
+            jugadorDTO.setId(jugador.getId());
             // Copia otros atributos necesarios
             jugadoresDTO.add(jugadorDTO);
         }
         partidaDTO.setJugadores(jugadoresDTO);
-        
-        if (partida.getTablero()==null) {
+
+        if (partida.getTablero() == null) {
             return partidaDTO;
         }
-        
+
         // Copia la información del tablero y el pozo
         List<FichaTableroDTO> fichasTableroDTO = new ArrayList<>();
         for (FichaTablero f : partida.getTablero().getFichasTablero()) {
@@ -94,8 +103,7 @@ public class Sink {
         }
         partidaDTO.setTablero(new TableroDTO(fichasTableroDTO));
         List<FichaDTO> fichasDTO = new ArrayList<>();
-        
-        
+
         for (FichaPozo f : partida.getPozo().getFichasPozo()) {
             FichaDTO fichaDTO = new FichaDTO(f.getImagen(), f.getPuntoAbajo(), f.getPuntoArriba());
             fichasDTO.add(fichaDTO);

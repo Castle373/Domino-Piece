@@ -12,6 +12,8 @@ public class Ficha {
     protected int puntoAbajo;
     protected int puntoArriba;
     protected boolean mula;
+    
+    
     public Ficha(){
         
     }
