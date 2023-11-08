@@ -4,6 +4,7 @@
  */
 package Graficos;
 
+import Vista.VistaJuego;
 import dominio_domino.Ficha;
 import dominio_domino.FichaJugador;
 import dominio_domino.FichaPozo;
@@ -11,6 +12,8 @@ import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import dominio_domino.Pozo;
+import dominio_dominodto.JugadorDTO;
+import dominio_dominodto.PartidaDTO;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -21,7 +24,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -39,24 +44,40 @@ public class TableroGrafico extends JPanel {
     private Rectangle zonaInicial = new Rectangle();//Hitbox Inicial
     private Rectangle ladoDerecho = new Rectangle();//Hitbox Lado Derecho
     private Rectangle ladoIzquierdo = new Rectangle();//Hitbox Lado Izquierdo
+    private List<JugadorDTO> jugadores = new ArrayList<>();
     private int x, y;
     private Image fondo;
-    private Partida partida;
+    private PartidaDTO partida;
     private Jugador jugador;
+    private VistaJuego vista;
 
-    public TableroGrafico() {
+    private JLabel borde1;
+    private JLabel borde2;
+    private JLabel borde3;
+    private JLabel borde4;
+
+    public TableroGrafico(VistaJuego vista) {
+        borde1 = new JLabel();
+        borde2 = new JLabel();
+        borde3 = new JLabel();
+        borde4 = new JLabel();
+        this.vista = vista;
         zonaInicial = new Rectangle(630, 250, 23, 48);
         fichasJugador = new FichasMano();
         fichasTren = new FichaTren();
         fondo = new ImageIcon(getClass().getResource("/img/fondo.jpg")).getImage();
         setOpaque(false); // Configura la opacidad del JPanel
+        this.add(borde1);
+        this.add(borde2);
+        this.add(borde3);
+        this.add(borde4);
     }
 
-    public Partida getPartida() {
+    public PartidaDTO getPartida() {
         return partida;
     }
 
-    public void setPartida(Partida partida) {
+    public void setPartida(PartidaDTO partida) {
         this.partida = partida;
     }
 
@@ -66,7 +87,15 @@ public class TableroGrafico extends JPanel {
 
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
-        
+
+    }
+
+    public List<JugadorDTO> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(List<JugadorDTO> jugadores) {
+        this.jugadores = jugadores;
     }
 
     public FichasMano getFichasJugador() {
@@ -83,15 +112,16 @@ public class TableroGrafico extends JPanel {
 //        fichasJugador.agregarFicha(fichaGrafica);
 //        this.repaint();
 //    }
-    public void repintarFichasJugador(){
-        List<IFichaGrafica> fichasJugador= new ArrayList<>();
-        for (FichaJugador f:jugador.getFichasJugador()) {
-             IFichaGrafica fichaGrafica = new FichaManoGrafica(f, 50, 475);
-             fichasJugador.add(fichaGrafica);
+    public void repintarFichasJugador() {
+        List<IFichaGrafica> fichasJugador = new ArrayList<>();
+        for (FichaJugador f : jugador.getFichasJugador()) {
+            IFichaGrafica fichaGrafica = new FichaManoGrafica(f, 50, 475);
+            fichasJugador.add(fichaGrafica);
         }
         this.fichasJugador.setFichasMano(fichasJugador);
         this.repaint();
     }
+
     public void agregarFichasIniciales() {
         for (FichaJugador ficha : jugador.getFichasJugador()) {
             IFichaGrafica fichaGrafica = new FichaManoGrafica(ficha, 50, 475);
@@ -251,12 +281,76 @@ public class TableroGrafico extends JPanel {
         pintarFichasJugador(g2);
         dibujarRectanguloSiVacio(g2);
         pintarFichasTren(g2);
+        pintarJugadores(g2);
     }
 
     public void pintarPantalla(Graphics2D g) {
         if (fondo != null) {
             g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
         }
+    }
+
+    public void pintarJugadores(Graphics2D g) {
+
+        for (int i = 0; i < jugadores.size(); i++) {
+            ImageIcon marcoNormal = new ImageIcon(getClass().getResource("/Avatares/marcoNormal.png"));
+            ImageIcon marcoTurno = new ImageIcon(getClass().getResource("/Avatares/marco.gif"));
+
+            if (i == 0) {
+
+                if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
+                    borde1.setLocation(30, 26);
+                    borde1.setIcon(marcoTurno);
+                } else {
+                    borde1.setLocation(30, 26);
+                    borde1.setIcon(marcoNormal);
+                }
+                Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
+                g.drawImage(iconoOriginal, 38, 34, 79, 53, null);
+            }
+            if (i == 1) {
+                if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
+
+                    borde2.setLocation(1150, 26);
+                    borde2.setIcon(marcoTurno);
+                } else {
+                    borde2.setLocation(1150, 26);
+                    borde2.setIcon(marcoNormal);
+
+                }
+                Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
+                g.drawImage(iconoOriginal, 1158, 34, 79, 53, null);
+            }
+            if (i == 2) {
+                if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
+
+                    borde3.setLocation(30, 535);
+                    borde3.setIcon(marcoTurno);
+                } else {
+                    borde3.setLocation(30, 535);
+                    borde3.setIcon(marcoNormal);
+                }
+                Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
+                g.drawImage(iconoOriginal, 38, 543, 79, 53, null);
+            }
+            if (i == 3) {
+                if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
+                    borde4.setLocation(1150, 535);
+                    borde4.setIcon(marcoTurno);
+
+                } else {
+                    borde4.setLocation(1150, 535);
+                    borde4.setIcon(marcoNormal);
+                }
+                Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
+                g.drawImage(iconoOriginal, 1158, 543, 79, 53, null);
+            }
+        }
+
+    }
+
+    public void mostrarBorder() {
+
     }
 
     public void pintarFichasJugador(Graphics2D g) {

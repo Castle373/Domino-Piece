@@ -9,6 +9,7 @@ import Observer.Observer;
 
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
+import dominio_dominodto.Acciones;
 import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.PartidaDTO;
 import java.io.IOException;
@@ -29,7 +30,9 @@ public class JugadorConexion extends Thread implements Observable {
     private Socket clientSocket;
     private ObjectInputStream in;
     private ObjectOutputStream clientOutput;
-    private Object objecto;;
+    private Object objecto;
+
+    ;
 
     public JugadorConexion(Socket socket) {
         listaObservable = new ArrayList<>();
@@ -70,6 +73,12 @@ public class JugadorConexion extends Thread implements Observable {
 //                        p.setJugadores(jugadores);
 //                         //aqui se regresa al frame Partida
 //                    }
+                }
+                if (objecto instanceof Acciones) {
+
+                    Acciones accion = (Acciones) objecto;
+                    notificarObservers(accion);
+
                 }
 
             }

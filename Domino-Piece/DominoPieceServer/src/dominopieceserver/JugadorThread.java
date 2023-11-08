@@ -4,6 +4,7 @@
  */
 package dominopieceserver;
 
+import dominio_dominodto.Acciones;
 import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.PartidaDTO;
 import java.io.IOException;
@@ -38,6 +39,9 @@ public class JugadorThread extends Thread {
         PartidaDTO partidaActual = sink.getPartidaDTO();
         server.sendToAll(partidaActual);
     }
+    public void enviarTodos(Object o){
+        server.sendToAll(o);
+    }
 
     @Override
     public void run() {
@@ -57,6 +61,12 @@ public class JugadorThread extends Thread {
                     jugador = j;
                     sink.agregarJugador(j);
                     enviarPartidaActual();
+                    if (sink.getPartidaDTO().getJugadores().size()>=4) {
+                        sink.iniciarPartida();
+                        enviarPartidaActual();
+                        enviarTodos(Acciones.INICIAR_PARTIDA);
+                        System.out.println("envie");
+                    }
                 }
                 // Cuando se recibe un objeto, se envía a todos los clientes
 //                server.sendToAll(obj);

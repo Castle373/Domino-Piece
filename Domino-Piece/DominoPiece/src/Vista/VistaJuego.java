@@ -28,6 +28,7 @@ import javax.swing.JOptionPane;
 public class VistaJuego extends javax.swing.JFrame {
 
     private IPresentacionJuego presentador;
+    
     private TableroGrafico tablero;
 
     /**
@@ -35,7 +36,7 @@ public class VistaJuego extends javax.swing.JFrame {
      */
     public VistaJuego(IPresentacionJuego presentador) {
         this.presentador = presentador;
-        tablero = new TableroGrafico();
+        tablero = new TableroGrafico(this);
         initComponents();
         btnRobar.setVisible(false);
 
@@ -262,6 +263,7 @@ public class VistaJuego extends javax.swing.JFrame {
                 lblAvatar4.setIcon(iconoRedimensionado);
             }
         }
+        tablero.setJugadores(list);
 
     }
 
@@ -361,12 +363,14 @@ public class VistaJuego extends javax.swing.JFrame {
         Jugador2.setVisible(false);
         Jugador3.setVisible(false);
         Jugador4.setVisible(false);
+        tablero.setPartida(presentador.getPartida());
         add(tablero);
-        presentador.iniciarPartida();
+//        presentador.iniciarPartida();
+        
         this.setContentPane(tablero);
         tablero.add(btnRobar);
         btnRobar.setVisible(true);
-        tablero.agregarFichasIniciales();
+//        tablero.agregarFichasIniciales();
     }
 
     public void inicioVotacion() {
@@ -387,6 +391,7 @@ public class VistaJuego extends javax.swing.JFrame {
     public void asignarJugadorJugando(Jugador jugador) {
         tablero.setJugador(jugador);
     }
+    
 
     /**
      * @param args the command line arguments

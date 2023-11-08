@@ -21,11 +21,10 @@ public class Pozo {
 
     public Pozo() {
         // Inicializa el pozo con 28 fichas
-
+        fichasPozo= new ArrayList<>();
         for (int puntoAbajo = 0; puntoAbajo <= 6; puntoAbajo++) {
             for (int puntoArriba = 0; puntoArriba <= puntoAbajo; puntoArriba++) {
-                String imagePath = "/img/Domino" + puntoAbajo + "_" + puntoArriba + ".png";
-                
+                String imagePath = "/img/Domino" + puntoAbajo + "_" + puntoArriba + ".png";             
 //                Image domino = new ImageIcon(getClass().getResource(imagePath)).getImage();
                 fichasPozo.add(new FichaPozo(imagePath, puntoAbajo, puntoArriba));
             }

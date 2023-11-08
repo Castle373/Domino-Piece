@@ -10,6 +10,7 @@ import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import dominio_dominodto.JugadorDTO;
+import dominio_dominodto.PartidaDTO;
 import java.util.List;
 
 /**
@@ -31,6 +32,7 @@ public interface IPresentacionJuego {
   
     public void eliminarFichaJugador(FichaJugador ficha);
     public void pasarTurno();
+    public PartidaDTO getPartida();
     public Jugador jugadorTurno();
     public boolean isTurno();
 }

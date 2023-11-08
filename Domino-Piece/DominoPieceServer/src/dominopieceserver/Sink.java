@@ -9,6 +9,8 @@ import dominio_domino.FichaPozo;
 import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
+import dominio_domino.Pozo;
+import dominio_domino.Tablero;
 import dominio_dominodto.FichaDTO;
 import dominio_dominodto.FichaTableroDTO;
 import dominio_dominodto.JugadorDTO;
@@ -114,5 +116,22 @@ public class Sink {
 
         return partidaDTO;
     }
-
+    public void iniciarPartida(){
+        this.crearPozo();
+        this.crearTablero();
+        this.repartirFichas();
+        this.determinarTurno();
+    }
+    public void determinarTurno(){
+        partida.determinarTurnos();
+    }
+    public void crearTablero(){
+        partida.setTablero(new Tablero());
+    }
+    public void crearPozo(){
+        partida.setPozo(new Pozo());
+    }
+    public void repartirFichas(){
+        partida.reparteFichas();
+    }
 }
