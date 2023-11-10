@@ -4,7 +4,11 @@
  */
 package Modelo;
 
+import Evento.IniciarVotacionPF;
+import Evento.JugadorPF;
 import Graficos.TableroGrafico;
+import Pipes.Pipe;
+import Pipes.PipeInicio;
 import dominio_domino.FichaJugador;
 import dominio_domino.FichaPozo;
 import dominio_domino.FichaTablero;
@@ -146,5 +150,11 @@ public class ModeloJuego {
             return true;
         }
         return false;
+    }
+    
+    public void iniciarVotacion(){
+        Pipe<IniciarVotacionPF> pipa = new PipeInicio();
+        IniciarVotacionPF v = new IniciarVotacionPF();
+        pipa.ejecutar(v);
     }
 }

@@ -18,6 +18,7 @@ public class PipeFin<T extends Evento> implements Pipe<T> {
     public void ejecutar(T resultado) {
         
         Cliente cliente = Cliente.getInstance();
+        
         cliente.enviarAlServidor(resultado.getData());
     }
 

@@ -27,6 +27,7 @@ public class JugadorThread extends Thread {
     private Object objecto;
     private Sink sink;
     private JugadorDTO jugador;
+    private Votacion vota;
 
     public JugadorThread(Socket socket, ObjectOutputStream out, Server server) {
         this.clientSocket = socket;
@@ -39,7 +40,8 @@ public class JugadorThread extends Thread {
         PartidaDTO partidaActual = sink.getPartidaDTO();
         server.sendToAll(partidaActual);
     }
-    public void enviarTodos(Object o){
+
+    public void enviarTodos(Object o) {
         server.sendToAll(o);
     }
 
@@ -61,13 +63,30 @@ public class JugadorThread extends Thread {
                     jugador = j;
                     sink.agregarJugador(j);
                     enviarPartidaActual();
-                    if (sink.getPartidaDTO().getJugadores().size()>=4) {
+                    if (sink.getPartidaDTO().getJugadores().size() >= 4) {
                         sink.iniciarPartida();
                         enviarPartidaActual();
                         enviarTodos(Acciones.INICIAR_PARTIDA);
                         System.out.println("envie");
                     }
                 }
+
+                if (objecto instanceof Acciones) {
+                    Acciones a = (Acciones) objecto;
+                    if (a == Acciones.INICIAR_VOTACION) {
+                         System.out.println("lo envie a todas mis gatitas");
+                       vota=new Votacion(sink.getPartidaDTO().getJugadores().size(),server);
+                       vota.start();
+                        enviarTodos(Acciones.INICIAR_VOTACION);
+                        System.out.println("lo envie a todas mis perritas");
+                    }
+                }
+
+//                 if (objecto instanceof Acciones) {
+//                     
+//                   vota.respuestaVotacion(true);
+//                    
+//                }
                 // Cuando se recibe un objeto, se envía a todos los clientes
 //                server.sendToAll(obj);
             }
@@ -76,9 +95,9 @@ public class JugadorThread extends Thread {
                 sink.eliminarJugador(jugador);
                 server.desconectarClliente(out);
                 enviarPartidaActual();
-                
+
             }
-           
+
         }
     }
 }

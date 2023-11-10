@@ -8,6 +8,7 @@ import Observer.Observable;
 import Observer.Observer;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
+import dominio_dominodto.Acciones;
 import dominio_dominodto.JugadorDTO;
 
 import dominio_dominodto.PartidaDTO;
@@ -63,7 +64,7 @@ public class Cliente {
                 return false;
             }
         }
-        
+
         if (objecto instanceof JugadorDTO) {
             JugadorDTO p = (JugadorDTO) objecto;
             try {
@@ -74,7 +75,19 @@ public class Cliente {
                 return false;
             }
         }
-        
+
+        if (objecto instanceof Acciones) {
+            Acciones a = (Acciones) objecto;
+            if (a == Acciones.INICIAR_VOTACION) {
+                try {
+                    j.enviarAlServidor(a);
+                    return true;
+                } catch (IOException ex) {
+                    System.out.println(ex);
+                    return false;
+                }
+            }
+        }
         return false;
     }
 

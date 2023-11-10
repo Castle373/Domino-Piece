@@ -35,4 +35,6 @@ public interface IPresentacionJuego {
     public PartidaDTO getPartida();
     public Jugador jugadorTurno();
     public boolean isTurno();
+    
+    public void iniciarVotacion();
 }

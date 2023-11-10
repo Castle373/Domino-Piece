@@ -17,6 +17,7 @@ import java.util.List;
  */
 public class Server {
 
+ 
     private List<ObjectOutputStream> clientOutputStreams = new ArrayList<>();
     private static int connectionCount = 0;
 
@@ -40,6 +41,9 @@ public class Server {
         clientOutputStreams.remove(out); // Elimina el flujo de salida del cliente
     }
 
+   
+
+
     public static void main(String[] args) throws IOException {
         ServerSocket ss = new ServerSocket(1234);
 
@@ -48,22 +52,22 @@ public class Server {
         Server server = new Server();
 
         while (connectionCount < 4) {
-            
-            Socket s = ss.accept();          
-            
+
+            Socket s = ss.accept();
+
             System.out.println("Nueva conexión por parte de cliente: " + s);
 
             ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
-            
+
             server.addClientOutputStream(out);
 
             JugadorThread client = new JugadorThread(s, out, server);
-            
+
             client.start();
             connectionCount++;
-            
+
         }
-        
+
         ss.close();
 
     }

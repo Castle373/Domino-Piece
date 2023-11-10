@@ -133,11 +133,20 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
                 vista.mostrarJugadores();
                 vista.iniciarJuego();
             }
+            if (a == Acciones.INICIAR_VOTACION) {
+                vista.votacion();
+            }
+            
         }
     }
 
     @Override
     public PartidaDTO getPartida() {
         return modelo.getPartida2();
+    }
+
+    @Override
+    public void iniciarVotacion() {
+       modelo.iniciarVotacion();
     }
 }
