@@ -125,8 +125,9 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
         if (loquesea instanceof PartidaDTO) {
             PartidaDTO p = (PartidaDTO) loquesea;
             modelo.setPartida2(p);
-            vista.mostrarJugadores();
+            vista.mostrarJugadores();       
         }
+        
         if (loquesea instanceof Acciones) {
             Acciones a = (Acciones) loquesea;
             if (a == Acciones.INICIAR_PARTIDA) {

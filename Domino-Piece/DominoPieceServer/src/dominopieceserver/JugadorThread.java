@@ -4,6 +4,11 @@
  */
 package dominopieceserver;
 
+import Evento.CrearPartidaPF;
+import Evento.IniciarVotacionPF;
+import Evento.JugadorPF;
+import Evento.RespuestaVotacionPF;
+import Evento.VerificarAvatarPF;
 import dominio_dominodto.Acciones;
 import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.PartidaDTO;
@@ -61,15 +66,18 @@ public class JugadorThread extends Thread {
             ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
 
             while (true) {
-
-                objecto = in.readObject();// ATASCO
-
-                if (objecto instanceof PartidaDTO) {
-                    PartidaDTO p = (PartidaDTO) objecto;
+                
+                objecto = in.readObject();//
+                //Acciones de Crear Partida
+                if (objecto instanceof CrearPartidaPF) {
+                    CrearPartidaPF pf =  (CrearPartidaPF) objecto;
+                    PartidaDTO p = (PartidaDTO) pf.getData();
                     sink.CrearPartida(p);
                 }
-                if (objecto instanceof JugadorDTO) {
-                    JugadorDTO j = (JugadorDTO) objecto;
+                //Acciones de Crear Jugador
+                if (objecto instanceof JugadorPF) {
+                    JugadorPF pf =  (JugadorPF) objecto;
+                    JugadorDTO j = (JugadorDTO) pf.getData();
                     jugador = j;
                     sink.agregarJugador(j);
                     enviarPartidaActual();
@@ -80,9 +88,10 @@ public class JugadorThread extends Thread {
 
                     }
                 }
-                
-                if (objecto instanceof JugadorDTO) {
-                    JugadorDTO jA = (JugadorDTO) objecto;
+                //Acciones de Validar avatar
+                if (objecto instanceof VerificarAvatarPF) {
+                    VerificarAvatarPF pf =  (VerificarAvatarPF) objecto;
+                    JugadorDTO jA = (JugadorDTO) pf.getData();
                     if(!sink.verificarPartida(jA.getAvatar())){
                         enviarAUno(Acciones.AVATAR_SIESTA);
                     } else {
@@ -90,15 +99,17 @@ public class JugadorThread extends Thread {
                     }
                 }
 
-                if (objecto instanceof RespuestaDTO) {
-
-                    RespuestaDTO r = (RespuestaDTO) objecto;
+                //Acciones de RespuestaVotacion
+                if (objecto instanceof RespuestaVotacionPF) {
+                    RespuestaVotacionPF pf =  (RespuestaVotacionPF) objecto;
+                    RespuestaDTO r = (RespuestaDTO) pf.getData();
                     Votacion.getInstance().respuestaVotacion(r.isRespuestas());
 
                 }
-
-                if (objecto instanceof Acciones) {
-                    Acciones a = (Acciones) objecto;
+                //Acciones  de IniciarVotacion
+                if (objecto instanceof IniciarVotacionPF) {
+                    IniciarVotacionPF pf =  (IniciarVotacionPF) objecto;
+                    Acciones a = (Acciones) pf.getData();
                     if (a == Acciones.INICIAR_VOTACION) {
                         vota = new Votacion(sink.getPartidaDTO().getJugadores().size(), server);
                         Votacion.setInstance(vota);

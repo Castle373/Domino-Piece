@@ -31,6 +31,7 @@ public class VistaJuego extends javax.swing.JFrame {
 
     private TableroGrafico tablero;
     private boolean respuesta;
+    private boolean partidaIniciada = false;
 
     /**
      * Creates new form VistaJuego
@@ -343,33 +344,35 @@ public class VistaJuego extends javax.swing.JFrame {
     public void mostrarJugadores() {
         List<JugadorDTO> list = presentador.listaJugadores();
         limpiarInformacion();
-        for (int i = 0; i < list.size(); i++) {
-            if (i == 0) {
-                lblJugador1.setText(list.get(0).getNombre());
-                ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(0).getAvatar()));
-                ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
-                lblAvatar1.setIcon(iconoRedimensionado);
-            }
-            if (i == 1) {
-                lblJugador2.setText(list.get(1).getNombre());
-                ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(1).getAvatar()));
-                ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
-                lblAvatar2.setIcon(iconoRedimensionado);
-            }
-            if (i == 2) {
-                lblJugador3.setText(list.get(2).getNombre());
-                ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(2).getAvatar()));
-                ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
-                lblAvatar3.setIcon(iconoRedimensionado);
-            }
-            if (i == 3) {
-                lblJugador4.setText(list.get(3).getNombre());
-                ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(3).getAvatar()));
-                ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
-                lblAvatar4.setIcon(iconoRedimensionado);
+        if (!partidaIniciada) {
+            for (int i = 0; i < list.size(); i++) {
+                if (i == 0) {
+                    lblJugador1.setText(list.get(0).getNombre());
+                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(0).getAvatar()));
+                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                    lblAvatar1.setIcon(iconoRedimensionado);
+                }
+                if (i == 1) {
+                    lblJugador2.setText(list.get(1).getNombre());
+                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(1).getAvatar()));
+                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                    lblAvatar2.setIcon(iconoRedimensionado);
+                }
+                if (i == 2) {
+                    lblJugador3.setText(list.get(2).getNombre());
+                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(2).getAvatar()));
+                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                    lblAvatar3.setIcon(iconoRedimensionado);
+                }
+                if (i == 3) {
+                    lblJugador4.setText(list.get(3).getNombre());
+                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(3).getAvatar()));
+                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                    lblAvatar4.setIcon(iconoRedimensionado);
+                }
             }
         }
-        tablero.setJugadores(list);
+        tablero.setPartida(presentador.getPartida());
 
     }
 
@@ -469,10 +472,10 @@ public class VistaJuego extends javax.swing.JFrame {
         Jugador2.setVisible(false);
         Jugador3.setVisible(false);
         Jugador4.setVisible(false);
-        tablero.setPartida(presentador.getPartida());
+
         add(tablero);
 //        presentador.iniciarPartida();
-
+        this.partidaIniciada=true;
         this.setContentPane(tablero);
         tablero.add(btnRobar);
         btnRobar.setVisible(true);
@@ -506,13 +509,12 @@ public class VistaJuego extends javax.swing.JFrame {
         btnSi.setEnabled(false);
     }
 
-    
-    public void mostrarMensaje(){
-        JOptionPane.showMessageDialog(this,"Faltas jugadores");
+    public void mostrarMensaje() {
+        JOptionPane.showMessageDialog(this, "Faltas jugadores");
     }
-    
+
     public void inicioVotacion() {
-        
+
         presentador.iniciarVotacion();
     }
 

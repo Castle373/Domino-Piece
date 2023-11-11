@@ -19,7 +19,7 @@ public class PipeFin<T extends Evento> implements Pipe<T> {
         
         Cliente cliente = Cliente.getInstance();
         
-        cliente.enviarAlServidor(resultado.getData());
+        cliente.enviarAlServidor(resultado);
     }
 
 }

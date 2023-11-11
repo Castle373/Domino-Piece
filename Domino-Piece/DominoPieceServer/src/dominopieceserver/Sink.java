@@ -60,7 +60,9 @@ public class Sink {
     public void eliminarJugador(JugadorDTO j) {
         Jugador juga = new Jugador(j.getNombre(), j.getAvatar());
         juga.setId(j.getId());
+        
         partida.eliminarJugador(juga);
+        
     }
 
     public PartidaDTO getPartidaDTO() {

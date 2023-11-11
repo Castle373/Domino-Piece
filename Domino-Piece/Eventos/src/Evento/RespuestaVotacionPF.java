@@ -4,11 +4,13 @@
  */
 package Evento;
 
+import java.io.Serializable;
+
 /**
  *
  * @author IVAN
  */
-public class RespuestaVotacionPF<T> implements Evento<T> {
+public class RespuestaVotacionPF<T> implements Evento<T>, Serializable{
 
     private T respuesta;
     private boolean respuestaP;

@@ -44,7 +44,9 @@ public class TableroGrafico extends JPanel {
     private Rectangle zonaInicial = new Rectangle();//Hitbox Inicial
     private Rectangle ladoDerecho = new Rectangle();//Hitbox Lado Derecho
     private Rectangle ladoIzquierdo = new Rectangle();//Hitbox Lado Izquierdo
+    
     private List<JugadorDTO> jugadores = new ArrayList<>();
+    
     private int x, y;
     private Image fondo;
     private PartidaDTO partida;
@@ -55,12 +57,26 @@ public class TableroGrafico extends JPanel {
     private JLabel borde2;
     private JLabel borde3;
     private JLabel borde4;
+    
+    
+    private JLabel nombre1;
+    private JLabel nombre2;
+    private JLabel nombre3;
+    private JLabel nombre4;
 
     public TableroGrafico(VistaJuego vista) {
+        nombre1 = new JLabel();
+        nombre2 = new JLabel();
+        nombre3 = new JLabel();
+        nombre4 = new JLabel();
         borde1 = new JLabel();
         borde2 = new JLabel();
         borde3 = new JLabel();
         borde4 = new JLabel();
+        nombre1.setForeground(Color.WHITE);
+        nombre2.setForeground(Color.WHITE);
+        nombre3.setForeground(Color.WHITE);
+        nombre4.setForeground(Color.WHITE);
         this.vista = vista;
         zonaInicial = new Rectangle(630, 250, 23, 48);
         fichasJugador = new FichasMano();
@@ -71,6 +87,11 @@ public class TableroGrafico extends JPanel {
         this.add(borde2);
         this.add(borde3);
         this.add(borde4);
+        this.add(nombre1);
+        this.add(nombre2);
+        this.add(nombre3);
+        this.add(nombre4);
+
     }
 
     public PartidaDTO getPartida() {
@@ -78,7 +99,9 @@ public class TableroGrafico extends JPanel {
     }
 
     public void setPartida(PartidaDTO partida) {
+       
         this.partida = partida;
+        this.setJugadores(this.partida.getJugadores());
     }
 
     public Jugador getJugador() {
@@ -290,15 +313,39 @@ public class TableroGrafico extends JPanel {
         }
     }
 
-    public void pintarJugadores(Graphics2D g) {
+    public void reinciarJugadores() {
+        borde1.setIcon(null);
+        borde2.setIcon(null);
+        borde3.setIcon(null);
+        borde4.setIcon(null);
+        nombre1.setText("");
+        nombre2.setText("");
+        nombre3.setText("");
+        nombre4.setText("");
+    }
 
+    public void pintarJugadores(Graphics2D g) {
+//        borde1 = new JLabel();
+//        borde2 = new JLabel();
+//        borde3 = new JLabel();
+//        borde4 = new JLabel();
+//        nombre1 = new JLabel();
+//        nombre2 = new JLabel();
+//        nombre3 = new JLabel();
+//        nombre4 = new JLabel();
+        reinciarJugadores();
         for (int i = 0; i < jugadores.size(); i++) {
+            
             ImageIcon marcoNormal = new ImageIcon(getClass().getResource("/Avatares/marcoNormal.png"));
             ImageIcon marcoTurno = new ImageIcon(getClass().getResource("/Avatares/marco.gif"));
 
             if (i == 0) {
 
+                nombre1.setText(jugadores.get(i).getNombre());
+                nombre1.setLocation(130, 30);
+                
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
+                   
                     borde1.setLocation(30, 26);
                     borde1.setIcon(marcoTurno);
                 } else {
@@ -309,6 +356,8 @@ public class TableroGrafico extends JPanel {
                 g.drawImage(iconoOriginal, 38, 34, 79, 53, null);
             }
             if (i == 1) {
+                nombre2.setText(jugadores.get(i).getNombre());
+                nombre2.setLocation(1050, 30);
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
 
                     borde2.setLocation(1150, 26);
@@ -322,6 +371,8 @@ public class TableroGrafico extends JPanel {
                 g.drawImage(iconoOriginal, 1158, 34, 79, 53, null);
             }
             if (i == 2) {
+                nombre3.setText(jugadores.get(i).getNombre());
+                nombre3.setLocation(130, 535);
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
 
                     borde3.setLocation(30, 535);
@@ -334,6 +385,8 @@ public class TableroGrafico extends JPanel {
                 g.drawImage(iconoOriginal, 38, 543, 79, 53, null);
             }
             if (i == 3) {
+                nombre4.setText(jugadores.get(i).getNombre());
+                nombre4.setLocation(1050, 535);
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
                     borde4.setLocation(1150, 535);
                     borde4.setIcon(marcoTurno);

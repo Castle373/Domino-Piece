@@ -4,11 +4,13 @@
  */
 package Evento;
 
+import java.io.Serializable;
+
 /**
  *
  * @author IVAN
  */
-public class IniciarVotacionPF <T> implements Evento<T> {
+public class IniciarVotacionPF <T> implements Evento<T>, Serializable {
     
     private T acciones;
     @Override

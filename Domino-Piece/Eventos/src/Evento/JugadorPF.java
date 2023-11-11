@@ -5,12 +5,13 @@
 package Evento;
 
 import dominio_dominodto.JugadorDTO;
+import java.io.Serializable;
 
 /**
  *
  * @author diego
  */
-public class JugadorPF<T> implements Evento<T>{
+public class JugadorPF<T> implements Evento<T> , Serializable{
     
     private String nombre;
     private String avatar;

@@ -4,11 +4,13 @@
  */
 package Evento;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Marcos T.
  */
-public class VerificarAvatarPF<T> implements Evento<T> {
+public class VerificarAvatarPF<T> implements Evento<T>, Serializable {
 
     private String avatar;
 

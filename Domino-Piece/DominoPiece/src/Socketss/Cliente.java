@@ -4,6 +4,11 @@
  */
 package Socketss;
 
+import Evento.CrearPartidaPF;
+import Evento.IniciarVotacionPF;
+import Evento.JugadorPF;
+import Evento.RespuestaVotacionPF;
+import Evento.VerificarAvatarPF;
 import Observer.Observable;
 import Observer.Observer;
 import dominio_domino.Jugador;
@@ -55,9 +60,9 @@ public class Cliente {
     }
 
     public boolean enviarAlServidor(Object objecto) {
-
-        if (objecto instanceof PartidaDTO) {
-            PartidaDTO p = (PartidaDTO) objecto;
+        //Acciones de Crear Partida
+        if (objecto instanceof CrearPartidaPF) {
+            CrearPartidaPF p = (CrearPartidaPF) objecto;
             try {
                 j.enviarAlServidor(p);
                 return true;
@@ -65,9 +70,9 @@ public class Cliente {
                 return false;
             }
         }
-
-        if (objecto instanceof JugadorDTO) {
-            JugadorDTO p = (JugadorDTO) objecto;
+        //Acciones de Crear Jugador
+        if (objecto instanceof JugadorPF) {
+            JugadorPF p = (JugadorPF) objecto;
             try {
                 j.enviarAlServidor(p);
                 return true;
@@ -76,9 +81,20 @@ public class Cliente {
                 return false;
             }
         }
-
-        if (objecto instanceof RespuestaDTO) {
-            RespuestaDTO r = (RespuestaDTO) objecto;
+        //Acciones de Validar avatar
+        if (objecto instanceof VerificarAvatarPF) {
+            VerificarAvatarPF p = (VerificarAvatarPF) objecto;
+            try {
+                j.enviarAlServidor(p);
+                return true;
+            } catch (IOException ex) {
+                System.out.println(ex);
+                return false;
+            }
+        }
+        //Acciones de RespuestaVotacion
+        if (objecto instanceof RespuestaVotacionPF) {
+            RespuestaVotacionPF r = (RespuestaVotacionPF) objecto;
             try {
                 j.enviarAlServidor(r);
                 return true;
@@ -87,18 +103,18 @@ public class Cliente {
                 return false;
             }
         }
+        //Acciones  de IniciarVotacion
+        if (objecto instanceof IniciarVotacionPF) {
+            IniciarVotacionPF a = (IniciarVotacionPF) objecto;
 
-        if (objecto instanceof Acciones) {
-            Acciones a = (Acciones) objecto;
-            if (a == Acciones.INICIAR_VOTACION) {
-                try {
-                    j.enviarAlServidor(a);
-                    return true;
-                } catch (IOException ex) {
-                    System.out.println(ex);
-                    return false;
-                }
+            try {
+                j.enviarAlServidor(a);
+                return true;
+            } catch (IOException ex) {
+                System.out.println(ex);
+                return false;
             }
+
         }
         return false;
     }

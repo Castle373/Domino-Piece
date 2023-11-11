@@ -6,12 +6,13 @@ package Evento;
 
 import dominio_domino.Partida;
 import dominio_dominodto.JugadorDTO;
+import java.io.Serializable;
 
 /**
  *
  * @author diego
  */
-public class CrearPartidaPF<T> implements Evento<T> {
+public class CrearPartidaPF<T> implements Evento<T>, Serializable{
 
     private int numfichas;
     private T partida;
