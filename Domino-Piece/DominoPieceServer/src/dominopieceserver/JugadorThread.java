@@ -45,12 +45,16 @@ public class JugadorThread extends Thread {
     public void enviarTodos(Object o) {
         server.sendToAll(o);
     }
+    
+    public void enviarAUno(Object o){
+        server.sendToOne(o, out);
+    }
 
-    public synchronized void enviarRespuesta(boolean respuesta){
+    public synchronized void enviarRespuesta(boolean respuesta) {
         Votacion.getInstance().respuestaVotacion(respuesta);
         this.notifyAll();
     }
-    
+
     @Override
     public void run() {
         try {
@@ -73,30 +77,34 @@ public class JugadorThread extends Thread {
                         sink.iniciarPartida();
                         enviarPartidaActual();
                         enviarTodos(Acciones.INICIAR_PARTIDA);
-                        
+
+                    }
+                }
+                
+                if (objecto instanceof JugadorDTO) {
+                    JugadorDTO jA = (JugadorDTO) objecto;
+                    if(!sink.verificarPartida(jA.getAvatar())){
+                        enviarAUno(Acciones.AVATAR_SIESTA);
+                    } else {
+                        enviarAUno(Acciones.AVATAR_NOESTA);
                     }
                 }
 
-                
-                  if (objecto instanceof RespuestaDTO) {
-                     
+                if (objecto instanceof RespuestaDTO) {
+
                     RespuestaDTO r = (RespuestaDTO) objecto;
                     Votacion.getInstance().respuestaVotacion(r.isRespuestas());
-                    
-                     
-                    
+
                 }
-              
-                
+
                 if (objecto instanceof Acciones) {
                     Acciones a = (Acciones) objecto;
                     if (a == Acciones.INICIAR_VOTACION) {
-                      
-                       vota=new Votacion(sink.getPartidaDTO().getJugadores().size(),server);
-                       Votacion.setInstance(vota);
-                       Votacion.getInstance().start();
+                        vota = new Votacion(sink.getPartidaDTO().getJugadores().size(), server);
+                        Votacion.setInstance(vota);
+                        Votacion.getInstance().start();
                         enviarTodos(Acciones.INICIAR_VOTACION);
-                     
+
                     }
                 }
 

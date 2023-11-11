@@ -6,6 +6,7 @@ package Modelo;
 
 import Evento.CrearPartidaPF;
 import Evento.JugadorPF;
+import Evento.VerificarAvatarPF;
 import Pipes.Pipe;
 import Pipes.PipeInicio;
 import dominio_domino.Jugador;
@@ -24,9 +25,9 @@ public class ModeloUnirse {
 
     private Partida partida;
     private JugadorDTO jugador;
-    private Tablero tablero;
-    private Pozo pozo;
     private Socket socket;
+    private String nombre;
+    private String avatar;
 
     public ModeloUnirse() {
     }
@@ -39,16 +40,30 @@ public class ModeloUnirse {
         this.socket = socket;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+    
     public void guardarPartida(Partida partida) {
         this.partida = partida;
     }
 
-    public void crearJugador(String nombre, String avatar) {
-
+    public void crearJugador() {
         Pipe<JugadorPF> pipa = new PipeInicio();
         JugadorPF j = new JugadorPF(nombre, avatar);
         pipa.ejecutar(j);
-
     }
 
     public Partida recuperaPartida() {
@@ -61,6 +76,12 @@ public class ModeloUnirse {
 
     public void setJugador(JugadorDTO jugador) {
         this.jugador = jugador;
+    }
+    
+    public void verificarAvatar(String avatar) {
+        Pipe<VerificarAvatarPF> pipa = new PipeInicio();
+        VerificarAvatarPF v = new VerificarAvatarPF(avatar);
+        pipa.ejecutar(v);
     }
 
 }

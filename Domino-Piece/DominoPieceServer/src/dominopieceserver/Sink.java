@@ -116,22 +116,38 @@ public class Sink {
 
         return partidaDTO;
     }
-    public void iniciarPartida(){
+
+    public void iniciarPartida() {
         this.crearPozo();
         this.crearTablero();
         this.repartirFichas();
         this.determinarTurno();
     }
-    public void determinarTurno(){
+
+    public void determinarTurno() {
         partida.determinarTurnos();
     }
-    public void crearTablero(){
+
+    public void crearTablero() {
         partida.setTablero(new Tablero());
     }
-    public void crearPozo(){
+
+    public void crearPozo() {
         partida.setPozo(new Pozo());
     }
-    public void repartirFichas(){
+
+    public void repartirFichas() {
         partida.reparteFichas();
+    }
+
+    public boolean verificarPartida(String avatar) {
+        PartidaDTO partida = getPartidaDTO();
+        for (int i = 0; i < partida.getJugadores().size(); i++) {
+                JugadorDTO jugadorLista = getPartidaDTO().getJugadores().get(i);
+                if(jugadorLista.getAvatar().equalsIgnoreCase(avatar)){
+                    return false;
+                }
+        }
+        return true;
     }
 }

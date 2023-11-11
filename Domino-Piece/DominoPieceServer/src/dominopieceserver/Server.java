@@ -17,7 +17,6 @@ import java.util.List;
  */
 public class Server {
 
- 
     private List<ObjectOutputStream> clientOutputStreams = new ArrayList<>();
     private static int connectionCount = 0;
 
@@ -36,13 +35,19 @@ public class Server {
         }
     }
 
+    public void sendToOne(Object obj, ObjectOutputStream outPut) {
+            try {
+                outPut.writeObject(obj);
+                outPut.flush();
+            } catch (IOException e) {
+                // Manejar excepciones
+            }
+    }
+
     public synchronized void desconectarClliente(ObjectOutputStream out) {
         connectionCount--; // Decrementa el contador de conexiones
         clientOutputStreams.remove(out); // Elimina el flujo de salida del cliente
     }
-
-   
-
 
     public static void main(String[] args) throws IOException {
         ServerSocket ss = new ServerSocket(1234);

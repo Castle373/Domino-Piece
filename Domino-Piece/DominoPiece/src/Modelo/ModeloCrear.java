@@ -24,15 +24,13 @@ public class ModeloCrear {
 
     private Cliente cliente;
     private Partida partida;
- 
 
     public void crearPartida(int fichasIniciales) {
-        
-        
+
         Pipe<CrearPartidaPF> pipa = new PipeInicio();
-        CrearPartidaPF c= new CrearPartidaPF(fichasIniciales);
+        CrearPartidaPF c = new CrearPartidaPF(fichasIniciales);
         pipa.ejecutar(c);
-       
+
     }
 
     public Partida getPartida() {
@@ -47,7 +45,5 @@ public class ModeloCrear {
         Cliente cliente = Cliente.getInstance();
         return cliente;
     }
-
-  
 
 }

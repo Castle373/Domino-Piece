@@ -77,7 +77,7 @@ public class Cliente {
             }
         }
 
-         if (objecto instanceof RespuestaDTO) {
+        if (objecto instanceof RespuestaDTO) {
             RespuestaDTO r = (RespuestaDTO) objecto;
             try {
                 j.enviarAlServidor(r);
@@ -87,8 +87,7 @@ public class Cliente {
                 return false;
             }
         }
-        
-        
+
         if (objecto instanceof Acciones) {
             Acciones a = (Acciones) objecto;
             if (a == Acciones.INICIAR_VOTACION) {

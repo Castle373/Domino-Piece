@@ -24,11 +24,11 @@ public class VistaUnirse extends javax.swing.JFrame {
     public VistaUnirse(IPresentadorUnirse presentador) {
         this.presentador = presentador;
         initComponents();
- 
-        avatar1.setIcon( new ImageIcon(getClass().getResource("/Avatares/avatar1.jpg")));
-        avatar2.setIcon( new ImageIcon(getClass().getResource("/Avatares/avatar2.jpg")));
-        avatar3.setIcon( new ImageIcon(getClass().getResource("/Avatares/avatar3.jpg")));
-        avatar4.setIcon( new ImageIcon(getClass().getResource("/Avatares/avatar4.jpeg")));
+
+        avatar1.setIcon(new ImageIcon(getClass().getResource("/Avatares/avatar1.jpg")));
+        avatar2.setIcon(new ImageIcon(getClass().getResource("/Avatares/avatar2.jpg")));
+        avatar3.setIcon(new ImageIcon(getClass().getResource("/Avatares/avatar3.jpg")));
+        avatar4.setIcon(new ImageIcon(getClass().getResource("/Avatares/avatar4.jpeg")));
     }
 
     /**
@@ -145,13 +145,14 @@ public class VistaUnirse extends javax.swing.JFrame {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
-    public boolean validaJugador(){
+    public boolean validaJugador() {
         if (txtNombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Nombre Vacio");
             return true;
         }
-         return false;
+        return false;
     }
+
     public void crearJugador() {
         if (validaJugador()) {
             return;
@@ -170,10 +171,20 @@ public class VistaUnirse extends javax.swing.JFrame {
         if (chbxAvatar4.isSelected()) {
             avatar = "/Avatares/avatar4.jpeg";
         }
-       
-        presentador.crearJugador(nombre, avatar);
+        
+        presentador.guardarJugadorTemporal(nombre, avatar);
+        presentador.verificarAvatar(avatar);
+        
+    }
+    
+    public void muestraMensajeAvatarEnUso() {
+        JOptionPane.showMessageDialog(this, "El avatar seleccionado ya esta en uso");
     }
 
+    public void obtenerJugador(){
+        
+    }
+    
     public void muestraMensajeError() {
         JOptionPane.showMessageDialog(rootPane, "Error", "ERROR", JOptionPane.ERROR_MESSAGE);
     }

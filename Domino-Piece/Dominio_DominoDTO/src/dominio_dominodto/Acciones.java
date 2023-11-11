@@ -8,6 +8,7 @@ package dominio_dominodto;
 public enum Acciones {
     INICIAR_PARTIDA,
     INICIAR_VOTACION,
-    NO_INICIAR
-    
+    NO_INICIAR,
+    AVATAR_SIESTA,
+    AVATAR_NOESTA    
 }

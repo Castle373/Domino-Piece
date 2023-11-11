@@ -125,7 +125,7 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
         if (loquesea instanceof PartidaDTO) {
             PartidaDTO p = (PartidaDTO) loquesea;
             modelo.setPartida2(p);
-            vista.mostrarJugadores();     
+            vista.mostrarJugadores();
         }
         if (loquesea instanceof Acciones) {
             Acciones a = (Acciones) loquesea;
@@ -136,13 +136,13 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
             if (a == Acciones.INICIAR_VOTACION) {
                 vista.votacion();
             }
-            
+
             if (a == Acciones.NO_INICIAR) {
                 vista.votacionNoaceptada();
             }
-            
-            
+   
         }
+      
     }
 
     @Override
@@ -152,16 +152,16 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
 
     @Override
     public void iniciarVotacion() {
-        if(modelo.getListJugadoresDTO().size()>1 && modelo.getListJugadoresDTO().size()<4){
+        if (modelo.getListJugadoresDTO().size() > 1 && modelo.getListJugadoresDTO().size() < 4) {
             modelo.iniciarVotacion();
-        }else{
-           vista.mostrarMensaje();
+        } else {
+            vista.mostrarMensaje();
         }
-      
+
     }
 
     @Override
     public void respuestaVotacion(boolean respuesta) {
-       modelo.respuestaVotacion(respuesta);
+        modelo.respuestaVotacion(respuesta);
     }
 }

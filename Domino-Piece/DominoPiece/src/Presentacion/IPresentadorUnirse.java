@@ -15,13 +15,25 @@ import java.net.Socket;
  * @author marcos
  */
 public interface IPresentadorUnirse {
+
     public void mostrarPantallaUnirse();
-    public void crearJugador(String nombre, String avatar);
+
+    public void crearJugador();
+
     public void mostrarPantallaJuego();
+
     public void guardarPartida(Partida partida);
+
     public void enviarPartida();
+
     public Partida obtenerPartida();
+
     public void enviarJugador();
-    public JugadorDTO  obtenerJugador();
-    
+
+    public JugadorDTO obtenerJugador();
+
+    public void verificarAvatar(String avatar);
+
+    public void guardarJugadorTemporal(String nombre, String avatar);
+
 }
