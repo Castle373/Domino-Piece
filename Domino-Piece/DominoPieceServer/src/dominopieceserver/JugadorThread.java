@@ -7,6 +7,7 @@ package dominopieceserver;
 import dominio_dominodto.Acciones;
 import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.PartidaDTO;
+import dominio_dominodto.RespuestaDTO;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -45,6 +46,11 @@ public class JugadorThread extends Thread {
         server.sendToAll(o);
     }
 
+    public synchronized void enviarRespuesta(boolean respuesta){
+        Votacion.getInstance().respuestaVotacion(respuesta);
+        this.notifyAll();
+    }
+    
     @Override
     public void run() {
         try {
@@ -67,18 +73,30 @@ public class JugadorThread extends Thread {
                         sink.iniciarPartida();
                         enviarPartidaActual();
                         enviarTodos(Acciones.INICIAR_PARTIDA);
-                        System.out.println("envie");
+                        
                     }
                 }
 
+                
+                  if (objecto instanceof RespuestaDTO) {
+                     
+                    RespuestaDTO r = (RespuestaDTO) objecto;
+                    Votacion.getInstance().respuestaVotacion(r.isRespuestas());
+                    
+                     
+                    
+                }
+              
+                
                 if (objecto instanceof Acciones) {
                     Acciones a = (Acciones) objecto;
                     if (a == Acciones.INICIAR_VOTACION) {
-                         System.out.println("lo envie a todas mis gatitas");
+                      
                        vota=new Votacion(sink.getPartidaDTO().getJugadores().size(),server);
-                       vota.start();
+                       Votacion.setInstance(vota);
+                       Votacion.getInstance().start();
                         enviarTodos(Acciones.INICIAR_VOTACION);
-                        System.out.println("lo envie a todas mis perritas");
+                     
                     }
                 }
 

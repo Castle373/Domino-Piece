@@ -4,6 +4,9 @@
  */
 package dominopieceserver;
 
+import dominio_dominodto.Acciones;
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,44 +15,67 @@ import java.util.List;
  * @author IVAN
  */
 public class Votacion extends Thread {
+
     private List<Boolean> respuestasVotacion;
     private int cantidadNecesaria;
     private Server server;
+    private volatile static Votacion instance;
+
     public Votacion() {
     }
 
     public Votacion(int cantidadNecesaria, Server server) {
-        respuestasVotacion= new ArrayList<>();
+        respuestasVotacion = new ArrayList<>();
         this.cantidadNecesaria = cantidadNecesaria;
         this.server = server;
-    }
-    
-     public void respuestaVotacion(boolean respuesta) {
-         respuestasVotacion.add(respuesta);
+
     }
 
-    
-    
+    public static void setInstance(Votacion instance) {
+        Votacion.instance = instance;
+    }
+
+    public synchronized void respuestaVotacion(boolean respuesta) {
+        respuestasVotacion.add(respuesta);
+        this.notifyAll();
+
+    }
+
+    public static synchronized Votacion getInstance() {
+
+        if (instance == null) {
+
+            instance = new Votacion();
+        }
+        return instance;
+    }
+
     @Override
     public void run() {
-       boolean verificar = true;
-        respuestasVotacion= new ArrayList<>();
+
+        boolean verificar = true;
+        respuestasVotacion = new ArrayList<>();
         while (verificar) {
             int votaciones = 0;
+
+            System.out.printf("");
             for (int i = 0; i < respuestasVotacion.size(); i++) {
+                votaciones++;
+
                 if (respuestasVotacion.get(i) == false) {
                     verificar = false;
-//                    sendToAll(i);
-                }
-                votaciones++;
-                if (votaciones == cantidadNecesaria) {
+                    server.sendToAll(Acciones.NO_INICIAR);
+
+                } else if (votaciones == cantidadNecesaria) {
                     verificar = false;
-////                    sendToAll(Accii);
+                    server.sendToAll(Acciones.INICIAR_PARTIDA);
+
                 }
-                
+
             }
 
         }
+
     }
-    
+
 }

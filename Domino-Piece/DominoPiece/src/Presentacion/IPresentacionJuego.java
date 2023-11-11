@@ -18,23 +18,40 @@ import java.util.List;
  * @author diego
  */
 public interface IPresentacionJuego {
+
     public void mostrarPantallaJuego();
-    public boolean realizaMovimiento(FichaTablero ficha,int lado);
+
+    public boolean realizaMovimiento(FichaTablero ficha, int lado);
+
     public void guardarPartida(Partida partida);
+
     public void guardarJugador(JugadorDTO jugador);
+
     public void iniciarPartida();
+
     public List<JugadorDTO> listaJugadores();
+
     public void setListaJugadores(List<Jugador> jugadores);
+
     public void crearPozo();
+
     public void reparteFichas();
+
     public void crearTablero();
+
     public void robarFicha();
-  
+
     public void eliminarFichaJugador(FichaJugador ficha);
+
     public void pasarTurno();
+
     public PartidaDTO getPartida();
+
     public Jugador jugadorTurno();
+
     public boolean isTurno();
-    
+
     public void iniciarVotacion();
+
+    public void respuestaVotacion(boolean respuesta);
 }

@@ -4,13 +4,12 @@
  */
 package Filters;
 
-import Evento.CrearPartidaPF;
 import Evento.Evento;
 import Evento.IniciarVotacionPF;
 import Pipes.Pipe;
 import Pipes.PipeFin;
 import dominio_dominodto.Acciones;
-import dominio_dominodto.PartidaDTO;
+
 
 /**
  *

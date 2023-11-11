@@ -6,6 +6,7 @@ package Modelo;
 
 import Evento.IniciarVotacionPF;
 import Evento.JugadorPF;
+import Evento.RespuestaVotacionPF;
 import Graficos.TableroGrafico;
 import Pipes.Pipe;
 import Pipes.PipeInicio;
@@ -155,6 +156,12 @@ public class ModeloJuego {
     public void iniciarVotacion(){
         Pipe<IniciarVotacionPF> pipa = new PipeInicio();
         IniciarVotacionPF v = new IniciarVotacionPF();
+        pipa.ejecutar(v);
+    }
+    
+    public void respuestaVotacion(boolean respuesta){
+        Pipe<RespuestaVotacionPF> pipa = new PipeInicio();
+        RespuestaVotacionPF v = new RespuestaVotacionPF(respuesta);
         pipa.ejecutar(v);
     }
 }

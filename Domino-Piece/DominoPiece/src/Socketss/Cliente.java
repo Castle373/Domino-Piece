@@ -12,6 +12,7 @@ import dominio_dominodto.Acciones;
 import dominio_dominodto.JugadorDTO;
 
 import dominio_dominodto.PartidaDTO;
+import dominio_dominodto.RespuestaDTO;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -76,6 +77,18 @@ public class Cliente {
             }
         }
 
+         if (objecto instanceof RespuestaDTO) {
+            RespuestaDTO r = (RespuestaDTO) objecto;
+            try {
+                j.enviarAlServidor(r);
+                return true;
+            } catch (IOException ex) {
+                System.out.println(ex);
+                return false;
+            }
+        }
+        
+        
         if (objecto instanceof Acciones) {
             Acciones a = (Acciones) objecto;
             if (a == Acciones.INICIAR_VOTACION) {

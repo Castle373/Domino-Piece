@@ -30,12 +30,13 @@ public class VistaJuego extends javax.swing.JFrame {
     private IPresentacionJuego presentador;
 
     private TableroGrafico tablero;
+    private boolean respuesta;
 
     /**
      * Creates new form VistaJuego
      */
     public VistaJuego(IPresentacionJuego presentador) {
-   
+
         this.presentador = presentador;
         tablero = new TableroGrafico(this);
         initComponents();
@@ -56,8 +57,8 @@ public class VistaJuego extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         pantallaespera = new javax.swing.JPanel();
         Votacion = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        BtnNo = new javax.swing.JButton();
+        btnSi = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnRobar = new javax.swing.JButton();
         Jugador3 = new javax.swing.JPanel();
@@ -76,7 +77,7 @@ public class VistaJuego extends javax.swing.JFrame {
         lblJugador1 = new javax.swing.JLabel();
         lblAvatar1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        btnIniciarVotacion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 0));
@@ -106,12 +107,17 @@ public class VistaJuego extends javax.swing.JFrame {
         pantallaespera.setBackground(new java.awt.Color(0, 153, 0));
         pantallaespera.setForeground(new java.awt.Color(0, 153, 0));
 
-        jButton2.setText("No");
-
-        jButton3.setText("Si");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BtnNo.setText("No");
+        BtnNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BtnNoActionPerformed(evt);
+            }
+        });
+
+        btnSi.setText("Si");
+        btnSi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiActionPerformed(evt);
             }
         });
 
@@ -126,12 +132,12 @@ public class VistaJuego extends javax.swing.JFrame {
                 .addContainerGap(113, Short.MAX_VALUE)
                 .addGroup(VotacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnNo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(107, 107, 107))
             .addGroup(VotacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(VotacionLayout.createSequentialGroup()
                     .addGap(117, 117, 117)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSi, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(276, Short.MAX_VALUE)))
         );
         VotacionLayout.setVerticalGroup(
@@ -140,12 +146,12 @@ public class VistaJuego extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(BtnNo)
                 .addGap(57, 57, 57))
             .addGroup(VotacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VotacionLayout.createSequentialGroup()
                     .addContainerGap(149, Short.MAX_VALUE)
-                    .addComponent(jButton3)
+                    .addComponent(btnSi)
                     .addGap(58, 58, 58)))
         );
 
@@ -200,10 +206,10 @@ public class VistaJuego extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         Jugador1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 0, 50, 130));
 
-        jButton1.setText("Iniciar Votacion");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnIniciarVotacion.setText("Iniciar Votacion");
+        btnIniciarVotacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnIniciarVotacionActionPerformed(evt);
             }
         });
 
@@ -217,7 +223,7 @@ public class VistaJuego extends javax.swing.JFrame {
                     .addGroup(pantallaesperaLayout.createSequentialGroup()
                         .addComponent(Jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(210, 210, 210)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnIniciarVotacion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pantallaesperaLayout.createSequentialGroup()
                         .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,7 +244,7 @@ public class VistaJuego extends javax.swing.JFrame {
                     .addComponent(Jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pantallaesperaLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnIniciarVotacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(1, 1, 1)
                 .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pantallaesperaLayout.createSequentialGroup()
@@ -305,13 +311,21 @@ public class VistaJuego extends javax.swing.JFrame {
         robarFicha();
     }//GEN-LAST:event_btnRobarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnIniciarVotacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarVotacionActionPerformed
         inicioVotacion();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnIniciarVotacionActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiActionPerformed
+        respuesta = true;
+        respuestaVotacion();
+
+    }//GEN-LAST:event_btnSiActionPerformed
+
+    private void BtnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNoActionPerformed
+        respuesta = false;
+        respuestaVotacion();
+
+    }//GEN-LAST:event_BtnNoActionPerformed
     public void limpiarInformacion() {
         // Limpia los textos de los JLabels
         lblJugador1.setText("");
@@ -464,9 +478,9 @@ public class VistaJuego extends javax.swing.JFrame {
         btnRobar.setVisible(true);
 //        tablero.agregarFichasIniciales();
     }
-    
-    
-    public void votacion(){
+
+    public void votacion() {
+        btnIniciarVotacion.setVisible(false);
         Jugador1.setVisible(false);
         Jugador2.setVisible(false);
         Jugador3.setVisible(false);
@@ -474,9 +488,31 @@ public class VistaJuego extends javax.swing.JFrame {
         Votacion.setVisible(true);
 
     }
+
+    public void votacionNoaceptada() {
+        Votacion.setVisible(false);
+        btnIniciarVotacion.setVisible(true);
+        Jugador1.setVisible(true);
+        Jugador2.setVisible(true);
+        Jugador3.setVisible(true);
+        Jugador4.setVisible(true);
+        btnSi.setEnabled(true);
+        BtnNo.setEnabled(true);
+    }
+
+    public void respuestaVotacion() {
+        presentador.respuestaVotacion(respuesta);
+        BtnNo.setEnabled(false);
+        btnSi.setEnabled(false);
+    }
+
+    
+    public void mostrarMensaje(){
+        JOptionPane.showMessageDialog(this,"Faltas jugadores");
+    }
     
     public void inicioVotacion() {
-       
+        
         presentador.iniciarVotacion();
     }
 
@@ -493,15 +529,15 @@ public class VistaJuego extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnNo;
     private javax.swing.JPanel Jugador1;
     private javax.swing.JPanel Jugador2;
     private javax.swing.JPanel Jugador3;
     private javax.swing.JPanel Jugador4;
     private javax.swing.JPanel Votacion;
+    private javax.swing.JButton btnIniciarVotacion;
     private javax.swing.JButton btnRobar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnSi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;

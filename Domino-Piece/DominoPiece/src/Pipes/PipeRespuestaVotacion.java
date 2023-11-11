@@ -6,17 +6,17 @@ package Pipes;
 
 import Evento.Evento;
 import Filters.Filtro;
-import Filters.FiltroIniciarVotacion;
+import Filters.FiltroEnviarRespuesta;
 
 /**
  *
  * @author IVAN
  */
-public class PipeIniciarVotacion <T extends Evento>  implements Pipe<T> {
+public class PipeRespuestaVotacion <T extends Evento>  implements Pipe<T>{
 
     @Override
     public void ejecutar(T s) {
-       Filtro<T> f = new FiltroIniciarVotacion();
+        Filtro<T> f = new FiltroEnviarRespuesta();
         f.ejecutar(s);
     }
     

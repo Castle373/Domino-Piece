@@ -8,11 +8,13 @@ import Evento.CrearPartidaPF;
 import Evento.Evento;
 import Evento.IniciarVotacionPF;
 import Evento.JugadorPF;
+import Evento.RespuestaVotacionPF;
 import Pipes.Pipe;
 import Pipes.PipeCrearJugador;
 import Pipes.PipeCrearPartida;
 import Pipes.PipeFin;
 import Pipes.PipeIniciarVotacion;
+import Pipes.PipeRespuestaVotacion;
 import dominio_domino.Partida;
 import dominio_dominodto.JugadorDTO;
 
@@ -39,6 +41,12 @@ public class FiltroInicio<T extends Evento> implements Filtro<T> {
             Pipe<T> pipe = new PipeIniciarVotacion();
             pipe.ejecutar(objeto);
         }
+        
+        if (objeto instanceof RespuestaVotacionPF) {
+            Pipe<T> pipe = new PipeRespuestaVotacion();
+            pipe.ejecutar(objeto);
+        }
+        
         
     }
 

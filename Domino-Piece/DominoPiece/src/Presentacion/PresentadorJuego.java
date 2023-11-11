@@ -137,6 +137,11 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
                 vista.votacion();
             }
             
+            if (a == Acciones.NO_INICIAR) {
+                vista.votacionNoaceptada();
+            }
+            
+            
         }
     }
 
@@ -147,6 +152,16 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
 
     @Override
     public void iniciarVotacion() {
-       modelo.iniciarVotacion();
+        if(modelo.getListJugadoresDTO().size()>1 && modelo.getListJugadoresDTO().size()<4){
+            modelo.iniciarVotacion();
+        }else{
+           vista.mostrarMensaje();
+        }
+      
+    }
+
+    @Override
+    public void respuestaVotacion(boolean respuesta) {
+       modelo.respuestaVotacion(respuesta);
     }
 }
