@@ -18,12 +18,25 @@ import java.util.List;
 public class Server {
 
     private List<ObjectOutputStream> clientOutputStreams = new ArrayList<>();
+    private List<JugadorThread> clienteJugadores = new ArrayList<>();
     private static int connectionCount = 0;
 
     public void addClientOutputStream(ObjectOutputStream outputStream) {
         clientOutputStreams.add(outputStream);
+        
+    }public void addClienteJugadores(JugadorThread jugadorHilo) {
+        clienteJugadores.add(jugadorHilo);
     }
-
+    public void enviarJugadores(){
+        for (JugadorThread jugadorThread : clienteJugadores) {
+            jugadorThread.enviarJugador();
+        }
+    }
+    public void enviarPartida(){
+        for (JugadorThread jugadorThread : clienteJugadores) {
+            jugadorThread.enviarPartidaActual();
+        }
+    }
     public void sendToAll(Object obj) {
         for (ObjectOutputStream out : clientOutputStreams) {
             try {
@@ -67,7 +80,7 @@ public class Server {
             server.addClientOutputStream(out);
 
             JugadorThread client = new JugadorThread(s, out, server);
-
+            server.addClienteJugadores(client);
             client.start();
             connectionCount++;
 

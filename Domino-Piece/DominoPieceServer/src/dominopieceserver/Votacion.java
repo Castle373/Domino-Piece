@@ -68,6 +68,9 @@ public class Votacion extends Thread {
 
                 } else if (votaciones == cantidadNecesaria) {
                     verificar = false;
+                    Sink.getInstance().iniciarPartida();
+                    server.enviarJugadores();
+                    server.enviarPartida();
                     server.sendToAll(Acciones.INICIAR_PARTIDA);
 
                 }

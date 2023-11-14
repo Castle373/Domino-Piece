@@ -20,9 +20,6 @@ public class PresentadorMenu implements IPresentadorMenu {
 
     private IPresentadorCrear presentadorCrear;
     private IPresentadorUnirse presentadorUnirse;
-    
-    
-    
     private VistaMenu vista;
     private ModeloMenu modelo;
     

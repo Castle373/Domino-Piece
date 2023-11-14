@@ -41,6 +41,7 @@ public class Partida {
                 }
             }
         }
+        
         jugadores.remove(jugadorConMulaMasGrande);
         jugadores.add(0, jugadorConMulaMasGrande);
         return jugadores;

@@ -12,7 +12,9 @@ import dominio_domino.FichaPozo;
 import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Pozo;
+import dominio_dominodto.FichaDTO;
 import dominio_dominodto.JugadorDTO;
+import dominio_dominodto.PartidaDTO;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Insets;
@@ -372,8 +374,14 @@ public class VistaJuego extends javax.swing.JFrame {
                 }
             }
         }
+       
+        this.setPartidaTablero();
+//        tablero.setPartida(presentador.getPartida());
+        tablero.repaint();
+    }
+    public void setPartidaTablero(){
         tablero.setPartida(presentador.getPartida());
-
+        tablero.repintarFichasJugador();
     }
 
     public void pintarFichas() {
@@ -433,7 +441,7 @@ public class VistaJuego extends javax.swing.JFrame {
 
             return;
         }
-        FichaJugador ficha = tablero.obtenerFichaSeleccionada();
+        FichaDTO ficha = tablero.obtenerFichaSeleccionada();
         FichaTablero f = new FichaTablero(ficha.getImagen(), ficha.getPuntoAbajo(), ficha.getPuntoArriba());
         boolean validaFicha = false;
 
@@ -463,7 +471,7 @@ public class VistaJuego extends javax.swing.JFrame {
                     tablero.colocarTrenIzquierda(f);
                     break;
             }
-            presentador.eliminarFichaJugador(ficha);
+//            presentador.eliminarFichaJugador(ficha);
         }
     }
 
@@ -522,8 +530,10 @@ public class VistaJuego extends javax.swing.JFrame {
         return presentador.isTurno();
     }
 
-    public void asignarJugadorJugando(Jugador jugador) {
+    public void asignarJugadorJugando(JugadorDTO jugador) {
         tablero.setJugador(jugador);
+        this.pintarFichas();
+        
     }
 
     /**

@@ -37,6 +37,7 @@ public class PresentadorCrear implements IPresentadorCrear {
     public void crearPartida(int fichasIniciales) {
         crearConexion();
         modeloCrear.crearPartida(fichasIniciales);
+        
         mostrarPantallaUnirse();
 
     }

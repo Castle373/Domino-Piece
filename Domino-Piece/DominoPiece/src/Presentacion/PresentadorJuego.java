@@ -13,6 +13,7 @@ import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import dominio_dominodto.Acciones;
+import dominio_dominodto.FichaDTO;
 
 import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.PartidaDTO;
@@ -50,28 +51,6 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
     }
 
     @Override
-    public void iniciarPartida() {
-        crearPozo();
-        reparteFichas();
-        crearTablero();
-    }
-
-    @Override
-    public void crearPozo() {
-        modelo.crearPozo();
-    }
-
-    @Override
-    public void reparteFichas() {
-        modelo.reparteFichas();
-    }
-
-    @Override
-    public void crearTablero() {
-        modelo.crearTablero();
-    }
-
-    @Override
     public void robarFicha() {
         FichaPozo f = modelo.robarFicha();
 
@@ -85,15 +64,14 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
 
     @Override
     public void guardarJugador(JugadorDTO jugador) {
-//        modelo.guardarJugador(jugador);
-//        vista.asignarJugadorJugando(jugador);
+        modelo.guardarJugador(jugador);
+        vista.asignarJugadorJugando(jugador);
     }
 
-    @Override
-    public void eliminarFichaJugador(FichaJugador ficha) {
-        modelo.eliminarFicha(ficha);
-    }
-
+//    @Override
+//    public void eliminarFichaJugador(FichaDTO ficha) {
+//        modelo.eliminarFicha(ficha);
+//    }
     @Override
     public void pasarTurno() {
         modelo.pasarTurno();
@@ -102,6 +80,11 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
     @Override
     public Jugador jugadorTurno() {
         return modelo.obtenerJugadorTurno();
+    }
+
+    @Override
+    public JugadorDTO getJugadorDTO() {
+        return modelo.getJugador();
     }
 
     @Override
@@ -125,9 +108,15 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
         if (loquesea instanceof PartidaDTO) {
             PartidaDTO p = (PartidaDTO) loquesea;
             modelo.setPartida2(p);
-            vista.mostrarJugadores();       
+            vista.mostrarJugadores();
         }
-        
+        if (loquesea instanceof JugadorDTO) {
+            JugadorDTO j = (JugadorDTO) loquesea;
+            this.guardarJugador(j);
+
+            vista.asignarJugadorJugando(j);
+            
+        }
         if (loquesea instanceof Acciones) {
             Acciones a = (Acciones) loquesea;
             if (a == Acciones.INICIAR_PARTIDA) {
@@ -141,9 +130,9 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
             if (a == Acciones.NO_INICIAR) {
                 vista.votacionNoaceptada();
             }
-   
+
         }
-      
+
     }
 
     @Override
@@ -158,7 +147,6 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
         } else {
             vista.mostrarMensaje();
         }
-
     }
 
     @Override

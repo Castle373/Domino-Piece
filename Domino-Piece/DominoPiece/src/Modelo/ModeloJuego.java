@@ -29,7 +29,7 @@ public class ModeloJuego {
 
     private Partida partida;
     private PartidaDTO partida2;
-    private Jugador jugador;
+    private JugadorDTO jugador;
     private Pozo pozo;
 
     public ModeloJuego() {
@@ -48,11 +48,11 @@ public class ModeloJuego {
         this.partida = partida;
     }
 
-    public Jugador getJugador() {
+    public JugadorDTO getJugador() {
         return this.jugador;
     }
 
-    public void guardarJugador(Jugador jugador) {
+    public void guardarJugador(JugadorDTO jugador) {
 
         this.jugador = jugador;
     }
@@ -84,19 +84,7 @@ public class ModeloJuego {
         return false;
     }
 
-    public void crearPozo() {
-        pozo = new Pozo();
-        partida.setPozo(pozo);
-    }
 
-    public void reparteFichas() {
-        partida.reparteFichas();
-    }
-
-    public void crearTablero() {
-        Tablero t = new Tablero();
-        partida.setTablero(t);
-    }
 
     public FichaPozo robarFicha() {
 
@@ -111,23 +99,8 @@ public class ModeloJuego {
     }
 
     public void agregarFichaJugador(FichaPozo f) {
-        FichaJugador fichaJugador = new FichaJugador(f.getImagen(), f.getPuntoAbajo(), f.getPuntoArriba());
-        jugador.addFichasJugador(fichaJugador);
-    }
-
-    public Jugador eliminarFicha(FichaJugador ficha) {
-
-        jugador.removerFichaJugador(ficha);
-        if (validarFichas()) {
-            //true todavia tiene
-            pasarTurno();
-
-            return obtenerJugadorTurno();
-        } else {
-            return null;
-            //terminar partida
-        }
-
+//        FichaJugador fichaJugador = new FichaJugador(f.getImagen(), f.getPuntoAbajo(), f.getPuntoArriba());
+//        jugador.addFichasJugador(fichaJugador);
     }
 
     public void pasarTurno() {
@@ -147,9 +120,9 @@ public class ModeloJuego {
     }
 
     public boolean isTurno() {
-        if (obtenerJugadorTurno() == getJugador()) {
-            return true;
-        }
+//        if (obtenerJugadorTurno() == getJugador()) {
+//            return true;
+//        }
         return false;
     }
     

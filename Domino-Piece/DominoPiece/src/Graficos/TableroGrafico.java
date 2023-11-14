@@ -12,6 +12,7 @@ import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import dominio_domino.Pozo;
+import dominio_dominodto.FichaDTO;
 import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.PartidaDTO;
 import java.awt.Color;
@@ -44,21 +45,20 @@ public class TableroGrafico extends JPanel {
     private Rectangle zonaInicial = new Rectangle();//Hitbox Inicial
     private Rectangle ladoDerecho = new Rectangle();//Hitbox Lado Derecho
     private Rectangle ladoIzquierdo = new Rectangle();//Hitbox Lado Izquierdo
-    
+
     private List<JugadorDTO> jugadores = new ArrayList<>();
-    
+
     private int x, y;
     private Image fondo;
     private PartidaDTO partida;
-    private Jugador jugador;
+    private JugadorDTO jugador;
     private VistaJuego vista;
 
     private JLabel borde1;
     private JLabel borde2;
     private JLabel borde3;
     private JLabel borde4;
-    
-    
+
     private JLabel nombre1;
     private JLabel nombre2;
     private JLabel nombre3;
@@ -99,16 +99,16 @@ public class TableroGrafico extends JPanel {
     }
 
     public void setPartida(PartidaDTO partida) {
-       
+
         this.partida = partida;
         this.setJugadores(this.partida.getJugadores());
     }
 
-    public Jugador getJugador() {
+    public JugadorDTO getJugador() {
         return jugador;
     }
 
-    public void setJugador(Jugador jugador) {
+    public void setJugador(JugadorDTO jugador) {
         this.jugador = jugador;
 
     }
@@ -137,21 +137,49 @@ public class TableroGrafico extends JPanel {
 //    }
     public void repintarFichasJugador() {
         List<IFichaGrafica> fichasJugador = new ArrayList<>();
-        for (FichaJugador f : jugador.getFichasJugador()) {
-            IFichaGrafica fichaGrafica = new FichaManoGrafica(f, 50, 475);
+        int zona=100;
+        int x=400;
+        int y=550;
+        for (int i = 0; i < jugadores.size(); i++) {
+            if (jugadores.get(i).getId()==jugador.getId()) {
+                zona=i;
+            }
+        }
+        System.out.println("tu id es "+zona);
+        boolean lado=false;
+        if (zona==0) {
+            x=35;
+            y=126;
+        }
+        if (zona==1) {
+            x=1220;
+            y=126;
+            lado=true;
+        }
+        if (zona==2) {
+            x=35;
+            y=450;
+        }
+        if (zona==3) {
+            x=1220;
+            y=450;
+            lado=true;
+        }
+        for (FichaDTO f : jugador.getFichasJugador()) {
+            IFichaGrafica fichaGrafica = new FichaManoGrafica(f, x, y,lado);
             fichasJugador.add(fichaGrafica);
         }
         this.fichasJugador.setFichasMano(fichasJugador);
         this.repaint();
     }
 
-    public void agregarFichasIniciales() {
-        for (FichaJugador ficha : jugador.getFichasJugador()) {
-            IFichaGrafica fichaGrafica = new FichaManoGrafica(ficha, 50, 475);
-            fichasJugador.agregarFicha(fichaGrafica);
-        }
-
-    }
+//    public void agregarFichasIniciales() {
+//        System.out.println("SONOO");
+//        for (FichaDTO ficha : jugador.getFichasJugador()) {
+//            IFichaGrafica fichaGrafica = new FichaManoGrafica(ficha, 50, 475);
+//            fichasJugador.agregarFicha(fichaGrafica);
+//        }
+//    }
 
     public void moverFicha(MouseEvent e) {
         for (IFichaGrafica ficha : fichasJugador.getFichasMano()) {
@@ -187,12 +215,9 @@ public class TableroGrafico extends JPanel {
     }
 
     public void colocarInicial(FichaTablero fichatablero) {
-
         fichaSeleccionada.setX((int) zonaInicial.getX());
         fichaSeleccionada.setY((int) zonaInicial.getY() + (fichaSeleccionada.getLargo() / 4));
-
         FichaTrenGrafica fichaTren = new FichaTrenGrafica(fichatablero, fichaSeleccionada.getX(), fichaSeleccionada.getY());
-
         agregarFichasTren(fichaTren);
         quitarFichaTren(fichaSeleccionada);
         crearHitboxLados();
@@ -243,8 +268,8 @@ public class TableroGrafico extends JPanel {
         repaint();
     }
 
-    public FichaJugador obtenerFichaSeleccionada() {
-        FichaJugador ficha = (FichaJugador) fichaSeleccionada.getFicha();
+    public FichaDTO obtenerFichaSeleccionada() {
+        FichaDTO ficha = fichaSeleccionada.getFicha();
         return ficha;
     }
 
@@ -335,7 +360,7 @@ public class TableroGrafico extends JPanel {
 //        nombre4 = new JLabel();
         reinciarJugadores();
         for (int i = 0; i < jugadores.size(); i++) {
-            
+
             ImageIcon marcoNormal = new ImageIcon(getClass().getResource("/Avatares/marcoNormal.png"));
             ImageIcon marcoTurno = new ImageIcon(getClass().getResource("/Avatares/marco.gif"));
 
@@ -343,9 +368,9 @@ public class TableroGrafico extends JPanel {
 
                 nombre1.setText(jugadores.get(i).getNombre());
                 nombre1.setLocation(130, 30);
-                
+
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
-                   
+
                     borde1.setLocation(30, 26);
                     borde1.setIcon(marcoTurno);
                 } else {
@@ -357,7 +382,8 @@ public class TableroGrafico extends JPanel {
             }
             if (i == 1) {
                 nombre2.setText(jugadores.get(i).getNombre());
-                nombre2.setLocation(1050, 30);
+                int xNmobre = jugadores.get(i).getNombre().length() * 7;
+                nombre2.setLocation((1149 - xNmobre), 30);
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
 
                     borde2.setLocation(1150, 26);
@@ -372,6 +398,7 @@ public class TableroGrafico extends JPanel {
             }
             if (i == 2) {
                 nombre3.setText(jugadores.get(i).getNombre());
+
                 nombre3.setLocation(130, 535);
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
 
@@ -386,7 +413,8 @@ public class TableroGrafico extends JPanel {
             }
             if (i == 3) {
                 nombre4.setText(jugadores.get(i).getNombre());
-                nombre4.setLocation(1050, 535);
+                int xNmobre = jugadores.get(i).getNombre().length() * 7;
+                nombre4.setLocation((1145 - xNmobre), 535);
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
                     borde4.setLocation(1150, 535);
                     borde4.setIcon(marcoTurno);
@@ -415,7 +443,9 @@ public class TableroGrafico extends JPanel {
                 }
             }
         }
-
+        if (fichasJugador!=null) {
+            fichasJugador.pintar(g);
+        }
 //        List<IFichaGrafica> fichaManoGrafica= new ArrayList<>();
 //        System.out.println(jugador.getNombre());
 //        for (FichaJugador f : jugador.getFichasJugador()) {
@@ -424,7 +454,7 @@ public class TableroGrafico extends JPanel {
 //        }
 //        System.out.println(jugador.toString());
 //        fichasJugador.setFichasMano(fichaManoGrafica);
-        fichasJugador.pintar(g);
+        
     }
 
     public void pintarFichasTren(Graphics2D g) {

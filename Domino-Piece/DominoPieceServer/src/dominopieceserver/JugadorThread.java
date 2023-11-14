@@ -27,7 +27,6 @@ import java.util.List;
 public class JugadorThread extends Thread {
 
     private Socket clientSocket;
-
     private ObjectOutputStream out;
     private Server server;
     private Object objecto;
@@ -47,11 +46,18 @@ public class JugadorThread extends Thread {
         server.sendToAll(partidaActual);
     }
 
+    public void enviarJugador() {
+        
+        jugador=sink.getJugadorDTO(jugador.getId());
+
+        server.sendToOne(jugador, out);
+    }
+
     public void enviarTodos(Object o) {
         server.sendToAll(o);
     }
-    
-    public void enviarAUno(Object o){
+
+    public void enviarAUno(Object o) {
         server.sendToOne(o, out);
     }
 
@@ -66,33 +72,36 @@ public class JugadorThread extends Thread {
             ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
 
             while (true) {
-                
+
                 objecto = in.readObject();//
                 //Acciones de Crear Partida
                 if (objecto instanceof CrearPartidaPF) {
-                    CrearPartidaPF pf =  (CrearPartidaPF) objecto;
+                    CrearPartidaPF pf = (CrearPartidaPF) objecto;
                     PartidaDTO p = (PartidaDTO) pf.getData();
                     sink.CrearPartida(p);
                 }
                 //Acciones de Crear Jugador
                 if (objecto instanceof JugadorPF) {
-                    JugadorPF pf =  (JugadorPF) objecto;
+                    JugadorPF pf = (JugadorPF) objecto;
                     JugadorDTO j = (JugadorDTO) pf.getData();
                     jugador = j;
                     sink.agregarJugador(j);
+                    enviarJugador();
                     enviarPartidaActual();
+                    
                     if (sink.getPartidaDTO().getJugadores().size() >= 4) {
                         sink.iniciarPartida();
-                        enviarPartidaActual();
+                        server.enviarJugadores();
+                        server.enviarPartida();
                         enviarTodos(Acciones.INICIAR_PARTIDA);
 
                     }
                 }
                 //Acciones de Validar avatar
                 if (objecto instanceof VerificarAvatarPF) {
-                    VerificarAvatarPF pf =  (VerificarAvatarPF) objecto;
+                    VerificarAvatarPF pf = (VerificarAvatarPF) objecto;
                     JugadorDTO jA = (JugadorDTO) pf.getData();
-                    if(!sink.verificarPartida(jA.getAvatar())){
+                    if (!sink.verificarPartida(jA.getAvatar())) {
                         enviarAUno(Acciones.AVATAR_SIESTA);
                     } else {
                         enviarAUno(Acciones.AVATAR_NOESTA);
@@ -101,19 +110,20 @@ public class JugadorThread extends Thread {
 
                 //Acciones de RespuestaVotacion
                 if (objecto instanceof RespuestaVotacionPF) {
-                    RespuestaVotacionPF pf =  (RespuestaVotacionPF) objecto;
+                    RespuestaVotacionPF pf = (RespuestaVotacionPF) objecto;
                     RespuestaDTO r = (RespuestaDTO) pf.getData();
                     Votacion.getInstance().respuestaVotacion(r.isRespuestas());
 
                 }
                 //Acciones  de IniciarVotacion
                 if (objecto instanceof IniciarVotacionPF) {
-                    IniciarVotacionPF pf =  (IniciarVotacionPF) objecto;
+                    IniciarVotacionPF pf = (IniciarVotacionPF) objecto;
                     Acciones a = (Acciones) pf.getData();
                     if (a == Acciones.INICIAR_VOTACION) {
                         vota = new Votacion(sink.getPartidaDTO().getJugadores().size(), server);
                         Votacion.setInstance(vota);
                         Votacion.getInstance().start();
+                        
                         enviarTodos(Acciones.INICIAR_VOTACION);
 
                     }

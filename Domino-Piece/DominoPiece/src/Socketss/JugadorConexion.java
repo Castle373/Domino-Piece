@@ -80,6 +80,12 @@ public class JugadorConexion extends Thread implements Observable {
                     notificarObservers(accion);
 
                 }
+                if (objecto instanceof JugadorDTO) {
+
+                    JugadorDTO juga = (JugadorDTO) objecto;
+                    notificarObservers(juga);
+
+                }
 
             }
         } catch (IOException | ClassNotFoundException e) {

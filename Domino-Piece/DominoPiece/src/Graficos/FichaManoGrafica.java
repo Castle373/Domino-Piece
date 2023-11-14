@@ -5,6 +5,7 @@
 package Graficos;
 
 import dominio_domino.Ficha;
+import dominio_dominodto.FichaDTO;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Shape;
@@ -17,7 +18,7 @@ import javax.swing.ImageIcon;
  */
 public class FichaManoGrafica implements IFichaGrafica {
 
-    private Ficha ficha;
+    private FichaDTO ficha;
     private int x;
     private int y;
     private int xOriginal;
@@ -26,8 +27,9 @@ public class FichaManoGrafica implements IFichaGrafica {
     private int largo;
     private boolean seleccionada;
     private Image imagen;
+    private boolean lado;
 
-    public FichaManoGrafica(Ficha ficha, int x, int y) {
+    public FichaManoGrafica(FichaDTO ficha, int x, int y,boolean lado) {
         this.ficha = ficha;
         this.x = x;
         this.y = y;
@@ -36,8 +38,17 @@ public class FichaManoGrafica implements IFichaGrafica {
         this.xOriginal = x;
         this.yOriginal = y;
         this.seleccionada = false;
+        this.lado=lado;
         this.imagen = new ImageIcon(getClass().getResource(ficha.getImagen())).getImage();
 
+    }
+
+    public boolean isLado() {
+        return lado;
+    }
+
+    public void setLado(boolean lado) {
+        this.lado = lado;
     }
 
     public int getxOriginal() {
@@ -72,6 +83,7 @@ public class FichaManoGrafica implements IFichaGrafica {
         this.y = y;
     }
 
+    @Override
     public void pintar(Graphics2D g) {
 
         g.drawImage(imagen, x, y, null);
@@ -95,11 +107,11 @@ public class FichaManoGrafica implements IFichaGrafica {
         return ancho;
     }
 
-    public Ficha getFicha() {
+    public FichaDTO getFicha() {
         return ficha;
     }
 
-    public void setFicha(Ficha ficha) {
+    public void setFicha(FichaDTO ficha) {
         this.ficha = ficha;
     }
 

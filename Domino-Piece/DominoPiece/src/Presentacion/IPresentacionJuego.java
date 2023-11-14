@@ -9,6 +9,7 @@ import dominio_domino.FichaPozo;
 import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
+import dominio_dominodto.FichaDTO;
 import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.PartidaDTO;
 import java.util.List;
@@ -27,21 +28,13 @@ public interface IPresentacionJuego {
 
     public void guardarJugador(JugadorDTO jugador);
 
-    public void iniciarPartida();
-
     public List<JugadorDTO> listaJugadores();
 
     public void setListaJugadores(List<Jugador> jugadores);
 
-    public void crearPozo();
-
-    public void reparteFichas();
-
-    public void crearTablero();
-
     public void robarFicha();
-
-    public void eliminarFichaJugador(FichaJugador ficha);
+    public JugadorDTO getJugadorDTO();
+//    public void eliminarFichaJugador(FichaDTO ficha);
 
     public void pasarTurno();
 

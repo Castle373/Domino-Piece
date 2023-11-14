@@ -42,6 +42,7 @@ public class PresentadorUnirse implements IPresentadorUnirse, Observer {
     @Override
     public void crearJugador() {
         modelo.crearJugador();
+        
         mostrarPantallaJuego();
     }
 

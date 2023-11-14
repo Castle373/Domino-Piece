@@ -40,16 +40,20 @@ public class FichasMano implements IFichaGrafica {
     @Override
     public void pintar(Graphics2D g) {
         int desplazmiento = 0;
-         int numero=0;
-         
+        int numero = 0;
         for (IFichaGrafica iFichaGrafica : fichasMano) {
-           
+
             int spacingX = 25 * numero;
             FichaManoGrafica fichaMano = (FichaManoGrafica) iFichaGrafica;
+
             if (!fichaMano.isDragging()) {
                 fichaMano.setX(fichaMano.getxOriginal());
-              
-            fichaMano.setX(fichaMano.getX()+spacingX);
+                if (fichaMano.isLado()) {
+                    fichaMano.setX(fichaMano.getX() - spacingX);
+                } else {
+                    fichaMano.setX(fichaMano.getX() + spacingX);
+                }
+
             }
             fichaMano.pintar(g);
             numero++;

@@ -14,7 +14,8 @@ import java.util.UUID;
  *
  * @author diego
  */
-public class JugadorDTO implements Serializable{
+public class JugadorDTO implements Serializable {
+
     private UUID id;
     private String nombre;
     private String avatar;
@@ -27,9 +28,11 @@ public class JugadorDTO implements Serializable{
         return id;
     }
 
+
     public void setId(UUID id) {
         this.id = id;
     }
+
     public JugadorDTO(String nombre, String avatar) {
         this.nombre = nombre;
         this.avatar = avatar;
@@ -65,7 +68,5 @@ public class JugadorDTO implements Serializable{
     public void setFichasJugador(List<FichaDTO> fichasJugador) {
         this.fichasJugador = fichasJugador;
     }
-    
-    
-    
+
 }

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -60,9 +61,9 @@ public class Sink {
     public void eliminarJugador(JugadorDTO j) {
         Jugador juga = new Jugador(j.getNombre(), j.getAvatar());
         juga.setId(j.getId());
-        
+
         partida.eliminarJugador(juga);
-        
+
     }
 
     public PartidaDTO getPartidaDTO() {
@@ -126,8 +127,56 @@ public class Sink {
         this.determinarTurno();
     }
 
+    public JugadorDTO getJugadorDTO(UUID id) {
+        JugadorDTO jugador=null;
+        List<JugadorDTO> jugadoresDTO = getListJugadoresDTO();
+        for (int i = 0; i < jugadoresDTO.size(); i++) {
+            if (id ==jugadoresDTO.get(i).getId()) {
+                jugador=jugadoresDTO.get(i);
+            }
+        }
+        return jugador;
+    }
+
+    public List<JugadorDTO> getListJugadoresDTO() {
+        
+        List<JugadorDTO> jugadoresDTO = new ArrayList<>();
+        
+        for (Jugador jugador : partida.getJugadores()) {
+            
+            JugadorDTO jugadorDTO = new JugadorDTO();
+            // Copia los atributos relevantes de Jugador a JugadorDTO
+            jugadorDTO.setNombre(jugador.getNombre());
+            
+            
+            List<FichaDTO> fichasDTO = new ArrayList<>();
+
+            for (FichaJugador f : jugador.getFichasJugador()) {
+                FichaDTO fichaDTO = new FichaDTO(f.getImagen(), f.getPuntoAbajo(), f.getPuntoArriba());
+                fichasDTO.add(fichaDTO);
+            }
+            jugadorDTO.setFichasJugador(fichasDTO);
+//            
+            
+            jugadorDTO.setAvatar(jugador.getAvatar());
+            jugadorDTO.setId(jugador.getId());
+            // Copia otros atributos necesarios
+            jugadoresDTO.add(jugadorDTO);
+       
+        
+        }
+        return jugadoresDTO;
+    }
+
     public void determinarTurno() {
+        for (Jugador jugadore : partida.getJugadores()) {
+            System.out.println(jugadore.getNombre());
+        }
         partida.determinarTurnos();
+        
+        for (Jugador jugadore : partida.getJugadores()) {
+            System.out.println(jugadore.getNombre());
+        }
     }
 
     public void crearTablero() {
@@ -145,10 +194,10 @@ public class Sink {
     public boolean verificarPartida(String avatar) {
         PartidaDTO partida = getPartidaDTO();
         for (int i = 0; i < partida.getJugadores().size(); i++) {
-                JugadorDTO jugadorLista = getPartidaDTO().getJugadores().get(i);
-                if(jugadorLista.getAvatar().equalsIgnoreCase(avatar)){
-                    return false;
-                }
+            JugadorDTO jugadorLista = getPartidaDTO().getJugadores().get(i);
+            if (jugadorLista.getAvatar().equalsIgnoreCase(avatar)) {
+                return false;
+            }
         }
         return true;
     }
