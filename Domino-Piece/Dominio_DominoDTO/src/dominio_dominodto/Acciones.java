@@ -10,5 +10,5 @@ public enum Acciones {
     INICIAR_VOTACION,
     NO_INICIAR,
     AVATAR_SIESTA,
-    AVATAR_NOESTA    
+    AVATAR_NOESTA
 }

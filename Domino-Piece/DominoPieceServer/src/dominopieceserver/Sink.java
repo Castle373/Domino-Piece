@@ -128,27 +128,26 @@ public class Sink {
     }
 
     public JugadorDTO getJugadorDTO(UUID id) {
-        JugadorDTO jugador=null;
+        JugadorDTO jugador = null;
         List<JugadorDTO> jugadoresDTO = getListJugadoresDTO();
         for (int i = 0; i < jugadoresDTO.size(); i++) {
-            if (id ==jugadoresDTO.get(i).getId()) {
-                jugador=jugadoresDTO.get(i);
+            if (id == jugadoresDTO.get(i).getId()) {
+                jugador = jugadoresDTO.get(i);
             }
         }
         return jugador;
     }
 
     public List<JugadorDTO> getListJugadoresDTO() {
-        
+
         List<JugadorDTO> jugadoresDTO = new ArrayList<>();
-        
+
         for (Jugador jugador : partida.getJugadores()) {
-            
+
             JugadorDTO jugadorDTO = new JugadorDTO();
             // Copia los atributos relevantes de Jugador a JugadorDTO
             jugadorDTO.setNombre(jugador.getNombre());
-            
-            
+
             List<FichaDTO> fichasDTO = new ArrayList<>();
 
             for (FichaJugador f : jugador.getFichasJugador()) {
@@ -157,26 +156,20 @@ public class Sink {
             }
             jugadorDTO.setFichasJugador(fichasDTO);
 //            
-            
+
             jugadorDTO.setAvatar(jugador.getAvatar());
             jugadorDTO.setId(jugador.getId());
             // Copia otros atributos necesarios
             jugadoresDTO.add(jugadorDTO);
-       
-        
+
         }
         return jugadoresDTO;
     }
 
     public void determinarTurno() {
-        for (Jugador jugadore : partida.getJugadores()) {
-            System.out.println(jugadore.getNombre());
-        }
+
         partida.determinarTurnos();
-        
-        for (Jugador jugadore : partida.getJugadores()) {
-            System.out.println(jugadore.getNombre());
-        }
+
     }
 
     public void crearTablero() {
@@ -191,6 +184,10 @@ public class Sink {
         partida.reparteFichas();
     }
 
+    public void pasarTurno() {
+        partida.pasarTurno();
+    }
+
     public boolean verificarPartida(String avatar) {
         PartidaDTO partida = getPartidaDTO();
         for (int i = 0; i < partida.getJugadores().size(); i++) {
@@ -200,5 +197,41 @@ public class Sink {
             }
         }
         return true;
+    }
+
+    public FichaTableroDTO validarMovimiento(FichaTableroDTO ficha, int zona) {
+
+        FichaTablero fichaNormal = new FichaTablero(ficha.getImagen(), ficha.getPuntoAbajo(), ficha.getPuntoArriba());
+        boolean valida = false;
+        System.out.println(zona);
+        if (zona == 1) {
+            if (partida.getTablero().validaZonaInical(fichaNormal)) {
+                valida = true;
+            }
+
+        } else if (zona == 2) {
+            if (partida.getTablero().validaLadoDerecho(fichaNormal)) {
+                valida = true;
+            }
+
+        } else if (zona == 3) {
+            if (partida.getTablero().validaLadoIzquierdo(fichaNormal)) {
+                valida = true;
+            }
+
+        }
+        if (!valida) {
+            return null;
+        } else {
+
+            FichaJugador fichaJugador = new FichaJugador(ficha.getImagen(), ficha.getPuntoAbajo(), ficha.getPuntoArriba());
+            partida.jugadorTurno().removerFichaJugador(fichaJugador);
+        }
+
+        FichaTableroDTO fichaDto = new FichaTableroDTO(fichaNormal.getImagen(), fichaNormal.getPuntoAbajo(), fichaNormal.getPuntoArriba());
+        fichaDto.setConectarAbajo(fichaNormal.isConectarAbajo());
+        fichaDto.setConectarArriba(fichaNormal.isConectarArriba());
+
+        return fichaDto;
     }
 }

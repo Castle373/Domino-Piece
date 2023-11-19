@@ -6,6 +6,7 @@ package Modelo;
 
 import Evento.IniciarVotacionPF;
 import Evento.JugadorPF;
+import Evento.MovimientoPF;
 import Evento.RespuestaVotacionPF;
 import Graficos.TableroGrafico;
 import Pipes.Pipe;
@@ -17,6 +18,7 @@ import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import dominio_domino.Pozo;
 import dominio_domino.Tablero;
+import dominio_dominodto.FichaTableroDTO;
 import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.PartidaDTO;
 import java.util.List;
@@ -70,18 +72,12 @@ public class ModeloJuego {
     public void setListJugadores(List<Jugador> jugadores) {
          partida.setJugadores(jugadores);
     }
-    public boolean validaMovimiento(FichaTablero ficha, int lado) {
-        Tablero tablero = partida.getTablero();
-        switch (lado) {
-            case 1:
-                return tablero.validaZonaInical(ficha);
-            case 2:
-                return tablero.validaLadoDerecho(ficha);
-            case 3:
-                return tablero.validaLadoIzquierdo(ficha);
-
-        }
-        return false;
+    public void validaMovimiento(FichaTableroDTO ficha, int lado) {
+        
+        Pipe<MovimientoPF> pipa = new PipeInicio();
+        MovimientoPF v = new MovimientoPF(ficha, lado);
+        pipa.ejecutar(v);
+        
     }
 
 

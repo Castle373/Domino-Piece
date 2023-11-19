@@ -56,8 +56,15 @@ public class Jugador {
     }
 
     public boolean removerFichaJugador(FichaJugador fichaJ) {
-
-        return fichasJugador.remove(fichaJ);
+       
+        for (FichaJugador fichaJugador : fichasJugador) {
+           
+            if (fichaJugador.getPuntoAbajo()==fichaJ.getPuntoAbajo()&&fichaJugador.getPuntoArriba()==fichaJ.getPuntoArriba()) {
+                fichasJugador.remove(fichaJugador);
+                return true;
+            }
+        }
+        return false;
     }
 
     public UUID getId() {

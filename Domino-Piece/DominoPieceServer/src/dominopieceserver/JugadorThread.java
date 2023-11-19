@@ -7,10 +7,13 @@ package dominopieceserver;
 import Evento.CrearPartidaPF;
 import Evento.IniciarVotacionPF;
 import Evento.JugadorPF;
+import Evento.MovimientoPF;
 import Evento.RespuestaVotacionPF;
 import Evento.VerificarAvatarPF;
 import dominio_dominodto.Acciones;
+import dominio_dominodto.FichaTableroDTO;
 import dominio_dominodto.JugadorDTO;
+import dominio_dominodto.MovimientoDTO;
 import dominio_dominodto.PartidaDTO;
 import dominio_dominodto.RespuestaDTO;
 import java.io.IOException;
@@ -47,8 +50,8 @@ public class JugadorThread extends Thread {
     }
 
     public void enviarJugador() {
-        
-        jugador=sink.getJugadorDTO(jugador.getId());
+
+        jugador = sink.getJugadorDTO(jugador.getId());
 
         server.sendToOne(jugador, out);
     }
@@ -88,7 +91,7 @@ public class JugadorThread extends Thread {
                     sink.agregarJugador(j);
                     enviarJugador();
                     enviarPartidaActual();
-                    
+
                     if (sink.getPartidaDTO().getJugadores().size() >= 4) {
                         sink.iniciarPartida();
                         server.enviarJugadores();
@@ -123,12 +126,28 @@ public class JugadorThread extends Thread {
                         vota = new Votacion(sink.getPartidaDTO().getJugadores().size(), server);
                         Votacion.setInstance(vota);
                         Votacion.getInstance().start();
-                        
+
                         enviarTodos(Acciones.INICIAR_VOTACION);
 
                     }
                 }
-
+                if (objecto instanceof MovimientoPF) {
+                    MovimientoPF pf = (MovimientoPF) objecto;
+                    MovimientoDTO m = (MovimientoDTO) pf.getData();
+                    FichaTableroDTO fichaMovimiento =sink.validarMovimiento(m.getFichaTablero(), m.getZona());
+                    if (fichaMovimiento!=null) {
+                        m.setFichaTablero(fichaMovimiento);
+                        m.setValido(true);
+                        enviarTodos(m);
+                        sink.pasarTurno();
+                        enviarPartidaActual();
+                        enviarJugador();
+                    }else{
+                        m.setValido(false);
+                        enviarAUno(m);
+                    }
+                    
+                }
 //                 if (objecto instanceof Acciones) {
 //                     
 //                   vota.respuestaVotacion(true);

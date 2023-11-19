@@ -13,6 +13,7 @@ import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import dominio_domino.Pozo;
 import dominio_dominodto.FichaDTO;
+import dominio_dominodto.FichaTableroDTO;
 import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.PartidaDTO;
 import java.awt.Color;
@@ -52,7 +53,6 @@ public class TableroGrafico extends JPanel {
     private Image fondo;
     private PartidaDTO partida;
     private JugadorDTO jugador;
-    private VistaJuego vista;
 
     private JLabel borde1;
     private JLabel borde2;
@@ -77,7 +77,6 @@ public class TableroGrafico extends JPanel {
         nombre2.setForeground(Color.WHITE);
         nombre3.setForeground(Color.WHITE);
         nombre4.setForeground(Color.WHITE);
-        this.vista = vista;
         zonaInicial = new Rectangle(630, 250, 23, 48);
         fichasJugador = new FichasMano();
         fichasTren = new FichaTren();
@@ -136,37 +135,37 @@ public class TableroGrafico extends JPanel {
 //        this.repaint();
 //    }
     public void repintarFichasJugador() {
+        
         List<IFichaGrafica> fichasJugador = new ArrayList<>();
-        int zona=100;
-        int x=400;
-        int y=550;
+        int zona = 100;
+        int x = 400;
+        int y = 550;
         for (int i = 0; i < jugadores.size(); i++) {
-            if (jugadores.get(i).getId()==jugador.getId()) {
-                zona=i;
+            if (jugadores.get(i).getId() == jugador.getId()) {
+                zona = i;
             }
         }
-        System.out.println("tu id es "+zona);
-        boolean lado=false;
-        if (zona==0) {
-            x=35;
-            y=126;
+        boolean lado = false;
+        if (zona == 0) {
+            x = 35;
+            y = 126;
         }
-        if (zona==1) {
-            x=1220;
-            y=126;
-            lado=true;
+        if (zona == 1) {
+            x = 1220;
+            y = 126;
+            lado = true;
         }
-        if (zona==2) {
-            x=35;
-            y=450;
+        if (zona == 2) {
+            x = 35;
+            y = 450;
         }
-        if (zona==3) {
-            x=1220;
-            y=450;
-            lado=true;
+        if (zona == 3) {
+            x = 1220;
+            y = 450;
+            lado = true;
         }
         for (FichaDTO f : jugador.getFichasJugador()) {
-            IFichaGrafica fichaGrafica = new FichaManoGrafica(f, x, y,lado);
+            IFichaGrafica fichaGrafica = new FichaManoGrafica(f, x, y, lado);
             fichasJugador.add(fichaGrafica);
         }
         this.fichasJugador.setFichasMano(fichasJugador);
@@ -180,7 +179,6 @@ public class TableroGrafico extends JPanel {
 //            fichasJugador.agregarFicha(fichaGrafica);
 //        }
 //    }
-
     public void moverFicha(MouseEvent e) {
         for (IFichaGrafica ficha : fichasJugador.getFichasMano()) {
             if (ficha instanceof FichaManoGrafica) {
@@ -214,57 +212,63 @@ public class TableroGrafico extends JPanel {
         this.fichasTren = fichasJugador;
     }
 
-    public void colocarInicial(FichaTablero fichatablero) {
-        fichaSeleccionada.setX((int) zonaInicial.getX());
-        fichaSeleccionada.setY((int) zonaInicial.getY() + (fichaSeleccionada.getLargo() / 4));
-        FichaTrenGrafica fichaTren = new FichaTrenGrafica(fichatablero, fichaSeleccionada.getX(), fichaSeleccionada.getY());
+    public void colocarInicial(FichaTableroDTO fichatablero) {
+//        fichaSeleccionada.setX((int) zonaInicial.getX());
+//        fichaSeleccionada.setY((int) zonaInicial.getY() + (fichaSeleccionada.getLargo() / 4));
+        FichaManoGrafica fichaColocar = new FichaManoGrafica(fichatablero, 0, 0, true);
+        fichaColocar.setX((int) zonaInicial.getX());
+        fichaColocar.setY((int) zonaInicial.getY() + (fichaColocar.getLargo() / 4));
+        FichaTrenGrafica fichaTren = new FichaTrenGrafica(fichatablero, fichaColocar.getX(), fichaColocar.getY());
         agregarFichasTren(fichaTren);
-        quitarFichaTren(fichaSeleccionada);
+//        quitarFichaTren(fichaSeleccionada);
         crearHitboxLados();
-        fichaSeleccionada.setDragging(false);
-        fichaSeleccionada = null;
+//        fichaSeleccionada.setDragging(false);
+//        fichaSeleccionada = null;
         repaint();
     }
 
-    public void colocarTrenDerecha(FichaTablero fichatablero) {
+    public void colocarTrenDerecha(FichaTableroDTO fichatablero) {
 
-        fichaSeleccionada.setX((int) ladoDerecho.getX());
-        fichaSeleccionada.setY((int) ladoDerecho.getY());
-        // Crear una nueva instancia de FichaTrenGrafica
-        FichaTrenGrafica fichaTren = new FichaTrenGrafica(fichatablero, fichaSeleccionada.getX(), fichaSeleccionada.getY());
+//        fichaSeleccionada.setX((int) ladoDerecho.getX());
+//        fichaSeleccionada.setY((int) ladoDerecho.getY());
+//        // Crear una nueva instancia de FichaTrenGrafica
+        FichaManoGrafica fichaColocar = new FichaManoGrafica(fichatablero, 0, 0, true);
+        fichaColocar.setX((int) ladoDerecho.getX());
+        fichaColocar.setY((int) ladoDerecho.getY());
+        
+        FichaTrenGrafica fichaTren = new FichaTrenGrafica(fichatablero, fichaColocar.getX(), fichaColocar.getY());
         agregarFichasTren(fichaTren);
-        quitarFichaTren(fichaSeleccionada);
+//        quitarFichaTren(fichaSeleccionada);
         fichaDerecha = fichaTren;
-        if (fichaSeleccionada.getFicha().isMula()) {
+        if (fichaColocar.getFicha().isMula()) {
             ladoDerecho.setLocation((int) ladoDerecho.getX() + (int) ladoDerecho.getHeight(), (int) ladoDerecho.getY());
         } else {
             ladoDerecho.setLocation((int) ladoDerecho.getX() + (int) ladoDerecho.getWidth(), (int) ladoDerecho.getY());
         }
-        fichaSeleccionada.setDragging(false);
-        fichaSeleccionada = null;
+//        fichaSeleccionada.setDragging(false);
+//        fichaSeleccionada = null;
         repaint();
     }
 
-    public void colocarTrenIzquierda(FichaTablero fichatablero) {
+    public void colocarTrenIzquierda(FichaTableroDTO fichatablero) {
 
-        fichaSeleccionada.setX((int) ladoIzquierdo.getX());
-        fichaSeleccionada.setY((int) ladoIzquierdo.getY());
-
-        if (fichaSeleccionada.getFicha().isMula()) {
-            fichaSeleccionada.setX(fichaSeleccionada.getX() + fichaSeleccionada.getAncho());
+//        fichaSeleccionada.setX((int) ladoIzquierdo.getX());
+//        fichaSeleccionada.setY((int) ladoIzquierdo.getY());
+        FichaManoGrafica fichaColocar = new FichaManoGrafica(fichatablero, 0, 0, true);
+        fichaColocar.setX((int) ladoIzquierdo.getX());
+        fichaColocar.setY((int) ladoIzquierdo.getY());
+        if (fichaColocar.getFicha().isMula()) {
+            fichaColocar.setX(fichaColocar.getX() + fichaColocar.getAncho());
             ladoIzquierdo.setLocation((int) ladoIzquierdo.getX() - (int) ladoIzquierdo.getHeight(), (int) ladoIzquierdo.getY());
         } else {
             ladoIzquierdo.setLocation((int) ladoIzquierdo.getX() - (int) ladoIzquierdo.getWidth(), (int) ladoIzquierdo.getY());
         }
-
-        FichaTrenGrafica fichaTren = new FichaTrenGrafica(fichatablero, fichaSeleccionada.getX(), fichaSeleccionada.getY());
-
+        FichaTrenGrafica fichaTren = new FichaTrenGrafica(fichatablero, fichaColocar.getX(), fichaColocar.getY());
         agregarFichasTren(fichaTren);
-        quitarFichaTren(fichaSeleccionada);
-
+//        quitarFichaTren(fichaSeleccionada);
         fichaIzquierda = fichaTren;
-        fichaSeleccionada.setDragging(false);
-        fichaSeleccionada = null;
+//        fichaSeleccionada.setDragging(false);
+//        fichaSeleccionada = null;
         repaint();
     }
 
@@ -305,7 +309,10 @@ public class TableroGrafico extends JPanel {
     }
 
     public void resetearFichaSeleccionada() {
-
+        if (fichaSeleccionada == null) {
+            this.repaint();
+            return;
+        }
         fichaSeleccionada.resetPosition();
         fichaSeleccionada.setDragging(false);
         fichaSeleccionada = null;
@@ -443,7 +450,7 @@ public class TableroGrafico extends JPanel {
                 }
             }
         }
-        if (fichasJugador!=null) {
+        if (fichasJugador != null) {
             fichasJugador.pintar(g);
         }
 //        List<IFichaGrafica> fichaManoGrafica= new ArrayList<>();
@@ -454,7 +461,7 @@ public class TableroGrafico extends JPanel {
 //        }
 //        System.out.println(jugador.toString());
 //        fichasJugador.setFichasMano(fichaManoGrafica);
-        
+
     }
 
     public void pintarFichasTren(Graphics2D g) {

@@ -10,6 +10,7 @@ import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import dominio_dominodto.FichaDTO;
+import dominio_dominodto.FichaTableroDTO;
 import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.PartidaDTO;
 import java.util.List;
@@ -22,7 +23,7 @@ public interface IPresentacionJuego {
 
     public void mostrarPantallaJuego();
 
-    public boolean realizaMovimiento(FichaTablero ficha, int lado);
+    public void realizaMovimiento(FichaTableroDTO ficha, int lado);
 
     public void guardarPartida(Partida partida);
 

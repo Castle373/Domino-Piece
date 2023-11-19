@@ -74,7 +74,7 @@ public class Server {
             Socket s = ss.accept();
 
             System.out.println("Nueva conexión por parte de cliente: " + s);
-
+            
             ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
 
             server.addClientOutputStream(out);

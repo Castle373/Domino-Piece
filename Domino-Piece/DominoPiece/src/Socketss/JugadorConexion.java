@@ -11,6 +11,7 @@ import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import dominio_dominodto.Acciones;
 import dominio_dominodto.JugadorDTO;
+import dominio_dominodto.MovimientoDTO;
 import dominio_dominodto.PartidaDTO;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -86,7 +87,12 @@ public class JugadorConexion extends Thread implements Observable {
                     notificarObservers(juga);
 
                 }
+                if (objecto instanceof MovimientoDTO) {
 
+                    MovimientoDTO m = (MovimientoDTO) objecto;
+                    notificarObservers(m);
+
+                }
             }
         } catch (IOException | ClassNotFoundException e) {
             // Manejar excepciones

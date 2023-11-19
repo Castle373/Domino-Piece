@@ -7,6 +7,7 @@ package Socketss;
 import Evento.CrearPartidaPF;
 import Evento.IniciarVotacionPF;
 import Evento.JugadorPF;
+import Evento.MovimientoPF;
 import Evento.RespuestaVotacionPF;
 import Evento.VerificarAvatarPF;
 import Observer.Observable;
@@ -106,6 +107,18 @@ public class Cliente {
         //Acciones  de IniciarVotacion
         if (objecto instanceof IniciarVotacionPF) {
             IniciarVotacionPF a = (IniciarVotacionPF) objecto;
+
+            try {
+                j.enviarAlServidor(a);
+                return true;
+            } catch (IOException ex) {
+                System.out.println(ex);
+                return false;
+            }
+
+        }
+        if (objecto instanceof MovimientoPF) {
+            MovimientoPF a = (MovimientoPF) objecto;
 
             try {
                 j.enviarAlServidor(a);

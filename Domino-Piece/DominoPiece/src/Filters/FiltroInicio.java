@@ -8,6 +8,7 @@ import Evento.CrearPartidaPF;
 import Evento.Evento;
 import Evento.IniciarVotacionPF;
 import Evento.JugadorPF;
+import Evento.MovimientoPF;
 import Evento.RespuestaVotacionPF;
 import Evento.VerificarAvatarPF;
 import Pipes.Pipe;
@@ -15,6 +16,7 @@ import Pipes.PipeCrearJugador;
 import Pipes.PipeCrearPartida;
 import Pipes.PipeFin;
 import Pipes.PipeIniciarVotacion;
+import Pipes.PipeMovimiento;
 import Pipes.PipeRespuestaVotacion;
 import Pipes.PipeVerificarAvatar;
 import dominio_domino.Partida;
@@ -53,7 +55,10 @@ public class FiltroInicio<T extends Evento> implements Filtro<T> {
             Pipe<T> pipe = new PipeVerificarAvatar();
             pipe.ejecutar(objeto);
         }
-        
+        if (objeto instanceof MovimientoPF) {
+            Pipe<T> pipe = new PipeMovimiento<>();
+            pipe.ejecutar(objeto);
+        }
     }
 
 }

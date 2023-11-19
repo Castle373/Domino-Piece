@@ -14,8 +14,10 @@ import dominio_domino.Jugador;
 import dominio_domino.Partida;
 import dominio_dominodto.Acciones;
 import dominio_dominodto.FichaDTO;
+import dominio_dominodto.FichaTableroDTO;
 
 import dominio_dominodto.JugadorDTO;
+import dominio_dominodto.MovimientoDTO;
 import dominio_dominodto.PartidaDTO;
 import java.util.List;
 
@@ -41,8 +43,8 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
     }
 
     @Override
-    public boolean realizaMovimiento(FichaTablero ficha, int lado) {
-        return modelo.validaMovimiento(ficha, lado);
+    public void realizaMovimiento(FichaTableroDTO ficha, int lado) {
+         modelo.validaMovimiento(ficha, lado);
     }
 
     @Override
@@ -110,14 +112,21 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
             modelo.setPartida2(p);
             vista.mostrarJugadores();
         }
-        if (loquesea instanceof JugadorDTO) {
+        else if (loquesea instanceof JugadorDTO) {
             JugadorDTO j = (JugadorDTO) loquesea;
             this.guardarJugador(j);
-
             vista.asignarJugadorJugando(j);
             
         }
-        if (loquesea instanceof Acciones) {
+        else if (loquesea instanceof MovimientoDTO) {
+            MovimientoDTO m = (MovimientoDTO) loquesea;
+            if (m.isValido()) {
+                vista.colocarFicha(m.getFichaTablero(), m.getZona());
+            }else{
+                vista.resetearFicha();
+            }          
+        }
+        else if (loquesea instanceof Acciones) {
             Acciones a = (Acciones) loquesea;
             if (a == Acciones.INICIAR_PARTIDA) {
                 vista.mostrarJugadores();

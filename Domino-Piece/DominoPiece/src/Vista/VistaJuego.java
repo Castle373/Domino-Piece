@@ -13,6 +13,7 @@ import dominio_domino.FichaTablero;
 import dominio_domino.Jugador;
 import dominio_domino.Pozo;
 import dominio_dominodto.FichaDTO;
+import dominio_dominodto.FichaTableroDTO;
 import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.PartidaDTO;
 import java.awt.Color;
@@ -389,10 +390,7 @@ public class VistaJuego extends javax.swing.JFrame {
     }
 
     public void robarFicha() {
-        if (!isTurno()) {
-
-            return;
-        }
+        
         presentador.robarFicha();
     }
 
@@ -405,9 +403,7 @@ public class VistaJuego extends javax.swing.JFrame {
     }
 
     public void agarrarFicha(MouseEvent evt) {
-        if (!isTurno()) {
-            return;
-        }
+        
         Insets insets = this.getInsets();
         int adjustedX = evt.getX() - insets.left;
         int adjustedY = evt.getY() - insets.top;
@@ -416,10 +412,7 @@ public class VistaJuego extends javax.swing.JFrame {
     }
 
     public void arrastrarFicha(MouseEvent evt) {
-        if (!isTurno()) {
-
-            return;
-        }
+        
         Insets insets = this.getInsets();
         int adjustedX = evt.getX() - insets.left;
         int adjustedY = evt.getY() - insets.top;
@@ -428,10 +421,7 @@ public class VistaJuego extends javax.swing.JFrame {
     }
 
     public void realizarMovimiento(MouseEvent evt) {
-        if (!isTurno()) {
-
-            return;
-        }
+        
         Insets insets = this.getInsets();
         int adjustedX = evt.getX() - insets.left;
         int adjustedY = evt.getY() - insets.top;
@@ -442,38 +432,61 @@ public class VistaJuego extends javax.swing.JFrame {
             return;
         }
         FichaDTO ficha = tablero.obtenerFichaSeleccionada();
-        FichaTablero f = new FichaTablero(ficha.getImagen(), ficha.getPuntoAbajo(), ficha.getPuntoArriba());
-        boolean validaFicha = false;
-
-        switch (valida) {
-            case 1:
-                validaFicha = presentador.realizaMovimiento(f, valida);
-                break;
-            case 2:
-                validaFicha = presentador.realizaMovimiento(f, valida);
-                break;
-            case 3:
-                validaFicha = presentador.realizaMovimiento(f, valida);
-                break;
-        }
-        if (!validaFicha) {
-            tablero.resetearFichaSeleccionada();
-        }
-        if (validaFicha) {
-            switch (valida) {
+        FichaTableroDTO f = new FichaTableroDTO(ficha.getImagen(), ficha.getPuntoAbajo(), ficha.getPuntoArriba());
+       
+        presentador.realizaMovimiento(f, valida);
+//        boolean validaFicha = false;
+//
+//        switch (valida) {
+//            case 1:
+//                validaFicha = presentador.realizaMovimiento(f, valida);
+//                break;
+//            case 2:
+//                validaFicha = presentador.realizaMovimiento(f, valida);
+//                break;
+//            case 3:
+//                validaFicha = presentador.realizaMovimiento(f, valida);
+//                break;
+//        }
+//        if (!validaFicha) {
+//            tablero.resetearFichaSeleccionada();
+//        }
+//        if (validaFicha) {
+//            switch (valida) {
+//                case 1:
+//                    tablero.colocarInicial(f);
+//                    break;
+//                case 2:
+//                    tablero.colocarTrenDerecha(f);
+//                    break;
+//                case 3:
+//                    tablero.colocarTrenIzquierda(f);
+//                    break;
+//            }
+////            presentador.eliminarFichaJugador(ficha);
+//        }
+    }
+    public void resetearFicha(){
+        tablero.resetearFichaSeleccionada();
+    }
+    public void colocarFicha(FichaTableroDTO f,int zona){
+        System.out.println("Se coloco ");
+        switch (zona) {
                 case 1:
+                    System.out.println("inicial");
                     tablero.colocarInicial(f);
                     break;
                 case 2:
+                     System.out.println("derecha");
                     tablero.colocarTrenDerecha(f);
                     break;
                 case 3:
+                     System.out.println("izquierda");
                     tablero.colocarTrenIzquierda(f);
                     break;
             }
-//            presentador.eliminarFichaJugador(ficha);
-        }
     }
+    
 
     public void iniciarJuego() {
         Jugador1.setVisible(false);

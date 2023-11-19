@@ -5,6 +5,7 @@
 package Graficos;
 
 import dominio_domino.FichaTablero;
+import dominio_dominodto.FichaTableroDTO;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Shape;
@@ -17,7 +18,7 @@ import javax.swing.ImageIcon;
  */
 public class FichaTrenGrafica implements IFichaGrafica {
 
-    private FichaTablero ficha;
+    private FichaTableroDTO ficha;
     private int x;
     private int y;
     private int xOriginal;
@@ -30,7 +31,7 @@ public class FichaTrenGrafica implements IFichaGrafica {
     public FichaTrenGrafica() {
     }
 
-    public FichaTrenGrafica(FichaTablero ficha, int x, int y) {
+    public FichaTrenGrafica(FichaTableroDTO ficha, int x, int y) {
         this.ficha = ficha;
         this.x = x;
         this.y = y;
@@ -95,11 +96,11 @@ public class FichaTrenGrafica implements IFichaGrafica {
         return ancho;
     }
 
-    public FichaTablero getFicha() {
+    public FichaTableroDTO getFicha() {
         return ficha;
     }
 
-    public void setFicha(FichaTablero ficha) {
+    public void setFicha(FichaTableroDTO ficha) {
         this.ficha = ficha;
     }
 
