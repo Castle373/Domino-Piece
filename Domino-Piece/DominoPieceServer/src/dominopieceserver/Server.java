@@ -69,7 +69,7 @@ public class Server {
 
         Server server = new Server();
 
-        while (connectionCount < 4) {
+        while (true) {
 
             Socket s = ss.accept();
 
@@ -83,10 +83,9 @@ public class Server {
             server.addClienteJugadores(client);
             client.start();
             connectionCount++;
-
         }
 
-        ss.close();
+       
 
     }
 

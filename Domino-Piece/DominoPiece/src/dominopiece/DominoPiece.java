@@ -4,8 +4,8 @@
  */
 package dominopiece;
 
-import Presentacion.IPresentadorMenu;
-import Presentacion.PresentadorMenu;
+import MVP.Presentador.IPresentadorMenu;
+import MVP.Presentador.PresentadorMenu;
 import java.io.IOException;
 import java.net.Socket;
 

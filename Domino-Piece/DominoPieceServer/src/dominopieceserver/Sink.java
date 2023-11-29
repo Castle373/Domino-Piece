@@ -20,6 +20,8 @@ import dominio_dominodto.TableroDTO;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -33,6 +35,7 @@ public class Sink {
 
     private volatile static Sink instance;
     public Partida partida;
+    public int turnosPasados=0;
 
     public static synchronized Sink getInstance() {
         if (instance == null) {
@@ -52,6 +55,14 @@ public class Sink {
 
     }
 
+    public Partida getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Partida partida) {
+        this.partida = partida;
+    }
+
     public void agregarJugador(JugadorDTO j) {
         Jugador juga = new Jugador(j.getNombre(), j.getAvatar());
         juga.setId(j.getId());
@@ -59,12 +70,36 @@ public class Sink {
     }
 
     public void eliminarJugador(JugadorDTO j) {
-        Jugador juga = new Jugador(j.getNombre(), j.getAvatar());
-        juga.setId(j.getId());
+        Jugador juga = getJugador(j.getId());
 
+        for (FichaJugador fichaJugador : juga.getFichasJugador()) {
+            FichaPozo f = new FichaPozo(fichaJugador.getImagen(), fichaJugador.getPuntoAbajo(), fichaJugador.getPuntoArriba());
+            partida.getPozo().addFichasPozo(f);
+        }
+        int indiceJugador = partida.getJugadores().indexOf(juga);
         partida.eliminarJugador(juga);
 
+        if (indiceJugador != -1) {
+            if (indiceJugador < partida.getTurno()) {
+                // Si el jugador eliminado estaba antes del turno actual, ajustar el turno
+                partida.setTurno((partida.getTurno() - 1));
+            } else if (indiceJugador == partida.getTurno()) {
+                // Si el jugador eliminado estaba en el turno actual, ajustar el turno
+
+                if (partida.getTurno() >= partida.getJugadores().size()) {
+                    // Ajustar el turno si es necesario para no exceder el índice máximo de la lista
+                    partida.setTurno(0);
+                }
+            }
+        }
+        System.out.println(partida.getTurno());
+
     }
+//    public int indiceJugador(juga){
+//        for (int i = 0; i < 10; i++) {
+//            
+//        }
+//    }
 
     public PartidaDTO getPartidaDTO() {
 
@@ -184,6 +219,15 @@ public class Sink {
         partida.reparteFichas();
     }
 
+    public Jugador getJugador(UUID id) {
+        for (Jugador jugadorList : partida.getJugadores()) {
+            if (jugadorList.getId().equals(id)) {
+                return jugadorList;
+            }
+        }
+        return null;
+    }
+
     public void pasarTurno() {
         partida.pasarTurno();
     }
@@ -199,26 +243,75 @@ public class Sink {
         return true;
     }
 
-    public FichaTableroDTO validarMovimiento(FichaTableroDTO ficha, int zona) {
+    public boolean robarFicha(JugadorDTO jugadorDTO) {
+        FichaPozo p = partida.getPozo().obtenerFichaAleatoria();
 
+        if (p == null) {
+            return false;
+        }
+
+        Jugador jugadorRoboFicha = this.getJugador(jugadorDTO.getId());
+        FichaJugador f = new FichaJugador(p.getImagen(), p.getPuntoAbajo(), p.getPuntoArriba());
+        jugadorRoboFicha.addFichasJugador(f);
+
+        return true;
+    }
+
+    public boolean pasarTurno(JugadorDTO jugadorDTO) {
+        if (jugadorDTO.getId().equals(this.partida.jugadorTurno().getId())) {
+            partida.pasarTurno();
+            turnosPasados++;
+            return true;
+        }
+        return false;
+    }
+    public boolean comprobarPartidaCerrada(){
+        if (turnosPasados>=4) {
+            if (partida.getPozo().getFichasPozo().isEmpty()) {
+                if (!revisarFichasJugadores()) {
+                   return true; 
+                }
+            }
+        }
+        return false;
+    }
+    public boolean revisarFichasJugadores(){
+        for (Jugador jugadore : partida.getJugadores()) {
+            for (FichaJugador fichaJugador : jugadore.getFichasJugador()) {
+                
+                FichaTablero fichaNormal = new FichaTablero(fichaJugador.getImagen(), fichaJugador.getPuntoAbajo(), fichaJugador.getPuntoArriba());
+                if (partida.getTablero().validaColocarFicha(fichaNormal)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public int getTurnosPasados() {
+        return turnosPasados;
+    }
+
+    public void setTurnosPasados(int turnosPasados) {
+        this.turnosPasados = turnosPasados;
+    }
+
+    public FichaTableroDTO validarMovimiento(FichaTableroDTO ficha, int zona) {
+        turnosPasados=0;
         FichaTablero fichaNormal = new FichaTablero(ficha.getImagen(), ficha.getPuntoAbajo(), ficha.getPuntoArriba());
         boolean valida = false;
-        System.out.println(zona);
+
         if (zona == 1) {
             if (partida.getTablero().validaZonaInical(fichaNormal)) {
                 valida = true;
             }
-
         } else if (zona == 2) {
             if (partida.getTablero().validaLadoDerecho(fichaNormal)) {
                 valida = true;
             }
-
         } else if (zona == 3) {
             if (partida.getTablero().validaLadoIzquierdo(fichaNormal)) {
                 valida = true;
             }
-
         }
         if (!valida) {
             return null;
@@ -233,5 +326,38 @@ public class Sink {
         fichaDto.setConectarArriba(fichaNormal.isConectarArriba());
 
         return fichaDto;
+    }
+
+    public List<JugadorDTO> getPuntuaciones() {
+        List<JugadorDTO> jugadores = this.getListJugadoresDTO();
+        List<JugadorDTO> jugadoresPuntuaciones = new ArrayList();
+        List<int[]> puntuaciones = new ArrayList<>();
+        int i = 0;
+
+        for (JugadorDTO jugadorDTO : jugadores) {
+
+            int total = 0;
+            for (FichaDTO fichaDTO : jugadorDTO.getFichasJugador()) {
+                total += fichaDTO.getPuntoArriba();
+                total += fichaDTO.getPuntoAbajo();
+            }
+
+            int[] jugadorPuntuacion = {i, total};
+            i++;
+            puntuaciones.add(jugadorPuntuacion);
+        }
+
+        Collections.sort(puntuaciones, Comparator.comparingInt(arr -> arr[1]));
+        
+        for (int j = 0; j < puntuaciones.size(); j++) {
+            if (jugadores.get(puntuaciones.get(j)[0]).getFichasJugador().isEmpty()) {
+                jugadoresPuntuaciones.add(0,jugadores.get(puntuaciones.get(j)[0]));
+            }else{
+                jugadoresPuntuaciones.add(jugadores.get(puntuaciones.get(j)[0]));
+            }
+        }
+        
+
+        return jugadoresPuntuaciones;
     }
 }

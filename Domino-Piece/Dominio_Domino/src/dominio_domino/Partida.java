@@ -2,6 +2,7 @@ package dominio_domino;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
@@ -65,7 +66,14 @@ public class Partida {
     public Jugador jugadorTurno() {
         return jugadores.get(turno);
     }
-
+    public Jugador getJugador(UUID id) {
+        for (Jugador jugadorList : jugadores) {
+            if (jugadorList.getId()==id) {
+                return jugadorList;
+            }
+        }
+        return null;
+    }
     public Pozo getPozo() {
         return pozo;
     }

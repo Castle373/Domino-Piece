@@ -4,11 +4,15 @@
  */
 package dominopieceserver;
 
+import Evento.BuscarPartidaPF;
 import Evento.CrearPartidaPF;
 import Evento.IniciarVotacionPF;
 import Evento.JugadorPF;
 import Evento.MovimientoPF;
+import Evento.PasarTurnoPF;
 import Evento.RespuestaVotacionPF;
+import Evento.RobarPozoPF;
+import Evento.TerminarVotacionPF;
 import Evento.VerificarAvatarPF;
 import dominio_dominodto.Acciones;
 import dominio_dominodto.FichaTableroDTO;
@@ -16,6 +20,8 @@ import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.MovimientoDTO;
 import dominio_dominodto.PartidaDTO;
 import dominio_dominodto.RespuestaDTO;
+import dominio_dominodto.RobarFichaDTO;
+import dominio_dominodto.TerminarDTO;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -123,7 +129,7 @@ public class JugadorThread extends Thread {
                     IniciarVotacionPF pf = (IniciarVotacionPF) objecto;
                     Acciones a = (Acciones) pf.getData();
                     if (a == Acciones.INICIAR_VOTACION) {
-                        vota = new Votacion(sink.getPartidaDTO().getJugadores().size(), server);
+                        vota = new Votacion(sink.getPartidaDTO().getJugadores().size(), server, false);
                         Votacion.setInstance(vota);
                         Votacion.getInstance().start();
 
@@ -134,36 +140,95 @@ public class JugadorThread extends Thread {
                 if (objecto instanceof MovimientoPF) {
                     MovimientoPF pf = (MovimientoPF) objecto;
                     MovimientoDTO m = (MovimientoDTO) pf.getData();
-                    FichaTableroDTO fichaMovimiento =sink.validarMovimiento(m.getFichaTablero(), m.getZona());
-                    if (fichaMovimiento!=null) {
+                    FichaTableroDTO fichaMovimiento = sink.validarMovimiento(m.getFichaTablero(), m.getZona());
+                    if (fichaMovimiento != null) {
                         m.setFichaTablero(fichaMovimiento);
                         m.setValido(true);
                         enviarTodos(m);
                         sink.pasarTurno();
                         enviarPartidaActual();
                         enviarJugador();
-                    }else{
+                        if (jugador.getFichasJugador().isEmpty()) {
+                            System.out.println("Terminada por que gano alguien");
+                            TerminarDTO terminar = new TerminarDTO(sink.getPuntuaciones(), Acciones.TERMINAR_PARTIDA_VOTACION);
+                            server.sendToAll(terminar);
+                        }
+                    } else {
                         m.setValido(false);
                         enviarAUno(m);
                     }
+
+                }
+                if (objecto instanceof RobarPozoPF) {
+                    RobarPozoPF roboPf = (RobarPozoPF) objecto;
+                    RobarFichaDTO f = (RobarFichaDTO) roboPf.getData();
+                    JugadorDTO juga = f.getJugador();
+                    sink.robarFicha(juga);
+                    enviarPartidaActual();
+                    enviarJugador();
+                }
+                if (objecto instanceof PasarTurnoPF) {
+
+                    PasarTurnoPF p = (PasarTurnoPF) objecto;
+                    sink.pasarTurno(p.getJugadorDTO());
+                    enviarPartidaActual();
+                    enviarJugador();
+                    if (sink.comprobarPartidaCerrada()) {
+                        TerminarDTO terminar = new TerminarDTO(sink.getPuntuaciones(), Acciones.TERMINAR_PARTIDA_VOTACION);
+                        server.sendToAll(terminar);
+                    }
+                }
+                if (objecto instanceof BuscarPartidaPF) {
+
+                    BuscarPartidaPF p = (BuscarPartidaPF) objecto;
+                    if (sink.getPartida()==null) {
+                        enviarAUno(Acciones.NO_HAY_PARTIDA);
+                    }else{
+                        enviarAUno(Acciones.SI_HAY_PARTIDA);
+                    }
                     
                 }
-//                 if (objecto instanceof Acciones) {
-//                     
-//                   vota.respuestaVotacion(true);
-//                    
-//                }
-                // Cuando se recibe un objeto, se envía a todos los clientes
-//                server.sendToAll(obj);
+                if (objecto instanceof TerminarVotacionPF) {
+                    TerminarVotacionPF pf = (TerminarVotacionPF) objecto;
+                    Acciones a = (Acciones) pf.getData();
+                    if (a == Acciones.INICIAR_VOTACION_TERMINAR) {
+
+                        vota = new Votacion(sink.getPartidaDTO().getJugadores().size(), server, true);
+                        Votacion.setInstance(vota);
+                        Votacion.getInstance().start();
+
+                        enviarTodos(Acciones.INICIAR_VOTACION);
+
+                    }
+                }
+
             }
         } catch (IOException | ClassNotFoundException e) {
             if (jugador != null) {
                 sink.eliminarJugador(jugador);
                 server.desconectarClliente(out);
                 enviarPartidaActual();
-
+                if (sink.getPartida().getJugadores().isEmpty()) {
+                    sink.setPartida(null);
+                }
+                else if (sink.getPartida().getTablero()!=null) {
+                    if (sink.getPartida().getJugadores().size()!=1) {
+                        if ( Votacion.getInstance().isAlive()) {
+                             Votacion.getInstance().respuestaVotacion(false);
+                        }
+                    }
+                    if (sink.getPartida().getJugadores().size()==1) {
+                        if ( Votacion.getInstance().isAlive()) {
+                             Votacion.getInstance().respuestaVotacion(false);
+                        }
+                        TerminarDTO terminar = new TerminarDTO(sink.getPuntuaciones(), Acciones.TERMINAR_PARTIDA_VOTACION);
+                        server.sendToAll(terminar);
+                    }
+                }
             }
 
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 }

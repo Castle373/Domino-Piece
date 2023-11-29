@@ -30,9 +30,11 @@ public class Tablero {
     public void addFichasTablero(FichaTablero fichaT) {
         fichasTablero.add(fichaT);
     }
-    public void agregarInicio(FichaTablero fichaT){
+
+    public void agregarInicio(FichaTablero fichaT) {
         fichasTablero.add(0, fichaT);
     }
+
     public FichaTablero getExtremoDerecho() {
         if (fichasTablero.isEmpty()) {
             return null;
@@ -46,16 +48,16 @@ public class Tablero {
         }
         return fichasTablero.get(0);
     }
-    
-    public boolean validaZonaInical(FichaTablero ficha){
-    
+
+    public boolean validaZonaInical(FichaTablero ficha) {
+
         if (ficha.isMula()) {
-                addFichasTablero(ficha);
-                return true;
+            addFichasTablero(ficha);
+            return true;
         }
         return false;
     }
-            
+
     public boolean validaLadoDerecho(FichaTablero ficha) {
 
         FichaTablero fichaExtremo = getExtremoDerecho();
@@ -71,7 +73,7 @@ public class Tablero {
                 ficha.setConectarArriba(true);
                 addFichasTablero(ficha);
                 return true;
-            } else if (ficha.getPuntoAbajo()== puntoExtremo) {
+            } else if (ficha.getPuntoAbajo() == puntoExtremo) {
                 ficha.setConectarAbajo(true);
                 addFichasTablero(ficha);
                 return true;
@@ -95,7 +97,7 @@ public class Tablero {
                 ficha.setConectarAbajo(true);
                 agregarInicio(ficha);
                 return true;
-            } else if (ficha.getPuntoAbajo()== puntoExtremo) {
+            } else if (ficha.getPuntoAbajo() == puntoExtremo) {
                 ficha.setConectarArriba(true);
                 agregarInicio(ficha);
                 return true;
@@ -103,5 +105,34 @@ public class Tablero {
 
         }
         return false;
+    }
+
+    public boolean validaColocarFicha(FichaTablero ficha) {
+        if (!fichasTablero.isEmpty()) {
+            FichaTablero extremoDerecho = getExtremoDerecho();
+            FichaTablero extremoIzquierdo = getExtremoIzquierdo();
+
+            int puntoExtremoDerecho;
+            int puntoExtremoIzquierdo;
+
+            if (extremoDerecho.isConectarArriba()) {
+                puntoExtremoDerecho = extremoDerecho.getPuntoAbajo();
+            } else {
+                puntoExtremoDerecho = extremoDerecho.getPuntoArriba();
+            }
+
+            if (extremoIzquierdo.isConectarArriba()) {
+                puntoExtremoIzquierdo = extremoIzquierdo.getPuntoArriba();
+            } else {
+                puntoExtremoIzquierdo = extremoIzquierdo.getPuntoAbajo();
+            }
+
+            // Verifica si la ficha se puede conectar en cualquier lado
+            return ficha.getPuntoArriba() == puntoExtremoDerecho || ficha.getPuntoAbajo() == puntoExtremoDerecho
+                    || ficha.getPuntoArriba() == puntoExtremoIzquierdo || ficha.getPuntoAbajo() == puntoExtremoIzquierdo;
+        }
+
+        // Si no hay fichas en el tablero, se puede colocar cualquier ficha en cualquier lado
+        return true;
     }
 }
