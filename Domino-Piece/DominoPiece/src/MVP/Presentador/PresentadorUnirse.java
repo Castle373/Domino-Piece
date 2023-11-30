@@ -5,6 +5,7 @@
 package MVP.Presentador;
 
 import MVP.Modelo.ModeloUnirse;
+import MVP.Vista.VistaMenu;
 import SocketCliente.Cliente;
 import MVP.Vista.VistaUnirse;
 
@@ -22,19 +23,21 @@ public class PresentadorUnirse implements IPresentadorUnirse, Observer {
     private ModeloUnirse modelo;
     private IPresentacionJuego presentadorJuego;
     private VistaUnirse vista;
+    private IPresentadorMenu menu;
 
-    public PresentadorUnirse() {
+    public PresentadorUnirse(IPresentadorMenu menu) {
+        this.menu = menu;
         vista = new VistaUnirse(this);
         modelo = new ModeloUnirse();
         presentadorJuego = new PresentadorJuego();
+        Cliente cliente = Cliente.getInstance();
+        cliente.agregarObserver((Observer) presentadorJuego);
+        cliente.agregarObserver(this);
     }
 
     @Override
     public void mostrarPantallaUnirse() {
         vista.setVisible(true);
-        Cliente cliente = Cliente.getInstance();
-        cliente.agregarObserver((Observer) presentadorJuego);
-        cliente.agregarObserver(this);
     }
 
     @Override
@@ -87,6 +90,11 @@ public class PresentadorUnirse implements IPresentadorUnirse, Observer {
     public void guardarJugadorTemporal(String nombre, String avatar) {
         modelo.setNombre(nombre);
         modelo.setAvatar(avatar);
+    }
+
+    @Override
+    public void regresarMenu() {
+        menu.mostrarMenu();
     }
 
 }

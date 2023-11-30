@@ -84,6 +84,7 @@ public class VistaJuego extends javax.swing.JFrame {
         btnIniciarVotacion = new javax.swing.JButton();
         btnPasarTurno = new javax.swing.JButton();
         btnTerminar = new javax.swing.JButton();
+        btnAbandonarPartida = new javax.swing.JButton();
         pantallaPuntuaciones = new javax.swing.JPanel();
         JugadorPuntacion3 = new javax.swing.JPanel();
         lblJugadorP3 = new javax.swing.JLabel();
@@ -258,6 +259,13 @@ public class VistaJuego extends javax.swing.JFrame {
             }
         });
 
+        btnAbandonarPartida.setText("Abandonar Partida");
+        btnAbandonarPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbandonarPartidaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pantallaesperaLayout = new javax.swing.GroupLayout(pantallaespera);
         pantallaespera.setLayout(pantallaesperaLayout);
         pantallaesperaLayout.setHorizontalGroup(
@@ -268,7 +276,9 @@ public class VistaJuego extends javax.swing.JFrame {
                     .addGroup(pantallaesperaLayout.createSequentialGroup()
                         .addComponent(Jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(210, 210, 210)
-                        .addComponent(btnIniciarVotacion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnIniciarVotacion, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(btnAbandonarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(pantallaesperaLayout.createSequentialGroup()
                         .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,7 +292,7 @@ public class VistaJuego extends javax.swing.JFrame {
                             .addComponent(btnPasarTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnTerminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(Jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         pantallaesperaLayout.setVerticalGroup(
             pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,8 +301,10 @@ public class VistaJuego extends javax.swing.JFrame {
                 .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pantallaesperaLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(btnIniciarVotacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addComponent(btnIniciarVotacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAbandonarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(1, 1, 1)
                 .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pantallaesperaLayout.createSequentialGroup()
@@ -515,6 +527,10 @@ public class VistaJuego extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnAbandonarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbandonarPartidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAbandonarPartidaActionPerformed
     public void limpiarInformacion() {
         // Limpia los textos de los JLabels
         lblJugador1.setText("");
@@ -883,6 +899,7 @@ public class VistaJuego extends javax.swing.JFrame {
     private javax.swing.JPanel JugadorPuntacion3;
     private javax.swing.JPanel JugadorPuntacion4;
     private javax.swing.JPanel Votacion;
+    private javax.swing.JButton btnAbandonarPartida;
     private javax.swing.JButton btnIniciarVotacion;
     private javax.swing.JButton btnPasarTurno;
     private javax.swing.JButton btnRobar;

@@ -6,6 +6,7 @@ package MVP.Presentador;
 
 import MVP.Modelo.ModeloCrear;
 import MVP.Vista.VistaCrearPartida;
+import MVP.Vista.VistaMenu;
 import MVP.Vista.VistaUnirse;
 import java.net.Socket;
 
@@ -18,10 +19,12 @@ public class PresentadorCrear implements IPresentadorCrear {
     private ModeloCrear modeloCrear;
     private IPresentadorUnirse presentadorUnirse;
     private VistaCrearPartida pantallaCrear;
+    private IPresentadorMenu menu;
 
-    public PresentadorCrear() {
+    public PresentadorCrear(IPresentadorMenu menu, IPresentadorUnirse presentadorUnirse) {
+        this.menu = menu;
         modeloCrear = new ModeloCrear();
-        presentadorUnirse = new PresentadorUnirse();
+        this.presentadorUnirse = presentadorUnirse;
         pantallaCrear = new VistaCrearPartida(this);
     }
 
@@ -35,7 +38,6 @@ public class PresentadorCrear implements IPresentadorCrear {
     public void crearPartida(int fichasIniciales) {
         crearConexion();
         modeloCrear.crearPartida(fichasIniciales);
-
         mostrarPantallaUnirse();
 
     }
@@ -43,7 +45,6 @@ public class PresentadorCrear implements IPresentadorCrear {
     @Override
     public void mostrarPantallaUnirse() {
         presentadorUnirse.mostrarPantallaUnirse();
-
         pantallaCrear.dispose();
     }
 
@@ -51,6 +52,11 @@ public class PresentadorCrear implements IPresentadorCrear {
     public void crearConexion() {
         modeloCrear.crearConexion();
 
+    }
+
+    @Override
+    public void regresarMenu() {
+        menu.mostrarMenu();
     }
 
 }

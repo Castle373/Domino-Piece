@@ -18,11 +18,11 @@ public class VistaCrearPartida extends javax.swing.JFrame {
      * Creates new form VistaCrears
      */
     private IPresentadorCrear presentadorCrear;
-    
+
     public VistaCrearPartida(IPresentadorCrear presentadorCrear) {
-        this.presentadorCrear= presentadorCrear;
+        this.presentadorCrear = presentadorCrear;
         initComponents();
-        
+
     }
 
     /**
@@ -141,7 +141,8 @@ public class VistaCrearPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        presentadorCrear.regresarMenu();
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     public void selectCrear() {
@@ -153,11 +154,10 @@ public class VistaCrearPartida extends javax.swing.JFrame {
     public void muestraMensajeError() {
         JOptionPane.showMessageDialog(rootPane, "Error", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
-    
+
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

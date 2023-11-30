@@ -28,9 +28,9 @@ public class PresentadorMenu implements IPresentadorMenu, Observer {
     public PresentadorMenu() {
         vista = new VistaMenu(this);
         modelo = new ModeloMenu();
-        presentadorCrear = new PresentadorCrear();
-        presentadorUnirse = new PresentadorUnirse();
-        Cliente.getInstance().agregarObserver((Observer)this);
+        presentadorUnirse = new PresentadorUnirse(this);
+        presentadorCrear = new PresentadorCrear(this, presentadorUnirse);
+        Cliente.getInstance().agregarObserver((Observer) this);
     }
 
     @Override
@@ -46,9 +46,7 @@ public class PresentadorMenu implements IPresentadorMenu, Observer {
 
     @Override
     public void mostrarMenu() {
-
         vista.setVisible(true);
-
     }
 
     @Override
@@ -59,8 +57,7 @@ public class PresentadorMenu implements IPresentadorMenu, Observer {
                 JOptionPane.showMessageDialog(null, "PARTIDA ENCONTRADA");
                 presentadorUnirse.mostrarPantallaUnirse();
                 vista.dispose();
-            }
-            else  if (a == Acciones.NO_HAY_PARTIDA) {
+            } else if (a == Acciones.NO_HAY_PARTIDA) {
                 JOptionPane.showMessageDialog(null, "NO HAY PARTIDAS DISPONIBLES");
             }
         }

@@ -11,10 +11,14 @@ import java.net.Socket;
  * @author marcos
  */
 public interface IPresentadorCrear {
+
     public void mostrarPantalla();
+
     public void crearPartida(int fichasIniciales);
+
     public void mostrarPantallaUnirse();
 
-
     public void crearConexion();
+    
+    public void regresarMenu();
 }

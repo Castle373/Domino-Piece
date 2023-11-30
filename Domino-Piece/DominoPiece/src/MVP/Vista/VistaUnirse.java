@@ -46,7 +46,7 @@ public class VistaUnirse extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnRegresarMenu = new javax.swing.JButton();
         chbxAvatar1 = new javax.swing.JCheckBox();
         chbxAvatar2 = new javax.swing.JCheckBox();
         chbxAvatar3 = new javax.swing.JCheckBox();
@@ -90,11 +90,16 @@ public class VistaUnirse extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 560, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(255, 102, 102));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Volver a menu");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 20, -1, -1));
+        btnRegresarMenu.setBackground(new java.awt.Color(255, 102, 102));
+        btnRegresarMenu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnRegresarMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresarMenu.setText("Volver a menu");
+        btnRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarMenuActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRegresarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 20, -1, -1));
 
         buttonGroup1.add(chbxAvatar1);
         chbxAvatar1.setSelected(true);
@@ -145,6 +150,11 @@ public class VistaUnirse extends javax.swing.JFrame {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void btnRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarMenuActionPerformed
+        presentador.regresarMenu();
+        this.dispose();//
+    }//GEN-LAST:event_btnRegresarMenuActionPerformed
     public boolean validaJugador() {
         if (txtNombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Nombre Vacio");
@@ -171,20 +181,20 @@ public class VistaUnirse extends javax.swing.JFrame {
         if (chbxAvatar4.isSelected()) {
             avatar = "/Grafico/avatar4.jpeg";
         }
-        
+
         presentador.guardarJugadorTemporal(nombre, avatar);
         presentador.verificarAvatar(avatar);
-        
+
     }
-    
+
     public void muestraMensajeAvatarEnUso() {
         JOptionPane.showMessageDialog(this, "El avatar seleccionado ya esta en uso");
     }
 
-    public void obtenerJugador(){
-        
+    public void obtenerJugador() {
+
     }
-    
+
     public void muestraMensajeError() {
         JOptionPane.showMessageDialog(rootPane, "Error", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
@@ -198,13 +208,13 @@ public class VistaUnirse extends javax.swing.JFrame {
     private javax.swing.JLabel avatar2;
     private javax.swing.JLabel avatar3;
     private javax.swing.JLabel avatar4;
+    private javax.swing.JButton btnRegresarMenu;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox chbxAvatar1;
     private javax.swing.JCheckBox chbxAvatar2;
     private javax.swing.JCheckBox chbxAvatar3;
     private javax.swing.JCheckBox chbxAvatar4;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
