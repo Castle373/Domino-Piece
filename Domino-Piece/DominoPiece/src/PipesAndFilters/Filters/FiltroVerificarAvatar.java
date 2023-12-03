@@ -17,6 +17,8 @@ import java.util.UUID;
  */
 public class FiltroVerificarAvatar<T> implements Filtro<T> {
 
+    private Pipe pipe;
+
     @Override
     public void ejecutar(T avatar) {
         JugadorDTO j = new JugadorDTO();
@@ -25,8 +27,17 @@ public class FiltroVerificarAvatar<T> implements Filtro<T> {
             j.setAvatar(vaf.getAvatar());
             ((VerificarAvatarPF) avatar).setData(j);
         }
-        Pipe<T> pipaFin = new PipeFin();
-        pipaFin.ejecutar(avatar);
+       
+        pipe.ejecutar(avatar);
     }
 
+    @Override
+    public Pipe getPipe() {
+        return pipe;
+    }
+
+    @Override
+    public void setPipe(Pipe pipe) {
+        this.pipe = pipe;
+    }
 }

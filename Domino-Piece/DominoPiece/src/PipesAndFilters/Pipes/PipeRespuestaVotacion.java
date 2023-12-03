@@ -13,11 +13,19 @@ import PipesAndFilters.Filters.FiltroEnviarRespuesta;
  * @author IVAN
  */
 public class PipeRespuestaVotacion <T extends Evento>  implements Pipe<T>{
-
+    private Filtro filtro;
     @Override
     public void ejecutar(T s) {
-        Filtro<T> f = new FiltroEnviarRespuesta();
-        f.ejecutar(s);
+        
+        filtro.ejecutar(s);
     }
     
+    @Override
+    public Filtro getFiltro() {
+        return filtro;
+    }
+    @Override
+    public void setFiltro(Filtro filtro) {
+        this.filtro = filtro;
+    }
 }

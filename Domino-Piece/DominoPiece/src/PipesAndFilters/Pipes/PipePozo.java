@@ -13,10 +13,19 @@ import PipesAndFilters.Filters.FiltroPozo;
  * @author diego
  */
 public class PipePozo<T> implements Pipe<T>  {
+    private Filtro filtro;
     @Override
     public void ejecutar(T pozo) {
-        Filtro f = new FiltroPozo();
-        f.ejecutar(pozo);
+        
+        filtro.ejecutar(pozo);
       
+    }
+    @Override
+    public Filtro getFiltro() {
+        return filtro;
+    }
+    @Override
+    public void setFiltro(Filtro filtro) {
+        this.filtro = filtro;
     }
 }

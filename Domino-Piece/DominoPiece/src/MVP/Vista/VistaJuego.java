@@ -811,7 +811,9 @@ public class VistaJuego extends javax.swing.JFrame {
         this.setContentPane(tablero);
 
 //        tablero.setLayout(null);
+        this.remove(btnRobar);
         tablero.add(btnRobar);
+        
         btnRobar.setVisible(true);
         tablero.add(btnPasarTurno);
         tablero.add(btnTerminar);

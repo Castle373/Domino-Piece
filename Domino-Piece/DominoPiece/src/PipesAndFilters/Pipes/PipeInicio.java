@@ -13,14 +13,22 @@ import PipesAndFilters.Filters.FiltroInicio;
  *
  * @author diego
  */
-public class PipeInicio<T extends Evento>  implements Pipe<T> {
+ class PipeInicio<T extends Evento>  implements Pipe<T> {
 
-
+    private Filtro filtro;
     @Override
     public void ejecutar(T claseInicial) {
-        Filtro<T> f = new FiltroInicio();
-        f.ejecutar(claseInicial);
+        
+        filtro.ejecutar(claseInicial);
 
+    }
+    @Override
+    public Filtro getFiltro() {
+        return filtro;
+    }
+    @Override
+    public void setFiltro(Filtro filtro) {
+        this.filtro = filtro;
     }
 
 }

@@ -14,10 +14,33 @@ import PipesAndFilters.Filters.FiltroCrearPartida;
  */
 public class PipeCrearJugador<T> implements Pipe<T> {
 
+    private volatile static PipeCrearJugador instance;
+
+    public static synchronized PipeCrearJugador getInstance() {
+
+        if (instance == null) {
+
+            instance = new PipeCrearJugador();
+
+        }
+        return instance;
+    }
+    private Filtro filtro;
+
     @Override
     public void ejecutar(T jugador) {
-        Filtro f = new FiltroCrearJugador();
-        f.ejecutar(jugador);
-      
+
+        filtro.ejecutar(jugador);
+
+    }
+
+    @Override
+    public Filtro getFiltro() {
+        return filtro;
+    }
+
+    @Override
+    public void setFiltro(Filtro filtro) {
+        this.filtro = filtro;
     }
 }

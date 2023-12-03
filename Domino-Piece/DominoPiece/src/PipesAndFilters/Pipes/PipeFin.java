@@ -5,6 +5,7 @@
 package PipesAndFilters.Pipes;
 
 import Evento.Evento;
+import PipesAndFilters.Filters.Filtro;
 import SocketCliente.Cliente;
 
 /**
@@ -12,7 +13,7 @@ import SocketCliente.Cliente;
  * @author diego
  */
 public class PipeFin<T extends Evento> implements Pipe<T> {
-
+    private Filtro filtro;
     @Override
     public void ejecutar(T resultado) {
         
@@ -20,5 +21,12 @@ public class PipeFin<T extends Evento> implements Pipe<T> {
         
         cliente.enviarAlServidor(resultado);
     }
-
+    @Override
+    public Filtro getFiltro() {
+        return filtro;
+    }
+    @Override
+    public void setFiltro(Filtro filtro) {
+        this.filtro = filtro;
+    }
 }

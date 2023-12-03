@@ -7,7 +7,7 @@ package MVP.Modelo;
 import Evento.CrearPartidaPF;
 import PipesAndFilters.Pipes.Pipe;
 import PipesAndFilters.Pipes.PipeCrearPartida;
-import PipesAndFilters.Pipes.PipeInicio;
+
 import SocketCliente.Cliente;
 import SocketCliente.JugadorConexion;
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class ModeloCrear {
 
     public void crearPartida(int fichasIniciales) {
 
-        Pipe<CrearPartidaPF> pipa = new PipeInicio();
+        Pipe<CrearPartidaPF> pipa = PipeCrearPartida.getInstance();
         CrearPartidaPF c = new CrearPartidaPF(fichasIniciales);
         pipa.ejecutar(c);
 

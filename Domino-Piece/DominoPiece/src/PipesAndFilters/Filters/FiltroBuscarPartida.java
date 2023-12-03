@@ -22,16 +22,27 @@ import java.util.UUID;
  */
 public class FiltroBuscarPartida<T extends Evento> implements Filtro<T> {
 
+    private Pipe pipe;
+
     @Override
     public void ejecutar(T buscar) {
-        
+
         if (buscar instanceof BuscarPartidaPF) {
-           buscar.setData(Acciones.BUSCAR_PARTIDA);
+            buscar.setData(Acciones.BUSCAR_PARTIDA);
         }
-        Pipe<T> pipaFin = new PipeFin();
-        pipaFin.ejecutar(buscar);
+//        Pipe<T> pipaFin = new PipeFin();
+        pipe.ejecutar(buscar);
 
     }
 
+    @Override
+    public Pipe getPipe() {
+        return pipe;
+    }
+
+    @Override
+    public void setPipe(Pipe pipe) {
+        this.pipe = pipe;
+    }
 
 }

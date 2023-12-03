@@ -13,7 +13,8 @@ import Evento.RobarPozoPF;
 import Evento.TerminarVotacionPF;
 import Grafico.TableroGrafico;
 import PipesAndFilters.Pipes.Pipe;
-import PipesAndFilters.Pipes.PipeInicio;
+import PipesAndFilters.Pipes.PipeMovimiento;
+
 
 import dominio_dominodto.FichaTableroDTO;
 import dominio_dominodto.JugadorDTO;
@@ -61,14 +62,14 @@ public class ModeloJuego {
 
     public void validaMovimiento(FichaTableroDTO ficha, int lado) {
 
-        Pipe<MovimientoPF> pipa = new PipeInicio();
+        Pipe<MovimientoPF> pipa = PipeMovimiento.getInstance();
         MovimientoPF v = new MovimientoPF(ficha, lado);
         pipa.ejecutar(v);
 
     }
 
     public void robarFicha() {
-        Pipe<RobarPozoPF> pipa = new PipeInicio();
+        Pipe<RobarPozoPF> pipa = PipeMovimiento.getInstance();
         RobarPozoPF v = new RobarPozoPF(jugador);
         pipa.ejecutar(v);
 
@@ -77,7 +78,7 @@ public class ModeloJuego {
 
 
     public void pasarTurno() { 
-        Pipe<PasarTurnoPF> pipa = new PipeInicio();
+        Pipe<PasarTurnoPF> pipa = PipeMovimiento.getInstance();
         PasarTurnoPF p = new PasarTurnoPF(jugador);
         pipa.ejecutar(p);
     }
@@ -98,18 +99,17 @@ public class ModeloJuego {
     }
 
     public void iniciarVotacion() {
-        Pipe<IniciarVotacionPF> pipa = new PipeInicio();
+        Pipe<IniciarVotacionPF> pipa = PipeMovimiento.getInstance();
         IniciarVotacionPF v = new IniciarVotacionPF();
         pipa.ejecutar(v);
     }
     public void iniciarVotacionTerminar() {
-        System.out.println("Entro");
-        Pipe<TerminarVotacionPF> pipa = new PipeInicio();
+        Pipe<TerminarVotacionPF> pipa = PipeMovimiento.getInstance();
         TerminarVotacionPF v = new TerminarVotacionPF();
         pipa.ejecutar(v);
     }
     public void respuestaVotacion(boolean respuesta) {
-        Pipe<RespuestaVotacionPF> pipa = new PipeInicio();
+        Pipe<RespuestaVotacionPF> pipa = PipeMovimiento.getInstance();
         RespuestaVotacionPF v = new RespuestaVotacionPF(respuesta);
         pipa.ejecutar(v);
     }

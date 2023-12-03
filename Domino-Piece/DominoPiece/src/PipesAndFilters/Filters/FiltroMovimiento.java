@@ -15,7 +15,7 @@ import dominio_dominodto.MovimientoDTO;
  * @author diego
  */
 public class FiltroMovimiento<T> implements Filtro<T> {
-
+private Pipe pipe;
     @Override
     public void ejecutar(T movimiento) {
         MovimientoDTO movimientoDto = new MovimientoDTO();
@@ -25,8 +25,16 @@ public class FiltroMovimiento<T> implements Filtro<T> {
             ((MovimientoPF) movimiento).setData(movimientoDto);
            
         }
-        Pipe<T> pipaPozo = new PipePozo();
-        pipaPozo.ejecutar(movimiento);
+       
+        pipe.ejecutar(movimiento);
+    }
+@Override
+    public Pipe getPipe() {
+        return pipe;
     }
 
+    @Override
+    public void setPipe(Pipe pipe) {
+        this.pipe = pipe;
+    }
 }

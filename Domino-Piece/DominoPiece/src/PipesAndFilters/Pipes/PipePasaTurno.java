@@ -13,10 +13,19 @@ import PipesAndFilters.Filters.FiltroPasaTurno;
  * @author diego
  */
 public class PipePasaTurno<T> implements Pipe<T>  {
+    private Filtro filtro;
     @Override
     public void ejecutar(T turno) {
-        Filtro f = new FiltroPasaTurno();
-        f.ejecutar(turno);
+        
+        filtro.ejecutar(turno);
       
+    }
+    @Override
+    public Filtro getFiltro() {
+        return filtro;
+    }
+    @Override
+    public void setFiltro(Filtro filtro) {
+        this.filtro = filtro;
     }
 }

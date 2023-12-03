@@ -46,6 +46,7 @@ public class Cliente {
         if (instance == null) {
             Socket socket;
             try {
+                System.out.println("S");
                 socket = new Socket("localhost", 1234);
                 instance = new Cliente(socket);
             } catch (IOException ex) {

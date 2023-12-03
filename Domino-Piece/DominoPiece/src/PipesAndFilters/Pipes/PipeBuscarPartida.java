@@ -13,11 +13,19 @@ import PipesAndFilters.Filters.FiltroCrearJugador;
  * @author diego
  */
 public class PipeBuscarPartida <T> implements Pipe<T> {
-
+    private Filtro filtro;
     @Override
-    public void ejecutar(T jugador) {
-        Filtro f = new FiltroBuscarPartida();
-        f.ejecutar(jugador);
-      
+    public void ejecutar(T jugador) {     
+        filtro.ejecutar(jugador);
     }
+    @Override
+    public Filtro getFiltro() {
+        return filtro;
+    }
+    @Override
+    public void setFiltro(Filtro filtro) {
+        this.filtro = filtro;
+    }
+
+    
 }

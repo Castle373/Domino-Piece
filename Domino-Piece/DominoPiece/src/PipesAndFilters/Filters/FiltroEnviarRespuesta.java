@@ -12,7 +12,7 @@ import dominio_dominodto.RespuestaDTO;
  * @author IVAN
  */
 public class FiltroEnviarRespuesta <T> implements Filtro<T> {
-
+private Pipe pipe;
     @Override
     public void ejecutar(T respuesta) {
        RespuestaDTO r = new RespuestaDTO();
@@ -22,8 +22,16 @@ public class FiltroEnviarRespuesta <T> implements Filtro<T> {
             r = new RespuestaDTO( rpf.isRespuestaP());
             ((RespuestaVotacionPF) respuesta).setData(r);
         }
-        Pipe<T> pipaFin = new PipeFin();
-        pipaFin.ejecutar(respuesta);
+        
+        pipe.ejecutar(respuesta);
     }
-    
+    @Override
+    public Pipe getPipe() {
+        return pipe;
+    }
+
+    @Override
+    public void setPipe(Pipe pipe) {
+        this.pipe = pipe;
+    }
 }

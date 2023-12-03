@@ -4,10 +4,15 @@
  */
 package PipesAndFilters.Pipes;
 
+import PipesAndFilters.Filters.Filtro;
+
+
 /**
  *
  * @author diego
  */
 public interface Pipe<T> {
     public void ejecutar(T s);
+    public Filtro getFiltro();
+    public void setFiltro(Filtro f);
 }

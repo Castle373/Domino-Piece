@@ -62,40 +62,41 @@ public class Votacion extends Thread {
         respuestasVotacion = new ArrayList<>();
         while (verificar) {
             int votaciones = 0;
+            try {
+                System.out.printf("");
+                for (int i = 0; i < respuestasVotacion.size(); i++) {
+                    votaciones++;
 
-            System.out.printf("");
-            for (int i = 0; i < respuestasVotacion.size(); i++) {
-                votaciones++;
-        
-                if (respuestasVotacion.get(i) == false) {
-                    verificar = false;
-                    server.sendToAll(Acciones.NO_INICIAR);
-                    if (terminarPartida) {
-                        server.sendToAll(Acciones.NO_TERMINAR);
-                    }
-
-                } else if (votaciones == cantidadNecesaria) {
-                    if (!terminarPartida) {                       
+                    if (respuestasVotacion.get(i) == false) {
                         verificar = false;
-                        Sink.getInstance().iniciarPartida();
-                        server.enviarJugadores();
-                        server.enviarPartida();
-                        server.sendToAll(Acciones.INICIAR_PARTIDA);
-                    } else {
-                        verificar = false;        
-                        server.enviarJugadores();
-                        server.enviarPartida();
-                        
-                        List<JugadorDTO> listaPuntaciones = Sink.getInstance().getPuntuaciones();
-                        
-                        TerminarDTO terminar = new TerminarDTO(listaPuntaciones, Acciones.TERMINAR_PARTIDA_VOTACION);
-                        server.sendToAll(terminar);
+                        server.sendToAll(Acciones.NO_INICIAR);
+                        if (terminarPartida) {
+                            server.sendToAll(Acciones.NO_TERMINAR);
+                        }
 
-                        System.out.println("Envio a todo el terminar");
+                    } else if (votaciones == cantidadNecesaria) {
+                        if (!terminarPartida) {
+                            verificar = false;
+                            Sink.getInstance().iniciarPartida();
+                            server.enviarJugadores();
+                            server.enviarPartida();
+                            server.sendToAll(Acciones.INICIAR_PARTIDA);
+                        } else {
+                            verificar = false;
+                            server.enviarJugadores();
+                            server.enviarPartida();
+
+                            List<JugadorDTO> listaPuntaciones = Sink.getInstance().getPuntuaciones();
+
+                            TerminarDTO terminar = new TerminarDTO(listaPuntaciones, Acciones.TERMINAR_PARTIDA_VOTACION);
+                            server.sendToAll(terminar);
+
+                        }
 
                     }
 
                 }
+            } catch (Exception e) {
 
             }
 

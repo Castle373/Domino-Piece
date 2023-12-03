@@ -51,15 +51,19 @@ public class JugadorThread extends Thread {
     }
 
     public void enviarPartidaActual() {
-        PartidaDTO partidaActual = sink.getPartidaDTO();
-        server.sendToAll(partidaActual);
+        if (jugador != null) {
+            PartidaDTO partidaActual = sink.getPartidaDTO();
+            server.sendToAll(partidaActual);
+        }
+
     }
 
     public void enviarJugador() {
+        if (jugador != null) {
+            jugador = sink.getJugadorDTO(jugador.getId());
+            server.sendToOne(jugador, out);
+        }
 
-        jugador = sink.getJugadorDTO(jugador.getId());
-
-        server.sendToOne(jugador, out);
     }
 
     public void enviarTodos(Object o) {
@@ -99,6 +103,10 @@ public class JugadorThread extends Thread {
                     enviarPartidaActual();
 
                     if (sink.getPartidaDTO().getJugadores().size() >= 4) {
+                        System.out.println("Son: " + sink.getPartidaDTO().getJugadores().size());
+                        for (JugadorDTO jugadore : sink.getPartidaDTO().getJugadores()) {
+                            System.out.println(jugadore.getId());
+                        }
                         sink.iniciarPartida();
                         server.enviarJugadores();
                         server.enviarPartida();
@@ -181,12 +189,12 @@ public class JugadorThread extends Thread {
                 if (objecto instanceof BuscarPartidaPF) {
 
                     BuscarPartidaPF p = (BuscarPartidaPF) objecto;
-                    if (sink.getPartida()==null) {
+                    if (sink.getPartida() == null) {
                         enviarAUno(Acciones.NO_HAY_PARTIDA);
-                    }else{
+                    } else {
                         enviarAUno(Acciones.SI_HAY_PARTIDA);
                     }
-                    
+
                 }
                 if (objecto instanceof TerminarVotacionPF) {
                     TerminarVotacionPF pf = (TerminarVotacionPF) objecto;
@@ -210,16 +218,15 @@ public class JugadorThread extends Thread {
                 enviarPartidaActual();
                 if (sink.getPartida().getJugadores().isEmpty()) {
                     sink.setPartida(null);
-                }
-                else if (sink.getPartida().getTablero()!=null) {
-                    if (sink.getPartida().getJugadores().size()!=1) {
-                        if ( Votacion.getInstance().isAlive()) {
-                             Votacion.getInstance().respuestaVotacion(false);
+                } else if (sink.getPartida().getTablero() != null) {
+                    if (sink.getPartida().getJugadores().size() != 1) {
+                        if (Votacion.getInstance().isAlive()) {
+                            Votacion.getInstance().respuestaVotacion(false);
                         }
                     }
-                    if (sink.getPartida().getJugadores().size()==1) {
-                        if ( Votacion.getInstance().isAlive()) {
-                             Votacion.getInstance().respuestaVotacion(false);
+                    if (sink.getPartida().getJugadores().size() == 1) {
+                        if (Votacion.getInstance().isAlive()) {
+                            Votacion.getInstance().respuestaVotacion(false);
                         }
                         TerminarDTO terminar = new TerminarDTO(sink.getPuntuaciones(), Acciones.TERMINAR_PARTIDA_VOTACION);
                         server.sendToAll(terminar);

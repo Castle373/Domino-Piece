@@ -8,7 +8,8 @@ import Evento.CrearPartidaPF;
 import Evento.JugadorPF;
 import Evento.VerificarAvatarPF;
 import PipesAndFilters.Pipes.Pipe;
-import PipesAndFilters.Pipes.PipeInicio;
+import PipesAndFilters.Pipes.PipeCrearJugador;
+
 
 import dominio_dominodto.JugadorDTO;
 import java.awt.Image;
@@ -56,7 +57,7 @@ public class ModeloUnirse {
     
 
     public void crearJugador() {
-        Pipe<JugadorPF> pipa = new PipeInicio();
+        Pipe<JugadorPF> pipa = PipeCrearJugador.getInstance();
         JugadorPF j = new JugadorPF(nombre, avatar);
         pipa.ejecutar(j);
     }
@@ -70,7 +71,7 @@ public class ModeloUnirse {
     }
     
     public void verificarAvatar(String avatar) {
-        Pipe<VerificarAvatarPF> pipa = new PipeInicio();
+        Pipe<VerificarAvatarPF> pipa = PipeCrearJugador.getInstance();
         VerificarAvatarPF v = new VerificarAvatarPF(avatar);
         pipa.ejecutar(v);
     }

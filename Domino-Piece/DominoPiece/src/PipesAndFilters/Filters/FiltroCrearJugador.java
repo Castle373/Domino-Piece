@@ -18,6 +18,8 @@ import java.util.UUID;
  */
 public class FiltroCrearJugador<T extends Evento> implements Filtro<T> {
 
+    private Pipe pipe;
+    
     @Override
     public void ejecutar(T jugador) {
         JugadorDTO j = new JugadorDTO();
@@ -31,9 +33,19 @@ public class FiltroCrearJugador<T extends Evento> implements Filtro<T> {
             ((JugadorPF) jugador).setData(j);
         }
 
-        Pipe<T> pipaFin = new PipeVerificarAvatar();
-        pipaFin.ejecutar(jugador);
+       
+        pipe.ejecutar(jugador);
 
+    }
+
+    @Override
+    public Pipe getPipe() {
+        return pipe;
+    }
+
+    @Override
+    public void setPipe(Pipe pipe) {
+        this.pipe = pipe;
     }
 
 }

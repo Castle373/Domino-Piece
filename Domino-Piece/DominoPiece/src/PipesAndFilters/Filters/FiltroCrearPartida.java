@@ -17,7 +17,7 @@ import dominio_dominodto.PartidaDTO;
  * @author diego
  */
 public class FiltroCrearPartida<T extends Evento> implements Filtro<T> {
-
+private Pipe pipe;
     @Override
     public void ejecutar(T numeroFichas) {
         PartidaDTO p = new PartidaDTO();
@@ -27,9 +27,18 @@ public class FiltroCrearPartida<T extends Evento> implements Filtro<T> {
             p = new PartidaDTO(((CrearPartidaPF) numeroFichas).getNumfichas());
             ((CrearPartidaPF) numeroFichas).setData(p);
         }
-        Pipe<T> pipaFin = new PipeBuscarPartida<>();
-        pipaFin.ejecutar(numeroFichas);
+        
+        pipe.ejecutar(numeroFichas);
 
     }
 
+    @Override
+    public Pipe getPipe() {
+        return pipe;
+    }
+
+    @Override
+    public void setPipe(Pipe pipe) {
+        this.pipe = pipe;
+    }
 }

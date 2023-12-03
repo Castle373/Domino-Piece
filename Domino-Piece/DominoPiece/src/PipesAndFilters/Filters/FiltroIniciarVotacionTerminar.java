@@ -16,7 +16,7 @@ import dominio_dominodto.Acciones;
  * @author diego
  */
 public class FiltroIniciarVotacionTerminar <T extends Evento> implements Filtro<T> {
-
+private Pipe pipe;
     @Override
     public void ejecutar(T objeto) {
 
@@ -24,8 +24,16 @@ public class FiltroIniciarVotacionTerminar <T extends Evento> implements Filtro<
 
             ((TerminarVotacionPF) objeto).setData(Acciones.INICIAR_VOTACION_TERMINAR);
         }
-        Pipe<T> pipaFin = new PipeRespuestaVotacion();
-        pipaFin.ejecutar(objeto);
+        
+        pipe.ejecutar(objeto);
+    }
+@Override
+    public Pipe getPipe() {
+        return pipe;
     }
 
+    @Override
+    public void setPipe(Pipe pipe) {
+        this.pipe = pipe;
+    }
 }

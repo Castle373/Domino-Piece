@@ -12,12 +12,24 @@ import PipesAndFilters.Filters.FiltroIniciarVotacion;
  *
  * @author IVAN
  */
-public class PipeIniciarVotacion <T extends Evento>  implements Pipe<T> {
+public class PipeIniciarVotacion<T extends Evento> implements Pipe<T> {
+
+    private Filtro filtro;
 
     @Override
     public void ejecutar(T s) {
-       Filtro<T> f = new FiltroIniciarVotacion();
-        f.ejecutar(s);
+
+        filtro.ejecutar(s);
     }
-    
+
+    @Override
+    public Filtro getFiltro() {
+        return filtro;
+    }
+
+    @Override
+    public void setFiltro(Filtro filtro) {
+        this.filtro = filtro;
+    }
+
 }

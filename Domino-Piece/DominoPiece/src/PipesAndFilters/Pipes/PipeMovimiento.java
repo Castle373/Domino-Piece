@@ -12,11 +12,35 @@ import PipesAndFilters.Filters.FiltroMovimiento;
  *
  * @author diego
  */
-public class PipeMovimiento<T> implements Pipe<T>  {
+public class PipeMovimiento<T> implements Pipe<T> {
+
+    private volatile static PipeMovimiento instance;
+
+    public static synchronized PipeMovimiento getInstance() {
+
+        if (instance == null) {
+
+            instance = new PipeMovimiento();
+
+        }
+        return instance;
+    }
+    private Filtro filtro;
+
     @Override
     public void ejecutar(T movimiento) {
-        Filtro f = new FiltroMovimiento();
-        f.ejecutar(movimiento);
-      
+
+        filtro.ejecutar(movimiento);
+
+    }
+
+    @Override
+    public Filtro getFiltro() {
+        return filtro;
+    }
+
+    @Override
+    public void setFiltro(Filtro filtro) {
+        this.filtro = filtro;
     }
 }

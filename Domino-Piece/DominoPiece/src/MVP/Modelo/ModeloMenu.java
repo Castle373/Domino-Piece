@@ -7,7 +7,8 @@ package MVP.Modelo;
 import Evento.BuscarPartidaPF;
 import Evento.MovimientoPF;
 import PipesAndFilters.Pipes.Pipe;
-import PipesAndFilters.Pipes.PipeInicio;
+import PipesAndFilters.Pipes.PipeCrearPartida;
+
 import SocketCliente.Cliente;
 import SocketCliente.JugadorConexion;
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class ModeloMenu {
     }
 
     public void buscarPartida() {
-        Pipe<BuscarPartidaPF> pipa = new PipeInicio();
+        Pipe<BuscarPartidaPF> pipa = PipeCrearPartida.getInstance();
         BuscarPartidaPF v = new BuscarPartidaPF();
         pipa.ejecutar(v);
     }
