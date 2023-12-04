@@ -47,6 +47,11 @@ public class Server {
             }
         }
     }
+    public void borrarJugadores(){
+        for (JugadorThread jugadorThread : clienteJugadores) {
+            jugadorThread.setJugador(null);
+        }
+    }
 
     public void sendToOne(Object obj, ObjectOutputStream outPut) {
             try {

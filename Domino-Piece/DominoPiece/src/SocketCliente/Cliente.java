@@ -12,6 +12,7 @@ import Evento.MovimientoPF;
 import Evento.PasarTurnoPF;
 import Evento.RespuestaVotacionPF;
 import Evento.RobarPozoPF;
+import Evento.SalirPartidaPF;
 import Evento.TerminarVotacionPF;
 import Evento.VerificarAvatarPF;
 import MVP.Presentador.Observable;
@@ -86,6 +87,16 @@ public class Cliente {
                 return false;
             }
         }
+        if (objecto instanceof SalirPartidaPF) {
+            SalirPartidaPF s = (SalirPartidaPF) objecto;
+            try {
+                j.enviarAlServidor(s);
+                return true;
+            } catch (IOException ex) {
+                System.out.println(ex);
+                return false;
+            }
+        }        
         //Acciones de Validar avatar
         if (objecto instanceof VerificarAvatarPF) {
             VerificarAvatarPF p = (VerificarAvatarPF) objecto;

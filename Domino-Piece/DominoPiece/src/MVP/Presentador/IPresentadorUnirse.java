@@ -20,7 +20,7 @@ public interface IPresentadorUnirse {
 
     public void mostrarPantallaJuego();
 
-    public void enviarJugador();
+//    public void enviarJugador();
 
     public JugadorDTO obtenerJugador();
 

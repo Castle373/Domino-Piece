@@ -33,7 +33,7 @@ public interface IPresentacionJuego {
 
     public PartidaDTO getPartida();
 
-   
+    public void salirPartida();
 
     public boolean isTurno();
 

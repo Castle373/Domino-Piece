@@ -25,10 +25,11 @@ import java.util.List;
 public class PresentadorJuego implements IPresentacionJuego, Observer {
 
     private ModeloJuego modelo;
-
+    private IPresentadorMenu presentadorMenu;
     private VistaJuego vista;
 
-    public PresentadorJuego() {
+    public PresentadorJuego(IPresentadorMenu presentadorMenu) {
+        this.presentadorMenu = presentadorMenu;
         vista = new VistaJuego(this);
         modelo = new ModeloJuego();
     }
@@ -98,7 +99,6 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
             JugadorDTO j = (JugadorDTO) loquesea;
             this.guardarJugador(j);
             vista.asignarJugadorJugando(j);
-
         } else if (loquesea instanceof MovimientoDTO) {
             MovimientoDTO m = (MovimientoDTO) loquesea;
             if (m.isValido()) {
@@ -158,5 +158,12 @@ public class PresentadorJuego implements IPresentacionJuego, Observer {
         } else {
             vista.mostrarMensaje();
         }
+    }
+
+    @Override
+    public void salirPartida() {
+        modelo.salirPartida();
+        presentadorMenu.mostrarMenu();
+        vista.dispose();
     }
 }

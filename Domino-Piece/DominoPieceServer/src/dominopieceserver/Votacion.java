@@ -90,7 +90,8 @@ public class Votacion extends Thread {
 
                             TerminarDTO terminar = new TerminarDTO(listaPuntaciones, Acciones.TERMINAR_PARTIDA_VOTACION);
                             server.sendToAll(terminar);
-
+                            Sink.getInstance().setPartida(null);
+                            server.borrarJugadores();
                         }
 
                     }

@@ -29,7 +29,7 @@ public class PresentadorUnirse implements IPresentadorUnirse, Observer {
         this.menu = menu;
         vista = new VistaUnirse(this);
         modelo = new ModeloUnirse();
-        presentadorJuego = new PresentadorJuego();
+        presentadorJuego = new PresentadorJuego(menu);
         Cliente cliente = Cliente.getInstance();
         cliente.agregarObserver((Observer) presentadorJuego);
         cliente.agregarObserver(this);
@@ -56,10 +56,10 @@ public class PresentadorUnirse implements IPresentadorUnirse, Observer {
         vista.dispose();
     }
 
-    @Override
-    public void enviarJugador() {
-        presentadorJuego.guardarJugador(obtenerJugador());
-    }
+//    @Override
+//    public void enviarJugador() {
+//        presentadorJuego.guardarJugador(obtenerJugador());
+//    }
 
     @Override
     public JugadorDTO obtenerJugador() {

@@ -19,7 +19,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 /**
  *
@@ -32,13 +34,13 @@ public class VistaJuego extends javax.swing.JFrame {
     private TableroGrafico tablero;
     private boolean respuesta;
     private boolean partidaIniciada = false;
-     private boolean votar=false;
+    private boolean votar = false;
 
     /**
      * Creates new form VistaJuego
      */
     public VistaJuego(IPresentacionJuego presentador) {
-       
+
         this.presentador = presentador;
         tablero = new TableroGrafico(this);
         initComponents();
@@ -198,7 +200,9 @@ public class VistaJuego extends javax.swing.JFrame {
         Jugador3.setPreferredSize(new java.awt.Dimension(500, 130));
         Jugador3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblJugador3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblJugador3.setText("Jugador:");
+        lblJugador3.setPreferredSize(new java.awt.Dimension(200, 20));
         Jugador3.add(lblJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 44, -1, -1));
         Jugador3.add(lblAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -209,7 +213,9 @@ public class VistaJuego extends javax.swing.JFrame {
         Jugador2.setPreferredSize(new java.awt.Dimension(500, 130));
         Jugador2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblJugador2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblJugador2.setText("Jugador:");
+        lblJugador2.setPreferredSize(new java.awt.Dimension(200, 20));
         Jugador2.add(lblJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 44, -1, -1));
         Jugador2.add(lblAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -220,7 +226,9 @@ public class VistaJuego extends javax.swing.JFrame {
         Jugador4.setPreferredSize(new java.awt.Dimension(500, 130));
         Jugador4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblJugador4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblJugador4.setText("Jugador:");
+        lblJugador4.setPreferredSize(new java.awt.Dimension(200, 20));
         Jugador4.add(lblJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 44, -1, -1));
         Jugador4.add(lblAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -231,7 +239,9 @@ public class VistaJuego extends javax.swing.JFrame {
         Jugador1.setPreferredSize(new java.awt.Dimension(500, 130));
         Jugador1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblJugador1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblJugador1.setText("Jugador:");
+        lblJugador1.setPreferredSize(new java.awt.Dimension(200, 20));
         Jugador1.add(lblJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 44, -1, -1));
         Jugador1.add(lblAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -276,23 +286,25 @@ public class VistaJuego extends javax.swing.JFrame {
                     .addGroup(pantallaesperaLayout.createSequentialGroup()
                         .addComponent(Jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(210, 210, 210)
-                        .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnIniciarVotacion, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(btnAbandonarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(pantallaesperaLayout.createSequentialGroup()
                         .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnIniciarVotacion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAbandonarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pantallaesperaLayout.createSequentialGroup()
+                        .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(210, 210, 210)
+                        .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRobar, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pantallaesperaLayout.createSequentialGroup()
-                                .addGap(190, 190, 190)
-                                .addComponent(Votacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(62, 62, 62)
-                        .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnRobar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPasarTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTerminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(Jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                                .addGap(42, 42, 42)
+                                .addComponent(btnPasarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pantallaesperaLayout.createSequentialGroup()
+                        .addGap(752, 752, 752)
+                        .addComponent(btnTerminar))
+                    .addComponent(Jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pantallaesperaLayout.createSequentialGroup()
+                        .addGap(320, 320, 320)
+                        .addComponent(Votacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         pantallaesperaLayout.setVerticalGroup(
             pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,29 +315,29 @@ public class VistaJuego extends javax.swing.JFrame {
                     .addGroup(pantallaesperaLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(btnIniciarVotacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(13, 13, 13)
                         .addComponent(btnAbandonarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(1, 1, 1)
+                .addGap(2, 2, 2)
                 .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pantallaesperaLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pantallaesperaLayout.createSequentialGroup()
-                                .addGap(150, 150, 150)
-                                .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pantallaesperaLayout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(Votacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(168, 168, 168)
+                        .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pantallaesperaLayout.createSequentialGroup()
                         .addComponent(btnRobar)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnPasarTurno)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnTerminar)))
-                .addGap(10, 10, 10)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnPasarTurno))
+                    .addGroup(pantallaesperaLayout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(btnTerminar))
+                    .addGroup(pantallaesperaLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(Jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pantallaesperaLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(Votacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(Jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pantallaPuntuaciones.setBackground(new java.awt.Color(0, 153, 0));
@@ -529,7 +541,8 @@ public class VistaJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAbandonarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbandonarPartidaActionPerformed
-        // TODO add your handling code here:
+        presentador.salirPartida();
+
     }//GEN-LAST:event_btnAbandonarPartidaActionPerformed
     public void limpiarInformacion() {
         // Limpia los textos de los JLabels
@@ -537,61 +550,75 @@ public class VistaJuego extends javax.swing.JFrame {
         lblJugador2.setText("");
         lblJugador3.setText("");
         lblJugador4.setText("");
-        
+        lblJugador1.setBounds(lblJugador1.getX(), lblAvatar1.getY(), 200, 20);
+        lblJugador2.setBounds(lblJugador2.getX(), lblAvatar2.getY(), 200, 20);
+        lblJugador3.setBounds(lblJugador3.getX(), lblAvatar3.getY(), 200, 20);
+        lblJugador4.setBounds(lblJugador4.getX(), lblAvatar4.getY(), 200, 20);
         // Limpia los iconos de los JLabels
         lblAvatar1.setIcon(null);
         lblAvatar2.setIcon(null);
         lblAvatar3.setIcon(null);
         lblAvatar4.setIcon(null);
+        lblAvatar1.setBounds(lblAvatar1.getX(), lblAvatar1.getY(), 130, 130);
+        lblAvatar2.setBounds(lblAvatar2.getX(), lblAvatar2.getY(), 130, 130);
+        lblAvatar3.setBounds(lblAvatar3.getX(), lblAvatar3.getY(), 130, 130);
+        lblAvatar4.setBounds(lblAvatar4.getX(), lblAvatar4.getY(), 130, 130);
     }
+
     public void limpiarInformacionP() {
         // Limpia los textos de los JLabels
         lblJugadorP1.setText("");
         lblJugadorP2.setText("");
         lblJugadorP3.setText("");
         lblJugadorP4.setText("");
-        
+
         // Limpia los iconos de los JLabels
         lblAvatarP1.setIcon(null);
         lblAvatarP2.setIcon(null);
         lblAvatarP3.setIcon(null);
         lblAvatarP4.setIcon(null);
     }
-    public void TerminarPartida(){
+
+    public void TerminarPartida() {
         this.remove(tablero);
         pantallaPuntuaciones.setVisible(true);
         pantallaespera.setVisible(false);
         this.setContentPane(pantallaPuntuaciones);
         this.repaint();
-        
+
     }
 
     public void mostrarJugadores() {
         List<JugadorDTO> list = presentador.listaJugadores();
+        System.out.println("hay " + list.size());
         limpiarInformacion();
         if (!partidaIniciada) {
             for (int i = 0; i < list.size(); i++) {
                 if (i == 0) {
-                    lblJugador1.setText(list.get(0).getNombre());
-                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(0).getAvatar()));
+
+                    lblJugador1.setText(list.get(i).getNombre());
+                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(i).getAvatar()));
                     ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
                     lblAvatar1.setIcon(iconoRedimensionado);
                 }
                 if (i == 1) {
-                    lblJugador2.setText(list.get(1).getNombre());
-                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(1).getAvatar()));
+
+                    lblJugador2.setText(list.get(i).getNombre());
+
+                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(i).getAvatar()));
                     ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
                     lblAvatar2.setIcon(iconoRedimensionado);
                 }
                 if (i == 2) {
-                    lblJugador3.setText(list.get(2).getNombre());
-                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(2).getAvatar()));
+
+                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(i).getAvatar()));
                     ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
                     lblAvatar3.setIcon(iconoRedimensionado);
                 }
                 if (i == 3) {
-                    lblJugador4.setText(list.get(3).getNombre());
-                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(3).getAvatar()));
+
+                    lblJugador4.setText(list.get(i).getNombre());
+                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(i).getAvatar()));
                     ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
                     lblAvatar4.setIcon(iconoRedimensionado);
                 }
@@ -601,6 +628,11 @@ public class VistaJuego extends javax.swing.JFrame {
         this.setPartidaTablero();
 //        tablero.setPartida(presentador.getPartida());
         tablero.repaint();
+        Jugador1.repaint();
+        Jugador2.repaint();
+        Jugador3.repaint();
+        Jugador4.repaint();
+
     }
 
     public boolean isVotar() {
@@ -610,8 +642,7 @@ public class VistaJuego extends javax.swing.JFrame {
     public void setVotar(boolean votar) {
         this.votar = votar;
     }
-    
-    
+
     public void mostrarPuntuaciones(List<JugadorDTO> jugadores) {
         List<JugadorDTO> list = jugadores;
         List<Integer> puntaciones = new ArrayList<>();
@@ -623,66 +654,66 @@ public class VistaJuego extends javax.swing.JFrame {
                 total += fichaDTO.getPuntoAbajo();
             }
             if (jugadorDTO.getFichasJugador().isEmpty()) {
-                total=-1;
+                total = -1;
             }
             puntaciones.add(total);
         }
-            limpiarInformacionP();
-            JugadorPuntacion1.setVisible(false);
-            JugadorPuntacion2.setVisible(false);
-            JugadorPuntacion3.setVisible(false);
-            JugadorPuntacion4.setVisible(false);
-            lblCoronitaBroce.setVisible(false);
-            lblCoronitaDorada.setVisible(false);
-            lblCoronitaPlateada.setVisible(false);
-            for (int i = 0; i < list.size(); i++) {
-                if (i == 0) {
-                    JugadorPuntacion1.setVisible(true);
-                    lblJugadorP1.setText("Jugador: "+list.get(0).getNombre());
-                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(0).getAvatar()));
-                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
-                    lblAvatarP1.setIcon(iconoRedimensionado);
-                    lblCoronitaDorada.setVisible(true);
-                    if (puntaciones.get(i)==-1) {
-                        lblPuntosP1.setText("");
-                    }else{
-                        lblPuntosP1.setText("Puntos Restantes: "+puntaciones.get(i));
-                    }
-                    
+        limpiarInformacionP();
+        JugadorPuntacion1.setVisible(false);
+        JugadorPuntacion2.setVisible(false);
+        JugadorPuntacion3.setVisible(false);
+        JugadorPuntacion4.setVisible(false);
+        lblCoronitaBroce.setVisible(false);
+        lblCoronitaDorada.setVisible(false);
+        lblCoronitaPlateada.setVisible(false);
+        for (int i = 0; i < list.size(); i++) {
+            if (i == 0) {
+                JugadorPuntacion1.setVisible(true);
+                lblJugadorP1.setText("Jugador: " + list.get(0).getNombre());
+                ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(0).getAvatar()));
+                ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                lblAvatarP1.setIcon(iconoRedimensionado);
+                lblCoronitaDorada.setVisible(true);
+                if (puntaciones.get(i) == -1) {
+                    lblPuntosP1.setText("");
+                } else {
+                    lblPuntosP1.setText("Puntos Restantes: " + puntaciones.get(i));
                 }
-                if (i == 1) {
-                    JugadorPuntacion2.setVisible(true);
-                    lblJugadorP2.setText("Jugador: "+list.get(1).getNombre());
-                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(1).getAvatar()));
-                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
-                    lblAvatarP2.setIcon(iconoRedimensionado);
-                    lblCoronitaPlateada.setVisible(true);
-                    lblPuntosP2.setText("Puntos Restantes: "+puntaciones.get(i));
-                }
-                if (i == 2) {
-                    JugadorPuntacion3.setVisible(true);
-                    lblJugadorP3.setText("Jugador: "+list.get(2).getNombre());
-                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(2).getAvatar()));
-                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
-                    lblAvatarP3.setIcon(iconoRedimensionado);
-                    lblCoronitaBroce.setVisible(true);
-                    lblPuntosP3.setText("Puntos Restantes: "+puntaciones.get(i));
-                }
-                if (i == 3) {
-                    JugadorPuntacion4.setVisible(true);
-                    lblJugadorP4.setText("Jugador: "+list.get(3).getNombre());
-                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(3).getAvatar()));
-                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
-                    lblAvatarP4.setIcon(iconoRedimensionado);
-                    lblPuntosP4.setText("Puntos Restantes: "+puntaciones.get(i));
-                }
+
             }
-        
+            if (i == 1) {
+                JugadorPuntacion2.setVisible(true);
+                lblJugadorP2.setText("Jugador: " + list.get(1).getNombre());
+                ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(1).getAvatar()));
+                ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                lblAvatarP2.setIcon(iconoRedimensionado);
+                lblCoronitaPlateada.setVisible(true);
+                lblPuntosP2.setText("Puntos Restantes: " + puntaciones.get(i));
+            }
+            if (i == 2) {
+                JugadorPuntacion3.setVisible(true);
+                lblJugadorP3.setText("Jugador: " + list.get(2).getNombre());
+                ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(2).getAvatar()));
+                ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                lblAvatarP3.setIcon(iconoRedimensionado);
+                lblCoronitaBroce.setVisible(true);
+                lblPuntosP3.setText("Puntos Restantes: " + puntaciones.get(i));
+            }
+            if (i == 3) {
+                JugadorPuntacion4.setVisible(true);
+                lblJugadorP4.setText("Jugador: " + list.get(3).getNombre());
+                ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(3).getAvatar()));
+                ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                lblAvatarP4.setIcon(iconoRedimensionado);
+                lblPuntosP4.setText("Puntos Restantes: " + puntaciones.get(i));
+            }
+        }
 
         this.setPartidaTablero();
 //        tablero.setPartida(presentador.getPartida());
         tablero.repaint();
     }
+
     public void setPartidaTablero() {
         tablero.setPartida(presentador.getPartida());
         tablero.repintarFichasJugador();
@@ -693,7 +724,7 @@ public class VistaJuego extends javax.swing.JFrame {
     }
 
     public void robarFicha() {
-        if (!presentador.isTurno()) { 
+        if (!presentador.isTurno()) {
             return;
         }
         presentador.robarFicha();
@@ -781,7 +812,7 @@ public class VistaJuego extends javax.swing.JFrame {
     }
 
     public void colocarFicha(FichaTableroDTO f, int zona) {
-        
+
         switch (zona) {
             case 1:
                 System.out.println("inicial");
@@ -799,6 +830,8 @@ public class VistaJuego extends javax.swing.JFrame {
     }
 
     public void iniciarJuego() {
+         tablero.setLayout(null);
+//        tablero.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         Jugador1.setVisible(false);
         Jugador2.setVisible(false);
         Jugador3.setVisible(false);
@@ -812,26 +845,42 @@ public class VistaJuego extends javax.swing.JFrame {
 
 //        tablero.setLayout(null);
         this.remove(btnRobar);
-        tablero.add(btnRobar);
-        
+
+        this.remove(btnPasarTurno);
+        this.remove(btnTerminar);
+        this.remove(Votacion);
         btnRobar.setVisible(true);
-        tablero.add(btnPasarTurno);
-        tablero.add(btnTerminar);
+
         btnPasarTurno.setVisible(true);
-        btnPasarTurno.setBounds(5, 5, 100, 30);
+//        btnPasarTurno.setBounds(5, 5, 100, 30);
         btnTerminar.setVisible(true);
-        btnTerminar.setBounds(150, 5, 200, 30);
-        Rectangle s = Votacion.getBounds();
-        tablero.add(Votacion);
+//        btnTerminar.setBounds(150, 5, 200, 30);
+//        Rectangle s = Votacion.getBounds();
+//        Rectangle s1 = btnPasarTurno.getBounds();
+//        Rectangle s2 = btnTerminar.getBounds();
+//        Rectangle s3 = btnRobar.getBounds();
 
+        tablero.add(Votacion, new AbsoluteConstraints(Votacion.getX(), Votacion.getY(), Votacion.getWidth(), Votacion.getHeight()));
+        tablero.add(btnPasarTurno,new AbsoluteConstraints(btnPasarTurno.getX(), btnPasarTurno.getY(), btnPasarTurno.getWidth(), btnPasarTurno.getHeight()));
+        tablero.add(btnTerminar,new AbsoluteConstraints(btnTerminar.getX(), btnTerminar.getY(), btnTerminar.getWidth(), btnTerminar.getHeight()));
+        tablero.add(btnRobar,new AbsoluteConstraints(btnRobar.getX(), btnRobar.getY(), btnRobar.getWidth(), btnRobar.getHeight()));
+         btnPasarTurno.setVisible(true);
+         btnTerminar.setVisible(true);
+//        Votacion.setBounds(s);
+        btnPasarTurno.setBounds(300, 40, 130, 30);
+//        btnTerminar.setBounds(s2);
+        btnRobar.setBounds(440, 40, 130, 30);
+        btnTerminar.setBounds(580, 40, 220, 30);
         Votacion.setVisible(false);
-
+        Votacion.setBounds(440, 250, 500, 232);
+//        tablero.repaint();
 //        tablero.agregarFichasIniciales();
     }
 
     public void votacion() {
-        votar=true;
+        votar = true;
         btnIniciarVotacion.setVisible(false);
+        btnAbandonarPartida.setVisible(false);
         Jugador1.setVisible(false);
         Jugador2.setVisible(false);
         Jugador3.setVisible(false);
@@ -839,12 +888,13 @@ public class VistaJuego extends javax.swing.JFrame {
         Votacion.setVisible(true);
         BtnNo.setEnabled(true);
         btnSi.setEnabled(true);
-        Votacion.setBounds(300, 300, 200, 30);
+        Votacion.setBounds(440, 250, 500, 232);
     }
 
     public void votacionNoaceptada() {
         Votacion.setVisible(false);
         btnIniciarVotacion.setVisible(true);
+        btnAbandonarPartida.setVisible(true);
         Jugador1.setVisible(true);
         Jugador2.setVisible(true);
         Jugador3.setVisible(true);

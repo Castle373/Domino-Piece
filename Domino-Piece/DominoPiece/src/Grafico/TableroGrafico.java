@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -59,7 +60,9 @@ public class TableroGrafico extends JPanel {
     private JLabel nombre3;
     private JLabel nombre4;
 
+
     public TableroGrafico(VistaJuego vista) {
+    
         nombre1 = new JLabel();
         nombre2 = new JLabel();
         nombre3 = new JLabel();
@@ -86,7 +89,13 @@ public class TableroGrafico extends JPanel {
         this.add(nombre3);
         this.add(nombre4);
 
+//        nombre1.setBounds(130, 30,0,0);
+//        botonRobar.setBounds(300, 40, 100, 30);
+//        this.add(botonRobar);
+        
     }
+
+  
 
     public PartidaDTO getPartida() {
         return partida;
@@ -130,15 +139,23 @@ public class TableroGrafico extends JPanel {
 //        this.repaint();
 //    }
     public void repintarFichasJugador() {
-
+        boolean salir=false;
         List<IFichaGrafica> fichasJugador = new ArrayList<>();
         int zona = 100;
         int x = 400;
         int y = 550;
         for (int i = 0; i < jugadores.size(); i++) {
-            if (jugadores.get(i).getId() == jugador.getId()) {
-                zona = i;
+            
+            if (jugador != null) {
+                if (jugadores.get(i).getId() == jugador.getId()) {
+                    zona = i;
+                }
+            }else{
+                 salir=true;
             }
+        }
+        if (salir) {
+            return;
         }
         boolean lado = false;
         if (zona == 0) {
@@ -369,14 +386,14 @@ public class TableroGrafico extends JPanel {
             if (i == 0) {
 
                 nombre1.setText(jugadores.get(i).getNombre());
-                nombre1.setLocation(130, 30);
+                nombre1.setBounds(130, 30,100,30);
 
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
 
-                    borde1.setLocation(30, 26);
+                    borde1.setBounds(30, 26,100,75);
                     borde1.setIcon(marcoTurno);
                 } else {
-                    borde1.setLocation(30, 26);
+                    borde1.setBounds(30, 26,100,75);
                     borde1.setIcon(marcoNormal);
                 }
                 Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
@@ -385,13 +402,13 @@ public class TableroGrafico extends JPanel {
             if (i == 1) {
                 nombre2.setText(jugadores.get(i).getNombre());
                 int xNmobre = jugadores.get(i).getNombre().length() * 7;
-                nombre2.setLocation((1149 - xNmobre), 30);
+                nombre2.setBounds((1149 - xNmobre), 30,100,30);
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
 
-                    borde2.setLocation(1150, 26);
+                    borde2.setBounds(1150, 26,100,75);
                     borde2.setIcon(marcoTurno);
                 } else {
-                    borde2.setLocation(1150, 26);
+                    borde2.setBounds(1150, 26,100,75);
                     borde2.setIcon(marcoNormal);
 
                 }
@@ -401,13 +418,13 @@ public class TableroGrafico extends JPanel {
             if (i == 2) {
                 nombre3.setText(jugadores.get(i).getNombre());
 
-                nombre3.setLocation(130, 535);
+                nombre3.setBounds(130, 535,100,30);
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
 
-                    borde3.setLocation(30, 535);
+                    borde3.setBounds(30, 535,100,75);
                     borde3.setIcon(marcoTurno);
                 } else {
-                    borde3.setLocation(30, 535);
+                    borde3.setBounds(30, 535,100,75);
                     borde3.setIcon(marcoNormal);
                 }
                 Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
@@ -416,13 +433,13 @@ public class TableroGrafico extends JPanel {
             if (i == 3) {
                 nombre4.setText(jugadores.get(i).getNombre());
                 int xNmobre = jugadores.get(i).getNombre().length() * 7;
-                nombre4.setLocation((1145 - xNmobre), 535);
+                nombre4.setBounds((1145 - xNmobre), 535,100,30);
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
-                    borde4.setLocation(1150, 535);
+                    borde4.setBounds(1150, 535,100,75);
                     borde4.setIcon(marcoTurno);
 
                 } else {
-                    borde4.setLocation(1150, 535);
+                    borde4.setBounds(1150, 535,100,75);
                     borde4.setIcon(marcoNormal);
                 }
                 Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();

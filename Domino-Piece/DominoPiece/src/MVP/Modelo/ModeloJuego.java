@@ -10,9 +10,11 @@ import Evento.MovimientoPF;
 import Evento.PasarTurnoPF;
 import Evento.RespuestaVotacionPF;
 import Evento.RobarPozoPF;
+import Evento.SalirPartidaPF;
 import Evento.TerminarVotacionPF;
 import Grafico.TableroGrafico;
 import PipesAndFilters.Pipes.Pipe;
+import PipesAndFilters.Pipes.PipeCrearJugador;
 import PipesAndFilters.Pipes.PipeMovimiento;
 
 
@@ -75,7 +77,11 @@ public class ModeloJuego {
 
     }
 
-
+    public void salirPartida(){
+        Pipe<SalirPartidaPF> pipa = PipeCrearJugador.getInstance();
+        SalirPartidaPF s= new SalirPartidaPF(jugador);
+        pipa.ejecutar(s);
+    }
 
     public void pasarTurno() { 
         Pipe<PasarTurnoPF> pipa = PipeMovimiento.getInstance();

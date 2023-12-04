@@ -12,6 +12,7 @@ import Evento.MovimientoPF;
 import Evento.PasarTurnoPF;
 import Evento.RespuestaVotacionPF;
 import Evento.RobarPozoPF;
+import Evento.SalirPartidaPF;
 import Evento.TerminarVotacionPF;
 import Evento.VerificarAvatarPF;
 import dominio_dominodto.Acciones;
@@ -77,6 +78,14 @@ public class JugadorThread extends Thread {
     public synchronized void enviarRespuesta(boolean respuesta) {
         Votacion.getInstance().respuestaVotacion(respuesta);
         this.notifyAll();
+    }
+
+    public JugadorDTO getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(JugadorDTO jugador) {
+        this.jugador = jugador;
     }
 
     @Override
@@ -184,15 +193,23 @@ public class JugadorThread extends Thread {
                     if (sink.comprobarPartidaCerrada()) {
                         TerminarDTO terminar = new TerminarDTO(sink.getPuntuaciones(), Acciones.TERMINAR_PARTIDA_VOTACION);
                         server.sendToAll(terminar);
+                        sink.setPartida(null);
+                        jugador = null;
                     }
                 }
                 if (objecto instanceof BuscarPartidaPF) {
 
                     BuscarPartidaPF p = (BuscarPartidaPF) objecto;
                     if (sink.getPartida() == null) {
+
                         enviarAUno(Acciones.NO_HAY_PARTIDA);
                     } else {
-                        enviarAUno(Acciones.SI_HAY_PARTIDA);
+                        if (sink.getPartida().getTablero() != null) {
+                            enviarAUno(Acciones.NO_HAY_PARTIDA);
+                        } else {
+                            enviarAUno(Acciones.SI_HAY_PARTIDA);
+                        }
+
                     }
 
                 }
@@ -209,6 +226,32 @@ public class JugadorThread extends Thread {
 
                     }
                 }
+                if (objecto instanceof SalirPartidaPF) {
+                    SalirPartidaPF pf = (SalirPartidaPF) objecto;
+                    sink.eliminarJugador(jugador);
+                    enviarPartidaActual();
+                    jugador = null;
+                    if (sink.getPartida().getJugadores().isEmpty()) {
+                        sink.setPartida(null);
+                        jugador = null;
+                    } else if (sink.getPartida().getTablero() != null) {
+                        if (sink.getPartida().getJugadores().size() != 1) {
+                            if (Votacion.getInstance().isAlive()) {
+                                Votacion.getInstance().respuestaVotacion(false);
+                            }
+                        }
+                        if (sink.getPartida().getJugadores().size() == 1) {
+                            if (Votacion.getInstance().isAlive()) {
+                                Votacion.getInstance().respuestaVotacion(false);
+                            }
+                            TerminarDTO terminar = new TerminarDTO(sink.getPuntuaciones(), Acciones.TERMINAR_PARTIDA_VOTACION);
+                            server.sendToAll(terminar);
+                            sink.setPartida(null);
+                            jugador = null;
+                        }
+                    }
+                    System.out.println(sink.getPartida());
+                }
 
             }
         } catch (IOException | ClassNotFoundException e) {
@@ -218,6 +261,7 @@ public class JugadorThread extends Thread {
                 enviarPartidaActual();
                 if (sink.getPartida().getJugadores().isEmpty()) {
                     sink.setPartida(null);
+                    jugador = null;
                 } else if (sink.getPartida().getTablero() != null) {
                     if (sink.getPartida().getJugadores().size() != 1) {
                         if (Votacion.getInstance().isAlive()) {
@@ -228,8 +272,12 @@ public class JugadorThread extends Thread {
                         if (Votacion.getInstance().isAlive()) {
                             Votacion.getInstance().respuestaVotacion(false);
                         }
+                        if (true) {
+
+                        }
                         TerminarDTO terminar = new TerminarDTO(sink.getPuntuaciones(), Acciones.TERMINAR_PARTIDA_VOTACION);
                         server.sendToAll(terminar);
+                        sink.setPartida(null);
                     }
                 }
             }
