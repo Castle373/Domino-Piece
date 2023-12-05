@@ -610,7 +610,8 @@ public class VistaJuego extends javax.swing.JFrame {
                     lblAvatar2.setIcon(iconoRedimensionado);
                 }
                 if (i == 2) {
-
+                    
+                    lblJugador3.setText(list.get(i).getNombre());
                     ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(i).getAvatar()));
                     ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
                     lblAvatar3.setIcon(iconoRedimensionado);

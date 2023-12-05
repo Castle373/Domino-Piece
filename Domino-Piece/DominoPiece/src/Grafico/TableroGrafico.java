@@ -60,9 +60,18 @@ public class TableroGrafico extends JPanel {
     private JLabel nombre3;
     private JLabel nombre4;
 
+    private JLabel fichaJugador1;
+    private JLabel fichaJugador2;
+    private JLabel fichaJugador3;
+    private JLabel fichaJugador4;
+
+    private JLabel iconFichaJugador1;
+    private JLabel iconFichaJugador2;
+    private JLabel iconFichaJugador3;
+    private JLabel iconFichaJugador4;
 
     public TableroGrafico(VistaJuego vista) {
-    
+
         nombre1 = new JLabel();
         nombre2 = new JLabel();
         nombre3 = new JLabel();
@@ -71,10 +80,24 @@ public class TableroGrafico extends JPanel {
         borde2 = new JLabel();
         borde3 = new JLabel();
         borde4 = new JLabel();
+        fichaJugador1 = new JLabel();
+        fichaJugador2 = new JLabel();
+        fichaJugador3 = new JLabel();
+        fichaJugador4 = new JLabel();
+        iconFichaJugador1 = new JLabel();
+        iconFichaJugador2 = new JLabel();
+        iconFichaJugador3 = new JLabel();
+        iconFichaJugador4 = new JLabel();
+
         nombre1.setForeground(Color.WHITE);
         nombre2.setForeground(Color.WHITE);
         nombre3.setForeground(Color.WHITE);
         nombre4.setForeground(Color.WHITE);
+        fichaJugador1.setForeground(Color.WHITE);
+        fichaJugador2.setForeground(Color.WHITE);
+        fichaJugador3.setForeground(Color.WHITE);
+        fichaJugador4.setForeground(Color.WHITE);
+
         zonaInicial = new Rectangle(630, 250, 23, 48);
         fichasJugador = new FichasMano();
         fichasTren = new FichaTren();
@@ -88,14 +111,19 @@ public class TableroGrafico extends JPanel {
         this.add(nombre2);
         this.add(nombre3);
         this.add(nombre4);
+        this.add(fichaJugador1);
+        this.add(fichaJugador2);
+        this.add(fichaJugador3);
+        this.add(fichaJugador4);
+        this.add(iconFichaJugador1);
+        this.add(iconFichaJugador2);
+        this.add(iconFichaJugador3);
+        this.add(iconFichaJugador4);
 
 //        nombre1.setBounds(130, 30,0,0);
 //        botonRobar.setBounds(300, 40, 100, 30);
 //        this.add(botonRobar);
-        
     }
-
-  
 
     public PartidaDTO getPartida() {
         return partida;
@@ -139,19 +167,19 @@ public class TableroGrafico extends JPanel {
 //        this.repaint();
 //    }
     public void repintarFichasJugador() {
-        boolean salir=false;
+        boolean salir = false;
         List<IFichaGrafica> fichasJugador = new ArrayList<>();
         int zona = 100;
         int x = 400;
         int y = 550;
         for (int i = 0; i < jugadores.size(); i++) {
-            
+
             if (jugador != null) {
                 if (jugadores.get(i).getId() == jugador.getId()) {
                     zona = i;
                 }
-            }else{
-                 salir=true;
+            } else {
+                salir = true;
             }
         }
         if (salir) {
@@ -366,6 +394,11 @@ public class TableroGrafico extends JPanel {
         nombre2.setText("");
         nombre3.setText("");
         nombre4.setText("");
+        fichaJugador1.setText("");
+        fichaJugador2.setText("");
+        fichaJugador3.setText("");
+        fichaJugador4.setText("");
+
     }
 
     public void pintarJugadores(Graphics2D g) {
@@ -384,66 +417,85 @@ public class TableroGrafico extends JPanel {
             ImageIcon marcoTurno = new ImageIcon(getClass().getResource("/Grafico/marco.gif"));
 
             if (i == 0) {
-
                 nombre1.setText(jugadores.get(i).getNombre());
-                nombre1.setBounds(130, 30,100,30);
-
+                nombre1.setBounds(130, 30, 100, 30);
+                iconFichaJugador1.setBounds(130, 60, 40, 40);
+                iconFichaJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/fichaNum.png")));
+                fichaJugador1.setText("X " + String.valueOf(jugadores.get(i).getFichasJugador().size()));
+                fichaJugador1.setBounds(165, 70, 100, 20);
+                fichaJugador1.setVisible(true);
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
 
-                    borde1.setBounds(30, 26,100,75);
+                    borde1.setBounds(30, 26, 100, 75);
                     borde1.setIcon(marcoTurno);
                 } else {
-                    borde1.setBounds(30, 26,100,75);
+                    borde1.setBounds(30, 26, 100, 75);
                     borde1.setIcon(marcoNormal);
                 }
                 Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
-                g.drawImage(iconoOriginal, 38, 34, 79, 53, null);
+                g.drawImage(iconoOriginal, 38, 34, 90, 75, null);
             }
             if (i == 1) {
                 nombre2.setText(jugadores.get(i).getNombre());
                 int xNmobre = jugadores.get(i).getNombre().length() * 7;
-                nombre2.setBounds((1149 - xNmobre), 30,100,30);
-                if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
+                nombre2.setBounds((1149 - xNmobre), 30, 100, 30);
+                iconFichaJugador2.setBounds(1111, 60, 40, 40);
+                iconFichaJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/fichaNum.png")));
+                fichaJugador2.setText("X " + String.valueOf(jugadores.get(i).getFichasJugador().size()));
+                fichaJugador2.setBounds(1087, 69, 100, 30);
+                fichaJugador2.setVisible(true);
 
-                    borde2.setBounds(1150, 26,100,75);
+                if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
+                    borde2.setBounds(1150, 26, 100, 75);
                     borde2.setIcon(marcoTurno);
                 } else {
-                    borde2.setBounds(1150, 26,100,75);
+                    borde2.setBounds(1150, 26, 100, 75);
                     borde2.setIcon(marcoNormal);
 
                 }
                 Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
-                g.drawImage(iconoOriginal, 1158, 34, 79, 53, null);
+                g.drawImage(iconoOriginal, 1158, 34, 90, 75, null);
             }
             if (i == 2) {
                 nombre3.setText(jugadores.get(i).getNombre());
+                nombre3.setBounds(130, 535, 100, 30);
+                iconFichaJugador3.setBounds(130, 565, 40, 40);
+                iconFichaJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/fichaNum.png")));
+                fichaJugador3.setBounds(165, 575, 100, 30);
+                fichaJugador3.setText("X " + String.valueOf(jugadores.get(i).getFichasJugador().size()));
+                fichaJugador3.setVisible(true);
 
-                nombre3.setBounds(130, 535,100,30);
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
 
-                    borde3.setBounds(30, 535,100,75);
+                    borde3.setBounds(30, 535, 100, 75);
                     borde3.setIcon(marcoTurno);
                 } else {
-                    borde3.setBounds(30, 535,100,75);
+                    borde3.setBounds(30, 535, 100, 75);
                     borde3.setIcon(marcoNormal);
                 }
                 Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
-                g.drawImage(iconoOriginal, 38, 543, 79, 53, null);
+                g.drawImage(iconoOriginal, 38, 543, 90, 75, null);
             }
             if (i == 3) {
                 nombre4.setText(jugadores.get(i).getNombre());
                 int xNmobre = jugadores.get(i).getNombre().length() * 7;
-                nombre4.setBounds((1145 - xNmobre), 535,100,30);
+                nombre4.setBounds((1149 - xNmobre), 535, 100, 30);
+                iconFichaJugador4.setBounds(1111, 565, 40, 40);
+                iconFichaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/fichaNum.png")));
+                fichaJugador4.setBounds(1087, 575, 100, 30);
+                fichaJugador4.setText("X " + String.valueOf(jugadores.get(i).getFichasJugador().size()));
+                fichaJugador4.setVisible(true);
+
                 if (jugadores.get(i) == partida.getJugadores().get(partida.getTurno())) {
-                    borde4.setBounds(1150, 535,100,75);
+                    borde4.setBounds(1150, 535, 100, 75);
                     borde4.setIcon(marcoTurno);
 
                 } else {
-                    borde4.setBounds(1150, 535,100,75);
+                    borde4.setBounds(1150, 535, 100, 75);
                     borde4.setIcon(marcoNormal);
                 }
                 Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
-                g.drawImage(iconoOriginal, 1158, 543, 79, 53, null);
+                g.drawImage(iconoOriginal, 1158, 543, 90, 75, null);
             }
         }
 

@@ -23,20 +23,25 @@ public class Server {
 
     public void addClientOutputStream(ObjectOutputStream outputStream) {
         clientOutputStreams.add(outputStream);
-        
-    }public void addClienteJugadores(JugadorThread jugadorHilo) {
+
+    }
+
+    public void addClienteJugadores(JugadorThread jugadorHilo) {
         clienteJugadores.add(jugadorHilo);
     }
-    public void enviarJugadores(){
+
+    public void enviarJugadores() {
         for (JugadorThread jugadorThread : clienteJugadores) {
             jugadorThread.enviarJugador();
         }
     }
-    public void enviarPartida(){
+
+    public void enviarPartida() {
         for (JugadorThread jugadorThread : clienteJugadores) {
             jugadorThread.enviarPartidaActual();
         }
     }
+
     public void sendToAll(Object obj) {
         for (ObjectOutputStream out : clientOutputStreams) {
             try {
@@ -47,19 +52,20 @@ public class Server {
             }
         }
     }
-    public void borrarJugadores(){
+
+    public void borrarJugadores() {
         for (JugadorThread jugadorThread : clienteJugadores) {
             jugadorThread.setJugador(null);
         }
     }
 
     public void sendToOne(Object obj, ObjectOutputStream outPut) {
-            try {
-                outPut.writeObject(obj);
-                outPut.flush();
-            } catch (IOException e) {
-                // Manejar excepciones
-            }
+        try {
+            outPut.writeObject(obj);
+            outPut.flush();
+        } catch (IOException e) {
+            // Manejar excepciones
+        }
     }
 
     public synchronized void desconectarClliente(ObjectOutputStream out) {
@@ -79,7 +85,7 @@ public class Server {
             Socket s = ss.accept();
 
             System.out.println("Nueva conexión por parte de cliente: " + s);
-            
+
             ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
 
             server.addClientOutputStream(out);
@@ -89,8 +95,6 @@ public class Server {
             client.start();
             connectionCount++;
         }
-
-       
 
     }
 
