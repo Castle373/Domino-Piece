@@ -398,7 +398,10 @@ public class TableroGrafico extends JPanel {
         fichaJugador2.setText("");
         fichaJugador3.setText("");
         fichaJugador4.setText("");
-
+        iconFichaJugador1.setIcon(null);
+        iconFichaJugador2.setIcon(null);
+        iconFichaJugador3.setIcon(null);
+        iconFichaJugador4.setIcon(null);
     }
 
     public void pintarJugadores(Graphics2D g) {
