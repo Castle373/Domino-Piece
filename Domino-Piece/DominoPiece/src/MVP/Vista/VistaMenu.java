@@ -40,71 +40,53 @@ public class VistaMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1300, 590));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        botonCrearPartida.setText("Crear Partida");
+        botonCrearPartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Group 3 (1).png"))); // NOI18N
+        botonCrearPartida.setBorderPainted(false);
+        botonCrearPartida.setContentAreaFilled(false);
         botonCrearPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCrearPartidaActionPerformed(evt);
             }
         });
+        jPanel1.add(botonCrearPartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, -1, -1));
 
-        botonUnirsePartida.setText("Unirse a Partida");
+        botonUnirsePartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Group 3 (2).png"))); // NOI18N
+        botonUnirsePartida.setBorderPainted(false);
+        botonUnirsePartida.setContentAreaFilled(false);
         botonUnirsePartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonUnirsePartidaActionPerformed(evt);
             }
         });
+        jPanel1.add(botonUnirsePartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(866, 368, 160, -1));
 
-        botonSalir.setText("Salir");
+        botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Group 4.png"))); // NOI18N
+        botonSalir.setBorderPainted(false);
+        botonSalir.setContentAreaFilled(false);
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonSalirActionPerformed(evt);
             }
         });
+        jPanel1.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 500, 160, -1));
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        jLabel1.setText("DOMINO PIECE");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(591, 591, 591)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(490, 490, 490)
-                        .addComponent(botonCrearPartida)
-                        .addGap(279, 279, 279)
-                        .addComponent(botonUnirsePartida, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(679, 679, 679)
-                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(290, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(159, 159, 159)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonCrearPartida)
-                    .addComponent(botonUnirsePartida))
-                .addGap(85, 85, 85)
-                .addComponent(botonSalir)
-                .addContainerGap(91, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Frame 1 (15) (1).png"))); // NOI18N
+        jLabel1.setPreferredSize(new java.awt.Dimension(1300, 590));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, 590));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,10 +97,6 @@ public class VistaMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearPartidaActionPerformed
-        selectCrearPartida();
-    }//GEN-LAST:event_botonCrearPartidaActionPerformed
-
     private void botonUnirsePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUnirsePartidaActionPerformed
        selectUnirsePartida();
     }//GEN-LAST:event_botonUnirsePartidaActionPerformed
@@ -126,6 +104,10 @@ public class VistaMenu extends javax.swing.JFrame {
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
        salir();
     }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearPartidaActionPerformed
+        selectCrearPartida();
+    }//GEN-LAST:event_botonCrearPartidaActionPerformed
     
     public void selectCrearPartida(){
         presentadorMenu.crearPartida();

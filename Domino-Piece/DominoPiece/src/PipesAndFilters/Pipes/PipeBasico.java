@@ -4,22 +4,25 @@
  */
 package PipesAndFilters.Pipes;
 
-import Evento.Evento;
 import PipesAndFilters.Filters.Filtro;
-import PipesAndFilters.Filters.FiltroEnviarRespuesta;
 
 /**
  *
- * @author IVAN
+ * @author hoshi
  */
-public class PipeRespuestaVotacion <T extends Evento>  implements Pipe<T>{
+public class PipeBasico<T> implements Pipe<T> {
     private Filtro filtro;
-    @Override
-    public void ejecutar(T s) {
-        
-        filtro.ejecutar(s);
+
+    public PipeBasico(Filtro filtro) {
+        this.filtro = filtro;
     }
     
+    
+    
+    @Override
+    public void ejecutar(T jugador) {     
+        filtro.ejecutar(jugador);
+    }
     @Override
     public Filtro getFiltro() {
         return filtro;
@@ -28,4 +31,6 @@ public class PipeRespuestaVotacion <T extends Evento>  implements Pipe<T>{
     public void setFiltro(Filtro filtro) {
         this.filtro = filtro;
     }
+
+    
 }

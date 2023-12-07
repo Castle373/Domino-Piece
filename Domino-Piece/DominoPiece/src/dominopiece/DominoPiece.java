@@ -36,38 +36,59 @@ public class DominoPiece {
         Pipe pipeCrearPartida = PipeCrearPartida.getInstance();
         Pipe pipeCrearJugador = PipeCrearJugador.getInstance();
         Pipe pipeMovimiento = PipeMovimiento.getInstance();
-        Pipe pipeBuscarPartida = new PipeBuscarPartida();
-        Pipe pipeIniciarVotacion = new PipeIniciarVotacion();
-        Pipe pipeIniciarVotacionTerminar = new PipeIniciarVotacionTerminar();
-        Pipe pipePozo = new PipePozo();
+        
+    
+        
         Pipe pipeFin = new PipeFin();
-        Pipe pipePasaTurno = new PipePasaTurno();
-        Pipe pipeRespuestaVotacion = new PipeRespuestaVotacion();
-        Pipe pipeVerificarAvatar = new PipeVerificarAvatar();
+ 
         
         //Creacion de Primer PipeLine
         pipeMovimiento.setFiltro(filtroMovimiento);
-        filtroMovimiento.setPipe(pipePozo);
-        pipePozo.setFiltro(filtroPozo);
-        filtroPozo.setPipe(pipePasaTurno);
-        pipePasaTurno.setFiltro(filtroPasaTurno);
-        filtroPasaTurno.setPipe(pipeIniciarVotacion);
-        pipeIniciarVotacion.setFiltro(filtroIniciarVotacion);
-        filtroIniciarVotacion.setPipe(pipeIniciarVotacionTerminar);
-        pipeIniciarVotacionTerminar.setFiltro(filtroIniciarVotacionTerminar);
-        filtroIniciarVotacionTerminar.setPipe(pipeRespuestaVotacion);
-        pipeRespuestaVotacion.setFiltro(filtroEnviarRespuesta);
+        Pipe pipeBasico = new PipeBasico(filtroPozo);
+        filtroMovimiento.setPipe(pipeBasico);
+        pipeBasico = new PipeBasico(filtroPasaTurno);
+        filtroPozo.setPipe(pipeBasico);
+        pipeBasico = new PipeBasico(filtroIniciarVotacion);
+        filtroPasaTurno.setPipe(pipeBasico);
+        pipeBasico = new PipeBasico(filtroIniciarVotacionTerminar);
+        filtroIniciarVotacion.setPipe(pipeBasico);
+        pipeBasico = new PipeBasico(filtroEnviarRespuesta);
+        filtroIniciarVotacionTerminar.setPipe(pipeBasico);
         filtroEnviarRespuesta.setPipe(pipeFin);
-        //Creacion de Segundo PipeLine
-        pipeCrearJugador.setFiltro(filtroCrearJugador);
-        filtroCrearJugador.setPipe(pipeVerificarAvatar);
-        pipeVerificarAvatar.setFiltro(filtroVerificarAvatar);
-        filtroVerificarAvatar.setPipe(pipeFin);
-        //Creacion de tercero PipeLine
-        pipeCrearPartida.setFiltro(filtroCrearPartida);
-        filtroCrearPartida.setPipe(pipeBuscarPartida);
-        pipeBuscarPartida.setFiltro(filtroBuscarPartida);
-        filtroBuscarPartida.setPipe(pipeFin);
+        
+        
+        
+        
+        
+//        pipeIniciarVotacion.setFiltro(filtroIniciarVotacion);
+//        filtroIniciarVotacion.setPipe(pipeIniciarVotacionTerminar);
+//        pipeIniciarVotacionTerminar.setFiltro(filtroIniciarVotacionTerminar);
+//        filtroIniciarVotacionTerminar.setPipe(pipeRespuestaVotacion);
+//        pipeRespuestaVotacion.setFiltro(filtroEnviarRespuesta);
+//        filtroEnviarRespuesta.setPipe(pipeFin);
+
+
+//        //Creacion de Segundo PipeLine
+          
+          pipeCrearJugador.setFiltro(filtroCrearJugador);
+          pipeBasico = new PipeBasico(filtroVerificarAvatar);
+          filtroCrearJugador.setPipe(pipeBasico);
+          filtroVerificarAvatar.setPipe(pipeFin);
+//        pipeCrearJugador.setFiltro(filtroCrearJugador);
+//        filtroCrearJugador.setPipe(pipeVerificarAvatar);
+//        pipeVerificarAvatar.setFiltro(filtroVerificarAvatar);
+//        filtroVerificarAvatar.setPipe(pipeFin);
+//        //Creacion de tercero PipeLine
+          
+          pipeCrearPartida.setFiltro(filtroCrearPartida);
+          pipeBasico = new PipeBasico(filtroBuscarPartida);
+          filtroCrearPartida.setPipe(pipeBasico);
+          filtroBuscarPartida.setPipe(pipeFin);
+          
+//        pipeCrearPartida.setFiltro(filtroCrearPartida);
+//        filtroCrearPartida.setPipe(pipeBuscarPartida);
+//        pipeBuscarPartida.setFiltro(filtroBuscarPartida);
+//        filtroBuscarPartida.setPipe(pipeFin);
                 System.out.println("s");
         IPresentadorMenu presentador = new PresentadorMenu();
         presentador.mostrarMenu();

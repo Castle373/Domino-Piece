@@ -10,7 +10,7 @@ import PipesAndFilters.Filters.FiltroMovimiento;
 
 /**
  *
- * @author diego
+ * @author hoshi
  */
 public class PipeMovimiento<T> implements Pipe<T> {
 

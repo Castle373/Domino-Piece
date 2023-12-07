@@ -8,7 +8,6 @@ import Evento.Evento;
 import Evento.IniciarVotacionPF;
 import Evento.TerminarVotacionPF;
 import PipesAndFilters.Pipes.Pipe;
-import PipesAndFilters.Pipes.PipeRespuestaVotacion;
 import dominio_dominodto.Acciones;
 
 /**

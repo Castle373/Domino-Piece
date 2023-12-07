@@ -18,6 +18,9 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -550,10 +553,10 @@ public class VistaJuego extends javax.swing.JFrame {
         lblJugador2.setText("");
         lblJugador3.setText("");
         lblJugador4.setText("");
-        lblJugador1.setBounds(lblJugador1.getX(), lblAvatar1.getY(), 200, 20);
-        lblJugador2.setBounds(lblJugador2.getX(), lblAvatar2.getY(), 200, 20);
-        lblJugador3.setBounds(lblJugador3.getX(), lblAvatar3.getY(), 200, 20);
-        lblJugador4.setBounds(lblJugador4.getX(), lblAvatar4.getY(), 200, 20);
+        lblJugador1.setBounds(lblJugador1.getX(), 55, 200, 20);
+        lblJugador2.setBounds(lblJugador2.getX(), 55, 200, 20);
+        lblJugador3.setBounds(lblJugador3.getX(), 55, 200, 20);
+        lblJugador4.setBounds(lblJugador4.getX(), 55, 200, 20);
         // Limpia los iconos de los JLabels
         lblAvatar1.setIcon(null);
         lblAvatar2.setIcon(null);
@@ -577,6 +580,17 @@ public class VistaJuego extends javax.swing.JFrame {
         lblAvatarP2.setIcon(null);
         lblAvatarP3.setIcon(null);
         lblAvatarP4.setIcon(null);
+    }
+
+    private void reproducirSonido(String ruta) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void TerminarPartida() {
@@ -610,7 +624,7 @@ public class VistaJuego extends javax.swing.JFrame {
                     lblAvatar2.setIcon(iconoRedimensionado);
                 }
                 if (i == 2) {
-                    
+
                     lblJugador3.setText(list.get(i).getNombre());
                     ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(i).getAvatar()));
                     ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
@@ -831,7 +845,7 @@ public class VistaJuego extends javax.swing.JFrame {
     }
 
     public void iniciarJuego() {
-         tablero.setLayout(null);
+        tablero.setLayout(null);
 //        tablero.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         Jugador1.setVisible(false);
         Jugador2.setVisible(false);
@@ -862,11 +876,11 @@ public class VistaJuego extends javax.swing.JFrame {
 //        Rectangle s3 = btnRobar.getBounds();
 
         tablero.add(Votacion, new AbsoluteConstraints(Votacion.getX(), Votacion.getY(), Votacion.getWidth(), Votacion.getHeight()));
-        tablero.add(btnPasarTurno,new AbsoluteConstraints(btnPasarTurno.getX(), btnPasarTurno.getY(), btnPasarTurno.getWidth(), btnPasarTurno.getHeight()));
-        tablero.add(btnTerminar,new AbsoluteConstraints(btnTerminar.getX(), btnTerminar.getY(), btnTerminar.getWidth(), btnTerminar.getHeight()));
-        tablero.add(btnRobar,new AbsoluteConstraints(btnRobar.getX(), btnRobar.getY(), btnRobar.getWidth(), btnRobar.getHeight()));
-         btnPasarTurno.setVisible(true);
-         btnTerminar.setVisible(true);
+        tablero.add(btnPasarTurno, new AbsoluteConstraints(btnPasarTurno.getX(), btnPasarTurno.getY(), btnPasarTurno.getWidth(), btnPasarTurno.getHeight()));
+        tablero.add(btnTerminar, new AbsoluteConstraints(btnTerminar.getX(), btnTerminar.getY(), btnTerminar.getWidth(), btnTerminar.getHeight()));
+        tablero.add(btnRobar, new AbsoluteConstraints(btnRobar.getX(), btnRobar.getY(), btnRobar.getWidth(), btnRobar.getHeight()));
+        btnPasarTurno.setVisible(true);
+        btnTerminar.setVisible(true);
 //        Votacion.setBounds(s);
         btnPasarTurno.setBounds(300, 40, 130, 30);
 //        btnTerminar.setBounds(s2);

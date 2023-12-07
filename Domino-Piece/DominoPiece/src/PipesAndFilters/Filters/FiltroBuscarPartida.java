@@ -10,7 +10,7 @@ import Evento.Evento;
 import Evento.JugadorPF;
 import PipesAndFilters.Pipes.Pipe;
 import PipesAndFilters.Pipes.PipeFin;
-import PipesAndFilters.Pipes.PipeVerificarAvatar;
+
 import dominio_dominodto.Acciones;
 import dominio_dominodto.JugadorDTO;
 import dominio_dominodto.PartidaDTO;

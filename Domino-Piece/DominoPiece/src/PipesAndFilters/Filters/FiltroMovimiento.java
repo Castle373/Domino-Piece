@@ -7,7 +7,7 @@ package PipesAndFilters.Filters;
 import Evento.MovimientoPF;
 import PipesAndFilters.Pipes.Pipe;
 import PipesAndFilters.Pipes.PipeFin;
-import PipesAndFilters.Pipes.PipePozo;
+
 import dominio_dominodto.MovimientoDTO;
 
 /**

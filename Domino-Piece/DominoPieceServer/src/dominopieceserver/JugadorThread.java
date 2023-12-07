@@ -255,7 +255,7 @@ public class JugadorThread extends Thread {
 
             }
         } catch (IOException | ClassNotFoundException e) {
-            if (jugador != null) {
+            if (jugador != null && sink.getPartida()!=null) {
                 sink.eliminarJugador(jugador);
                 server.desconectarClliente(out);
                 enviarPartidaActual();

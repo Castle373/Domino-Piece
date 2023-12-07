@@ -8,7 +8,6 @@ import Evento.Evento;
 import Evento.RobarPozoPF;
 import PipesAndFilters.Pipes.Pipe;
 import PipesAndFilters.Pipes.PipeFin;
-import PipesAndFilters.Pipes.PipePasaTurno;
 import dominio_dominodto.RobarFichaDTO;
 
 /**

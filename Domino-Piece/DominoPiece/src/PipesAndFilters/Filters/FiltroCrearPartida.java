@@ -7,7 +7,7 @@ package PipesAndFilters.Filters;
 import Evento.CrearPartidaPF;
 import Evento.Evento;
 import PipesAndFilters.Pipes.Pipe;
-import PipesAndFilters.Pipes.PipeBuscarPartida;
+
 import PipesAndFilters.Pipes.PipeCrearPartida;
 import PipesAndFilters.Pipes.PipeFin;
 import dominio_dominodto.PartidaDTO;
