@@ -436,7 +436,7 @@ public class TableroGrafico extends JPanel {
                     borde1.setIcon(marcoNormal);
                 }
                 Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
-                g.drawImage(iconoOriginal, 38, 34, 90, 75, null);
+                g.drawImage(iconoOriginal, 38, 34, 79, 53, null);
             }
             if (i == 1) {
                 nombre2.setText(jugadores.get(i).getNombre());
@@ -457,7 +457,7 @@ public class TableroGrafico extends JPanel {
 
                 }
                 Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
-                g.drawImage(iconoOriginal, 1158, 34, 90, 75, null);
+                g.drawImage(iconoOriginal, 1158, 34, 79, 53, null);
             }
             if (i == 2) {
                 nombre3.setText(jugadores.get(i).getNombre());
@@ -477,7 +477,7 @@ public class TableroGrafico extends JPanel {
                     borde3.setIcon(marcoNormal);
                 }
                 Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
-                g.drawImage(iconoOriginal, 38, 543, 90, 75, null);
+                g.drawImage(iconoOriginal, 38, 543, 79, 53, null);
             }
             if (i == 3) {
                 nombre4.setText(jugadores.get(i).getNombre());
@@ -498,7 +498,7 @@ public class TableroGrafico extends JPanel {
                     borde4.setIcon(marcoNormal);
                 }
                 Image iconoOriginal = new ImageIcon(getClass().getResource(jugadores.get(i).getAvatar())).getImage();
-                g.drawImage(iconoOriginal, 1158, 543, 90, 75, null);
+                g.drawImage(iconoOriginal, 1158, 543, 79, 53, null);
             }
         }
 

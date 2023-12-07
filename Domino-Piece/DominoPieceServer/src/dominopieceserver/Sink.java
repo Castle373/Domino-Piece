@@ -71,7 +71,9 @@ public class Sink {
 
     public void eliminarJugador(JugadorDTO j) {
         Jugador juga = getJugador(j.getId());
-
+        if (juga==null) {
+            return;
+        }
         for (FichaJugador fichaJugador : juga.getFichasJugador()) {
             FichaPozo f = new FichaPozo(fichaJugador.getImagen(), fichaJugador.getPuntoAbajo(), fichaJugador.getPuntoArriba());
             partida.getPozo().addFichasPozo(f);

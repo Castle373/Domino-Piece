@@ -6,6 +6,7 @@ package MVP.Vista;
 
 import MVP.Presentador.IPresentadorCrear;
 import MVP.Presentador.PresentadorCrear;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,95 +41,98 @@ public class VistaCrearPartida extends javax.swing.JFrame {
         cbFichas = new javax.swing.JComboBox<>();
         btnIniciar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1300, 590));
+        setPreferredSize(new java.awt.Dimension(1300, 590));
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(51, 153, 0));
+        jPanel2.setMinimumSize(new java.awt.Dimension(1300, 590));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1300, 590));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("JUEGA CON AMIGOS");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/JUGAR.png"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, -10, 1000, 170));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Número de fichas:");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/NumeroDeFichas.png"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 260, -1));
 
         cbFichas.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         cbFichas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6", "7" }));
+        jPanel2.add(cbFichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 170, -1, 22));
 
         btnIniciar.setBackground(new java.awt.Color(255, 153, 153));
         btnIniciar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnIniciar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIniciar.setText("Crear partida");
+        btnIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/CrearPartidaN.png"))); // NOI18N
+        btnIniciar.setBorderPainted(false);
+        btnIniciar.setContentAreaFilled(false);
+        btnIniciar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnIniciarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnIniciarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnIniciarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnIniciarMouseReleased(evt);
+            }
+        });
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarActionPerformed(evt);
             }
         });
+        jPanel2.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 240, 90));
 
         btnCancelar.setBackground(new java.awt.Color(255, 102, 102));
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/CancelarN.png"))); // NOI18N
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setContentAreaFilled(false);
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCancelarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseReleased(evt);
+            }
+        });
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
+        jPanel2.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, -1, 90));
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("IMAGEN");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnIniciar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCancelar))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(621, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
-                .addComponent(jLabel3)
-                .addGap(96, 96, 96)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cbFichas, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIniciar)
-                    .addComponent(btnCancelar))
-                .addContainerGap(211, Short.MAX_VALUE))
-        );
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Frame 1 (16) (1).png"))); // NOI18N
+        jPanel2.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -144,6 +148,38 @@ public class VistaCrearPartida extends javax.swing.JFrame {
         presentadorCrear.regresarMenu();
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnIniciarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarMouseReleased
+        btnIniciar.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/CrearPartidaG.png")));
+    }//GEN-LAST:event_btnIniciarMouseReleased
+
+    private void btnIniciarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarMouseEntered
+        btnIniciar.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/CrearPartidaG.png")));
+    }//GEN-LAST:event_btnIniciarMouseEntered
+
+    private void btnIniciarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarMousePressed
+        btnIniciar.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/CrearPartidaN.png")));
+    }//GEN-LAST:event_btnIniciarMousePressed
+
+    private void btnIniciarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarMouseExited
+        btnIniciar.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/CrearPartidaN.png")));
+    }//GEN-LAST:event_btnIniciarMouseExited
+
+    private void btnCancelarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseReleased
+        btnCancelar.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/CancelarG.png")));
+    }//GEN-LAST:event_btnCancelarMouseReleased
+
+    private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
+         btnCancelar.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/CancelarG.png")));
+    }//GEN-LAST:event_btnCancelarMouseEntered
+
+    private void btnCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMousePressed
+        btnCancelar.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/CancelarN.png")));
+    }//GEN-LAST:event_btnCancelarMousePressed
+
+    private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
+       btnCancelar.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/CancelarN.png")));
+    }//GEN-LAST:event_btnCancelarMouseExited
 
     public void selectCrear() {
         String seleccion = cbFichas.getSelectedItem().toString();
@@ -163,9 +199,9 @@ public class VistaCrearPartida extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIniciar;
     private javax.swing.JComboBox<String> cbFichas;
+    private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

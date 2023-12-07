@@ -45,7 +45,7 @@ public class VistaUnirse extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnUnirse = new javax.swing.JButton();
         btnRegresarMenu = new javax.swing.JButton();
         chbxAvatar1 = new javax.swing.JCheckBox();
         chbxAvatar2 = new javax.swing.JCheckBox();
@@ -55,21 +55,25 @@ public class VistaUnirse extends javax.swing.JFrame {
         avatar1 = new javax.swing.JLabel();
         avatar2 = new javax.swing.JLabel();
         avatar3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1300, 590));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 0));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1300, 590));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1300, 590));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Escoge tu avatar");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 430, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/EscogeA.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 950, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nombre de jugador:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 191, -1));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Nombre.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 330, -1));
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -77,29 +81,61 @@ public class VistaUnirse extends javax.swing.JFrame {
                 txtNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 357, -1));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 357, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 153));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Unirse a partida");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        btnUnirse.setBackground(new java.awt.Color(255, 153, 153));
+        btnUnirse.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnUnirse.setForeground(new java.awt.Color(255, 255, 255));
+        btnUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/UnirsePartidaN.png"))); // NOI18N
+        btnUnirse.setBorderPainted(false);
+        btnUnirse.setContentAreaFilled(false);
+        btnUnirse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUnirseMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUnirseMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnUnirseMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnUnirseMouseReleased(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 560, -1, -1));
+        btnUnirse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnirseActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnUnirse, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 480, 270, 90));
 
         btnRegresarMenu.setBackground(new java.awt.Color(255, 102, 102));
         btnRegresarMenu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnRegresarMenu.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegresarMenu.setText("Volver a menu");
+        btnRegresarMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/VolverMenuN.png"))); // NOI18N
+        btnRegresarMenu.setBorderPainted(false);
+        btnRegresarMenu.setContentAreaFilled(false);
+        btnRegresarMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegresarMenuMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegresarMenuMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnRegresarMenuMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnRegresarMenuMouseReleased(evt);
+            }
+        });
         btnRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarMenuActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegresarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 20, -1, -1));
+        jPanel1.add(btnRegresarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 270, 90));
 
         buttonGroup1.add(chbxAvatar1);
         chbxAvatar1.setSelected(true);
@@ -126,6 +162,9 @@ public class VistaUnirse extends javax.swing.JFrame {
         avatar3.setPreferredSize(new java.awt.Dimension(308, 308));
         jPanel1.add(avatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 130, -1, -1));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Frame 1 (16) (1).png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,7 +174,7 @@ public class VistaUnirse extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -143,9 +182,9 @@ public class VistaUnirse extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnUnirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirseActionPerformed
         crearJugador();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnUnirseActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
@@ -155,6 +194,38 @@ public class VistaUnirse extends javax.swing.JFrame {
         presentador.regresarMenu();
         this.dispose();//
     }//GEN-LAST:event_btnRegresarMenuActionPerformed
+
+    private void btnRegresarMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMenuMouseEntered
+       btnRegresarMenu.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/VolverMenuG.png")));
+    }//GEN-LAST:event_btnRegresarMenuMouseEntered
+
+    private void btnRegresarMenuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMenuMouseReleased
+       btnRegresarMenu.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/VolverMenuG.png")));
+    }//GEN-LAST:event_btnRegresarMenuMouseReleased
+
+    private void btnRegresarMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMenuMouseExited
+       btnRegresarMenu.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/VolverMenuN.png")));
+    }//GEN-LAST:event_btnRegresarMenuMouseExited
+
+    private void btnRegresarMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMenuMousePressed
+        btnRegresarMenu.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/VolverMenuN.png")));
+    }//GEN-LAST:event_btnRegresarMenuMousePressed
+
+    private void btnUnirseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnirseMouseEntered
+        btnUnirse.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/UnirsePartidaG.png")));
+    }//GEN-LAST:event_btnUnirseMouseEntered
+
+    private void btnUnirseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnirseMouseReleased
+        btnUnirse.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/UnirsePartidaG.png")));
+    }//GEN-LAST:event_btnUnirseMouseReleased
+
+    private void btnUnirseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnirseMousePressed
+        btnUnirse.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/UnirsePartidaN.png")));
+    }//GEN-LAST:event_btnUnirseMousePressed
+
+    private void btnUnirseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnirseMouseExited
+       btnUnirse.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/UnirsePartidaN.png")));
+    }//GEN-LAST:event_btnUnirseMouseExited
     public boolean validaJugador() {
         if (txtNombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Nombre Vacio");
@@ -209,13 +280,14 @@ public class VistaUnirse extends javax.swing.JFrame {
     private javax.swing.JLabel avatar3;
     private javax.swing.JLabel avatar4;
     private javax.swing.JButton btnRegresarMenu;
+    private javax.swing.JButton btnUnirse;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox chbxAvatar1;
     private javax.swing.JCheckBox chbxAvatar2;
     private javax.swing.JCheckBox chbxAvatar3;
     private javax.swing.JCheckBox chbxAvatar4;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtNombre;

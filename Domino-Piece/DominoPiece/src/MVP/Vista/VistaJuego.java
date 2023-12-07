@@ -63,33 +63,34 @@ public class VistaJuego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel9 = new javax.swing.JLabel();
         pantallaespera = new javax.swing.JPanel();
         Votacion = new javax.swing.JPanel();
         BtnNo = new javax.swing.JButton();
         btnSi = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblVotacion = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         btnRobar = new javax.swing.JButton();
         Jugador3 = new javax.swing.JPanel();
         lblJugador3 = new javax.swing.JLabel();
         lblAvatar3 = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
+        panel4 = new javax.swing.JLabel();
         Jugador2 = new javax.swing.JPanel();
         lblJugador2 = new javax.swing.JLabel();
         lblAvatar2 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
+        panel2 = new javax.swing.JLabel();
         Jugador4 = new javax.swing.JPanel();
         lblJugador4 = new javax.swing.JLabel();
         lblAvatar4 = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
+        panel3 = new javax.swing.JLabel();
         Jugador1 = new javax.swing.JPanel();
         lblJugador1 = new javax.swing.JLabel();
         lblAvatar1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        panel1 = new javax.swing.JLabel();
         btnIniciarVotacion = new javax.swing.JButton();
         btnPasarTurno = new javax.swing.JButton();
         btnTerminar = new javax.swing.JButton();
         btnAbandonarPartida = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         pantallaPuntuaciones = new javax.swing.JPanel();
         JugadorPuntacion3 = new javax.swing.JPanel();
         lblJugadorP3 = new javax.swing.JLabel();
@@ -115,10 +116,12 @@ public class VistaJuego extends javax.swing.JFrame {
         lblCoronitaBroce = new javax.swing.JLabel();
         lblCoronitaDorada = new javax.swing.JLabel();
         lblCoronitaPlateada = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 0));
-        setMinimumSize(new java.awt.Dimension(1300, 600));
+        setMinimumSize(new java.awt.Dimension(1300, 590));
+        setPreferredSize(new java.awt.Dimension(1300, 590));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
@@ -143,54 +146,70 @@ public class VistaJuego extends javax.swing.JFrame {
 
         pantallaespera.setBackground(new java.awt.Color(0, 153, 0));
         pantallaespera.setForeground(new java.awt.Color(0, 153, 0));
+        pantallaespera.setMinimumSize(new java.awt.Dimension(1300, 590));
+        pantallaespera.setName(""); // NOI18N
+        pantallaespera.setPreferredSize(new java.awt.Dimension(1300, 590));
+        pantallaespera.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BtnNo.setText("No");
+        Votacion.setMinimumSize(new java.awt.Dimension(500, 230));
+        Votacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BtnNo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/NoN.png"))); // NOI18N
+        BtnNo.setBorderPainted(false);
+        BtnNo.setContentAreaFilled(false);
+        BtnNo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BtnNoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BtnNoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BtnNoMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                BtnNoMouseReleased(evt);
+            }
+        });
         BtnNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnNoActionPerformed(evt);
             }
         });
+        Votacion.add(BtnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 250, 90));
 
-        btnSi.setText("Si");
+        btnSi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/SiN.png"))); // NOI18N
+        btnSi.setBorderPainted(false);
+        btnSi.setContentAreaFilled(false);
+        btnSi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSiMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnSiMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnSiMouseReleased(evt);
+            }
+        });
         btnSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiActionPerformed(evt);
             }
         });
+        Votacion.add(btnSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 240, 90));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("¿Quieres iniciar la partida?");
+        lblVotacion.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblVotacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/QUIERES.png"))); // NOI18N
+        Votacion.add(lblVotacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 510, 40));
 
-        javax.swing.GroupLayout VotacionLayout = new javax.swing.GroupLayout(Votacion);
-        Votacion.setLayout(VotacionLayout);
-        VotacionLayout.setHorizontalGroup(
-            VotacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VotacionLayout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
-                .addGroup(VotacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(BtnNo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(107, 107, 107))
-            .addGroup(VotacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(VotacionLayout.createSequentialGroup()
-                    .addGap(117, 117, 117)
-                    .addComponent(btnSi, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(276, Short.MAX_VALUE)))
-        );
-        VotacionLayout.setVerticalGroup(
-            VotacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VotacionLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(BtnNo)
-                .addGap(57, 57, 57))
-            .addGroup(VotacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VotacionLayout.createSequentialGroup()
-                    .addContainerGap(149, Short.MAX_VALUE)
-                    .addComponent(btnSi)
-                    .addGap(58, 58, 58)))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/votacion.png"))); // NOI18N
+        Votacion.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 230));
+
+        pantallaespera.add(Votacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, -1, -1));
 
         btnRobar.setText("Robar Ficha");
         btnRobar.addActionListener(new java.awt.event.ActionListener() {
@@ -198,6 +217,7 @@ public class VistaJuego extends javax.swing.JFrame {
                 btnRobarActionPerformed(evt);
             }
         });
+        pantallaespera.add(btnRobar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 230, 205, -1));
 
         Jugador3.setBackground(new java.awt.Color(204, 204, 204));
         Jugador3.setPreferredSize(new java.awt.Dimension(500, 130));
@@ -209,8 +229,10 @@ public class VistaJuego extends javax.swing.JFrame {
         Jugador3.add(lblJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 44, -1, -1));
         Jugador3.add(lblAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        Jugador3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 0, 50, 130));
+        panel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Group 2 (3).png"))); // NOI18N
+        Jugador3.add(panel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        pantallaespera.add(Jugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, 120));
 
         Jugador2.setBackground(new java.awt.Color(204, 204, 204));
         Jugador2.setPreferredSize(new java.awt.Dimension(500, 130));
@@ -222,8 +244,10 @@ public class VistaJuego extends javax.swing.JFrame {
         Jugador2.add(lblJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 44, -1, -1));
         Jugador2.add(lblAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        Jugador2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 50, 130));
+        panel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Group 2 (3).png"))); // NOI18N
+        Jugador2.add(panel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        pantallaespera.add(Jugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, 120));
 
         Jugador4.setBackground(new java.awt.Color(204, 204, 204));
         Jugador4.setPreferredSize(new java.awt.Dimension(500, 130));
@@ -235,8 +259,10 @@ public class VistaJuego extends javax.swing.JFrame {
         Jugador4.add(lblJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 44, -1, -1));
         Jugador4.add(lblAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        Jugador4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 50, 130));
+        panel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Group 2 (3).png"))); // NOI18N
+        Jugador4.add(panel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        pantallaespera.add(Jugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, 120));
 
         Jugador1.setBackground(new java.awt.Color(204, 204, 204));
         Jugador1.setPreferredSize(new java.awt.Dimension(500, 130));
@@ -248,15 +274,34 @@ public class VistaJuego extends javax.swing.JFrame {
         Jugador1.add(lblJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 44, -1, -1));
         Jugador1.add(lblAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        Jugador1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 0, 50, 130));
+        panel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Group 2 (3).png"))); // NOI18N
+        Jugador1.add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        btnIniciarVotacion.setText("Iniciar Votacion");
+        pantallaespera.add(Jugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, 120));
+
+        btnIniciarVotacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/IniciarVN.png"))); // NOI18N
+        btnIniciarVotacion.setBorderPainted(false);
+        btnIniciarVotacion.setContentAreaFilled(false);
+        btnIniciarVotacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnIniciarVotacionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnIniciarVotacionMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnIniciarVotacionMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnIniciarVotacionMouseReleased(evt);
+            }
+        });
         btnIniciarVotacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarVotacionActionPerformed(evt);
             }
         });
+        pantallaespera.add(btnIniciarVotacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, 250, 90));
 
         btnPasarTurno.setText("Pasar Turno");
         btnPasarTurno.addActionListener(new java.awt.event.ActionListener() {
@@ -264,87 +309,48 @@ public class VistaJuego extends javax.swing.JFrame {
                 btnPasarTurnoActionPerformed(evt);
             }
         });
+        pantallaespera.add(btnPasarTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 260, 205, -1));
 
-        btnTerminar.setText("Iniciar Votacion Terminar Partida");
+        btnTerminar.setText("Terminar Partida");
         btnTerminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTerminarActionPerformed(evt);
             }
         });
+        pantallaespera.add(btnTerminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 290, -1, -1));
 
-        btnAbandonarPartida.setText("Abandonar Partida");
+        btnAbandonarPartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/AbandonarPN.png"))); // NOI18N
+        btnAbandonarPartida.setBorderPainted(false);
+        btnAbandonarPartida.setContentAreaFilled(false);
+        btnAbandonarPartida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAbandonarPartidaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAbandonarPartidaMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAbandonarPartidaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAbandonarPartidaMouseReleased(evt);
+            }
+        });
         btnAbandonarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAbandonarPartidaActionPerformed(evt);
             }
         });
+        pantallaespera.add(btnAbandonarPartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 120, 270, 90));
 
-        javax.swing.GroupLayout pantallaesperaLayout = new javax.swing.GroupLayout(pantallaespera);
-        pantallaespera.setLayout(pantallaesperaLayout);
-        pantallaesperaLayout.setHorizontalGroup(
-            pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pantallaesperaLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pantallaesperaLayout.createSequentialGroup()
-                        .addComponent(Jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(210, 210, 210)
-                        .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnIniciarVotacion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAbandonarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pantallaesperaLayout.createSequentialGroup()
-                        .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(210, 210, 210)
-                        .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRobar, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pantallaesperaLayout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(btnPasarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(pantallaesperaLayout.createSequentialGroup()
-                        .addGap(752, 752, 752)
-                        .addComponent(btnTerminar))
-                    .addComponent(Jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pantallaesperaLayout.createSequentialGroup()
-                        .addGap(320, 320, 320)
-                        .addComponent(Votacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        pantallaesperaLayout.setVerticalGroup(
-            pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pantallaesperaLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pantallaesperaLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(btnIniciarVotacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
-                        .addComponent(btnAbandonarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(2, 2, 2)
-                .addGroup(pantallaesperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pantallaesperaLayout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(Jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pantallaesperaLayout.createSequentialGroup()
-                        .addComponent(btnRobar)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnPasarTurno))
-                    .addGroup(pantallaesperaLayout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(btnTerminar))
-                    .addGroup(pantallaesperaLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(Jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pantallaesperaLayout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(Votacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(Jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Frame 1 (16) (1).png"))); // NOI18N
+        pantallaespera.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pantallaPuntuaciones.setBackground(new java.awt.Color(0, 153, 0));
         pantallaPuntuaciones.setForeground(new java.awt.Color(0, 153, 0));
+        pantallaPuntuaciones.setMinimumSize(new java.awt.Dimension(1300, 590));
+        pantallaPuntuaciones.setPreferredSize(new java.awt.Dimension(1300, 590));
+        pantallaPuntuaciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         JugadorPuntacion3.setBackground(new java.awt.Color(204, 204, 204));
         JugadorPuntacion3.setPreferredSize(new java.awt.Dimension(500, 130));
@@ -362,6 +368,8 @@ public class VistaJuego extends javax.swing.JFrame {
         lblPuntosP3.setText("Puntos Restantes:");
         JugadorPuntacion3.add(lblPuntosP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 190, -1));
 
+        pantallaPuntuaciones.add(JugadorPuntacion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, -1, 120));
+
         JugadorPuntacion2.setBackground(new java.awt.Color(204, 204, 204));
         JugadorPuntacion2.setPreferredSize(new java.awt.Dimension(500, 130));
         JugadorPuntacion2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -377,6 +385,8 @@ public class VistaJuego extends javax.swing.JFrame {
         lblPuntosP2.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         lblPuntosP2.setText("Puntos Restantes:");
         JugadorPuntacion2.add(lblPuntosP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 190, -1));
+
+        pantallaPuntuaciones.add(JugadorPuntacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, -1, 120));
 
         JugadorPuntacion4.setBackground(new java.awt.Color(204, 204, 204));
         JugadorPuntacion4.setPreferredSize(new java.awt.Dimension(500, 130));
@@ -394,6 +404,8 @@ public class VistaJuego extends javax.swing.JFrame {
         lblPuntosP4.setText("Puntos Restantes:");
         JugadorPuntacion4.add(lblPuntosP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 190, -1));
 
+        pantallaPuntuaciones.add(JugadorPuntacion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, -1, 120));
+
         JugadorPuntacion1.setBackground(new java.awt.Color(204, 204, 204));
         JugadorPuntacion1.setPreferredSize(new java.awt.Dimension(500, 130));
         JugadorPuntacion1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -410,77 +422,38 @@ public class VistaJuego extends javax.swing.JFrame {
         lblPuntosP1.setText("Puntos Restantes:");
         JugadorPuntacion1.add(lblPuntosP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 190, -1));
 
+        pantallaPuntuaciones.add(JugadorPuntacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, 120));
+
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        pantallaPuntuaciones.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 280, -1, -1));
 
         lblCoronitaBroce.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/coronita_bronce.png"))); // NOI18N
+        pantallaPuntuaciones.add(lblCoronitaBroce, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
 
         lblCoronitaDorada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/coronita.png"))); // NOI18N
+        pantallaPuntuaciones.add(lblCoronitaDorada, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, -1, 130));
 
         lblCoronitaPlateada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/coronita_plata.png"))); // NOI18N
+        pantallaPuntuaciones.add(lblCoronitaPlateada, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, -1, 130));
 
-        javax.swing.GroupLayout pantallaPuntuacionesLayout = new javax.swing.GroupLayout(pantallaPuntuaciones);
-        pantallaPuntuaciones.setLayout(pantallaPuntuacionesLayout);
-        pantallaPuntuacionesLayout.setHorizontalGroup(
-            pantallaPuntuacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pantallaPuntuacionesLayout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
-                .addGroup(pantallaPuntuacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCoronitaDorada, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCoronitaBroce, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCoronitaPlateada, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(53, 53, 53)
-                .addGroup(pantallaPuntuacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pantallaPuntuacionesLayout.createSequentialGroup()
-                        .addGroup(pantallaPuntuacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JugadorPuntacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JugadorPuntacion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JugadorPuntacion4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(284, 284, 284))
-                    .addGroup(pantallaPuntuacionesLayout.createSequentialGroup()
-                        .addComponent(JugadorPuntacion3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(102, 102, 102))))
-        );
-        pantallaPuntuacionesLayout.setVerticalGroup(
-            pantallaPuntuacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pantallaPuntuacionesLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(pantallaPuntuacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JugadorPuntacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCoronitaDorada))
-                .addGroup(pantallaPuntuacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pantallaPuntuacionesLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(JugadorPuntacion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pantallaPuntuacionesLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(lblCoronitaPlateada)
-                        .addGap(22, 22, 22)
-                        .addGroup(pantallaPuntuacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(JugadorPuntacion3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCoronitaBroce))))
-                .addGap(12, 12, 12)
-                .addComponent(JugadorPuntacion4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Frame 1 (16) (1).png"))); // NOI18N
+        pantallaPuntuaciones.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pantallaespera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pantallaespera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(pantallaPuntuaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pantallaespera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pantallaespera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(pantallaPuntuaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -547,25 +520,89 @@ public class VistaJuego extends javax.swing.JFrame {
         presentador.salirPartida();
 
     }//GEN-LAST:event_btnAbandonarPartidaActionPerformed
+
+    private void btnSiMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiMouseReleased
+        btnSi.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/SiG.png")));
+    }//GEN-LAST:event_btnSiMouseReleased
+
+    private void btnSiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiMouseEntered
+        btnSi.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/SiG.png")));
+    }//GEN-LAST:event_btnSiMouseEntered
+
+    private void btnSiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiMousePressed
+        btnSi.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/SiN.png")));
+    }//GEN-LAST:event_btnSiMousePressed
+
+    private void btnSiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiMouseExited
+        btnSi.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/SiN.png")));
+    }//GEN-LAST:event_btnSiMouseExited
+
+    private void BtnNoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnNoMouseEntered
+       BtnNo.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/NoG.png")));
+    }//GEN-LAST:event_BtnNoMouseEntered
+
+    private void BtnNoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnNoMouseReleased
+       BtnNo.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/NoG.png")));
+    }//GEN-LAST:event_BtnNoMouseReleased
+
+    private void BtnNoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnNoMousePressed
+       BtnNo.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/NoN.png")));
+    }//GEN-LAST:event_BtnNoMousePressed
+
+    private void BtnNoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnNoMouseExited
+        BtnNo.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/NoN.png")));
+    }//GEN-LAST:event_BtnNoMouseExited
+
+    private void btnIniciarVotacionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarVotacionMouseReleased
+       btnIniciarVotacion.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/IniciarVG.png")));
+    }//GEN-LAST:event_btnIniciarVotacionMouseReleased
+
+    private void btnIniciarVotacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarVotacionMouseEntered
+       btnIniciarVotacion.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/IniciarVG.png")));
+    }//GEN-LAST:event_btnIniciarVotacionMouseEntered
+
+    private void btnIniciarVotacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarVotacionMouseExited
+        btnIniciarVotacion.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/IniciarVN.png")));
+    }//GEN-LAST:event_btnIniciarVotacionMouseExited
+
+    private void btnIniciarVotacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarVotacionMousePressed
+         btnIniciarVotacion.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/IniciarVN.png")));
+    }//GEN-LAST:event_btnIniciarVotacionMousePressed
+
+    private void btnAbandonarPartidaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbandonarPartidaMouseEntered
+        btnAbandonarPartida.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/AbandonarPG.png")));
+    }//GEN-LAST:event_btnAbandonarPartidaMouseEntered
+
+    private void btnAbandonarPartidaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbandonarPartidaMouseReleased
+        btnAbandonarPartida.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/AbandonarPG.png")));
+    }//GEN-LAST:event_btnAbandonarPartidaMouseReleased
+
+    private void btnAbandonarPartidaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbandonarPartidaMouseExited
+       btnAbandonarPartida.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/AbandonarPN.png")));
+    }//GEN-LAST:event_btnAbandonarPartidaMouseExited
+
+    private void btnAbandonarPartidaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbandonarPartidaMousePressed
+      btnAbandonarPartida.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/AbandonarPN.png")));
+    }//GEN-LAST:event_btnAbandonarPartidaMousePressed
     public void limpiarInformacion() {
         // Limpia los textos de los JLabels
         lblJugador1.setText("");
         lblJugador2.setText("");
         lblJugador3.setText("");
         lblJugador4.setText("");
-        lblJugador1.setBounds(lblJugador1.getX(), 55, 200, 20);
-        lblJugador2.setBounds(lblJugador2.getX(), 55, 200, 20);
-        lblJugador3.setBounds(lblJugador3.getX(), 55, 200, 20);
-        lblJugador4.setBounds(lblJugador4.getX(), 55, 200, 20);
+        lblJugador1.setBounds(lblJugador1.getX(), 60, 200, 20);
+        lblJugador2.setBounds(lblJugador2.getX(), 60, 200, 20);
+        lblJugador3.setBounds(lblJugador3.getX(), 60, 200, 20);
+        lblJugador4.setBounds(lblJugador4.getX(), 60, 200, 20);
         // Limpia los iconos de los JLabels
         lblAvatar1.setIcon(null);
         lblAvatar2.setIcon(null);
         lblAvatar3.setIcon(null);
         lblAvatar4.setIcon(null);
-        lblAvatar1.setBounds(lblAvatar1.getX(), lblAvatar1.getY(), 130, 130);
-        lblAvatar2.setBounds(lblAvatar2.getX(), lblAvatar2.getY(), 130, 130);
-        lblAvatar3.setBounds(lblAvatar3.getX(), lblAvatar3.getY(), 130, 130);
-        lblAvatar4.setBounds(lblAvatar4.getX(), lblAvatar4.getY(), 130, 130);
+        lblAvatar1.setBounds(lblAvatar1.getX(), lblAvatar1.getY(), 130, 120);
+        lblAvatar2.setBounds(lblAvatar2.getX(), lblAvatar2.getY(), 130, 120);
+        lblAvatar3.setBounds(lblAvatar3.getX(), lblAvatar3.getY(), 130, 120);
+        lblAvatar4.setBounds(lblAvatar4.getX(), lblAvatar4.getY(), 130, 120);
     }
 
     public void limpiarInformacionP() {
@@ -612,7 +649,7 @@ public class VistaJuego extends javax.swing.JFrame {
 
                     lblJugador1.setText(list.get(i).getNombre());
                     ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(i).getAvatar()));
-                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 120, Image.SCALE_SMOOTH));
                     lblAvatar1.setIcon(iconoRedimensionado);
                 }
                 if (i == 1) {
@@ -620,21 +657,21 @@ public class VistaJuego extends javax.swing.JFrame {
                     lblJugador2.setText(list.get(i).getNombre());
 
                     ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(i).getAvatar()));
-                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 120, Image.SCALE_SMOOTH));
                     lblAvatar2.setIcon(iconoRedimensionado);
                 }
                 if (i == 2) {
 
                     lblJugador3.setText(list.get(i).getNombre());
                     ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(i).getAvatar()));
-                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 120, Image.SCALE_SMOOTH));
                     lblAvatar3.setIcon(iconoRedimensionado);
                 }
                 if (i == 3) {
 
                     lblJugador4.setText(list.get(i).getNombre());
                     ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(list.get(i).getAvatar()));
-                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH));
+                    ImageIcon iconoRedimensionado = new ImageIcon(iconoOriginal.getImage().getScaledInstance(130, 120, Image.SCALE_SMOOTH));
                     lblAvatar4.setIcon(iconoRedimensionado);
                 }
             }
@@ -903,7 +940,14 @@ public class VistaJuego extends javax.swing.JFrame {
         Votacion.setVisible(true);
         BtnNo.setEnabled(true);
         btnSi.setEnabled(true);
-        Votacion.setBounds(440, 250, 500, 232);
+        if (partidaIniciada) {
+            Votacion.setBounds(400, 190, 530, 230);
+            
+            lblVotacion.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/Terminar.png")));
+        }else{
+            Votacion.setBounds(200, 200, 530, 230);
+        }
+        
     }
 
     public void votacionNoaceptada() {
@@ -973,12 +1017,9 @@ public class VistaJuego extends javax.swing.JFrame {
     private javax.swing.JButton btnSi;
     private javax.swing.JButton btnTerminar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
@@ -1006,6 +1047,11 @@ public class VistaJuego extends javax.swing.JFrame {
     private javax.swing.JLabel lblPuntosP2;
     private javax.swing.JLabel lblPuntosP3;
     private javax.swing.JLabel lblPuntosP4;
+    private javax.swing.JLabel lblVotacion;
+    private javax.swing.JLabel panel1;
+    private javax.swing.JLabel panel2;
+    private javax.swing.JLabel panel3;
+    private javax.swing.JLabel panel4;
     private javax.swing.JPanel pantallaPuntuaciones;
     private javax.swing.JPanel pantallaespera;
     // End of variables declaration//GEN-END:variables

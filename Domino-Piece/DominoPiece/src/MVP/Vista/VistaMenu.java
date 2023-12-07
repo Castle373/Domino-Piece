@@ -6,6 +6,10 @@ package MVP.Vista;
 
 import MVP.Presentador.IPresentadorMenu;
 import MVP.Presentador.PresentadorMenu;
+import java.awt.Font;
+import java.io.File;
+import java.io.InputStream;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,14 +17,14 @@ import javax.swing.JOptionPane;
  * @author eduar
  */
 public class VistaMenu extends javax.swing.JFrame {
-    
+
     private IPresentadorMenu presentadorMenu;
-    
+
     /**
      * Creates new form VistaMenu
      */
     public VistaMenu(IPresentadorMenu presentadorMenu) {
-        this.presentadorMenu= presentadorMenu;
+        this.presentadorMenu = presentadorMenu;
         initComponents();
     }
 
@@ -34,50 +38,89 @@ public class VistaMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        botonCrearPartida = new javax.swing.JButton();
-        botonUnirsePartida = new javax.swing.JToggleButton();
+        btnUnirsePartida = new javax.swing.JButton();
+        btnCrearPartida = new javax.swing.JToggleButton();
         botonSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1300, 590));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        botonCrearPartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Group 3 (1).png"))); // NOI18N
-        botonCrearPartida.setBorderPainted(false);
-        botonCrearPartida.setContentAreaFilled(false);
-        botonCrearPartida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCrearPartidaActionPerformed(evt);
+        btnUnirsePartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/UnirsePartidaN.png"))); // NOI18N
+        btnUnirsePartida.setBorderPainted(false);
+        btnUnirsePartida.setContentAreaFilled(false);
+        btnUnirsePartida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUnirsePartidaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUnirsePartidaMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnUnirsePartidaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnUnirsePartidaMouseReleased(evt);
             }
         });
-        jPanel1.add(botonCrearPartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, -1, -1));
-
-        botonUnirsePartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Group 3 (2).png"))); // NOI18N
-        botonUnirsePartida.setBorderPainted(false);
-        botonUnirsePartida.setContentAreaFilled(false);
-        botonUnirsePartida.addActionListener(new java.awt.event.ActionListener() {
+        btnUnirsePartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonUnirsePartidaActionPerformed(evt);
+                btnUnirsePartidaActionPerformed(evt);
             }
         });
-        jPanel1.add(botonUnirsePartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(866, 368, 160, -1));
+        jPanel1.add(btnUnirsePartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 330, 240, 80));
 
-        botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Group 4.png"))); // NOI18N
+        btnCrearPartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/CrearPartidaN.png"))); // NOI18N
+        btnCrearPartida.setBorderPainted(false);
+        btnCrearPartida.setContentAreaFilled(false);
+        btnCrearPartida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCrearPartidaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCrearPartidaMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCrearPartidaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnCrearPartidaMouseReleased(evt);
+            }
+        });
+        btnCrearPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearPartidaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCrearPartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 240, 90));
+
+        botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/SalirN.png"))); // NOI18N
         botonSalir.setBorderPainted(false);
         botonSalir.setContentAreaFilled(false);
+        botonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonSalirMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonSalirMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                botonSalirMouseReleased(evt);
+            }
+        });
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 500, 160, -1));
+        jPanel1.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 480, 250, 90));
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Frame 1 (15) (1).png"))); // NOI18N
-        jLabel1.setPreferredSize(new java.awt.Dimension(1300, 590));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Frame 1 (15) (1).png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, 590));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -97,31 +140,84 @@ public class VistaMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonUnirsePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUnirsePartidaActionPerformed
-       selectUnirsePartida();
-    }//GEN-LAST:event_botonUnirsePartidaActionPerformed
+    private void btnCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidaActionPerformed
+        selectCrearPartida();
+    }//GEN-LAST:event_btnCrearPartidaActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-       salir();
+        salir();
     }//GEN-LAST:event_botonSalirActionPerformed
 
-    private void botonCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearPartidaActionPerformed
-        selectCrearPartida();
-    }//GEN-LAST:event_botonCrearPartidaActionPerformed
-    
-    public void selectCrearPartida(){
+    private void btnUnirsePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirsePartidaActionPerformed
+
+        selectUnirsePartida();
+    }//GEN-LAST:event_btnUnirsePartidaActionPerformed
+
+    private void btnUnirsePartidaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnirsePartidaMouseReleased
+        btnUnirsePartida.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/UnirsePartidaG.png")));
+    }//GEN-LAST:event_btnUnirsePartidaMouseReleased
+
+    private void btnUnirsePartidaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnirsePartidaMouseEntered
+        btnUnirsePartida.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/UnirsePartidaG.png")));
+    }//GEN-LAST:event_btnUnirsePartidaMouseEntered
+
+    private void btnUnirsePartidaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnirsePartidaMouseExited
+        btnUnirsePartida.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/UnirsePartidaN.png")));
+    }//GEN-LAST:event_btnUnirsePartidaMouseExited
+
+    private void btnUnirsePartidaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnirsePartidaMousePressed
+        btnUnirsePartida.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/UnirsePartidaN.png")));
+    }//GEN-LAST:event_btnUnirsePartidaMousePressed
+
+    private void btnCrearPartidaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearPartidaMouseReleased
+        btnCrearPartida.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/CrearPartidaG.png")));
+    }//GEN-LAST:event_btnCrearPartidaMouseReleased
+
+    private void btnCrearPartidaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearPartidaMouseEntered
+        btnCrearPartida.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/CrearPartidaG.png")));
+    }//GEN-LAST:event_btnCrearPartidaMouseEntered
+
+    private void btnCrearPartidaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearPartidaMouseExited
+        btnCrearPartida.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/CrearPartidaN.png")));
+    }//GEN-LAST:event_btnCrearPartidaMouseExited
+
+    private void btnCrearPartidaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearPartidaMousePressed
+        btnCrearPartida.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/CrearPartidaN.png")));
+    }//GEN-LAST:event_btnCrearPartidaMousePressed
+
+    private void botonSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseReleased
+        botonSalir.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/SalirG.png")));
+    }//GEN-LAST:event_botonSalirMouseReleased
+
+    private void botonSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseEntered
+        botonSalir.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/SalirG.png")));
+    }//GEN-LAST:event_botonSalirMouseEntered
+
+    private void botonSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseExited
+        botonSalir.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/SalirN.png")));
+    }//GEN-LAST:event_botonSalirMouseExited
+
+    private void botonSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMousePressed
+       botonSalir.setIcon(new ImageIcon(getClass().getResource("/Grafico/Botones/SalirN.png")));
+    }//GEN-LAST:event_botonSalirMousePressed
+
+    public void selectCrearPartida() {
         presentadorMenu.crearPartida();
     }
-    public void selectUnirsePartida(){
+
+    public void selectUnirsePartida() {
         presentadorMenu.unirsePartida();
-        
+
     }
-    public void salir(){
+
+    public void salir() {
         System.exit(0);
     }
-    public void mostrarError(String m){
+
+    public void mostrarError(String m) {
         JOptionPane.showMessageDialog(rootPane, m);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -156,14 +252,27 @@ public class VistaMenu extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-    
-    
-    
+    public Font getFuente() {
+        return null;
+    }
+
+    private Font cargarFuentePersonalizada() {
+        try {
+            // Cargar la fuente desde el archivo
+//            File archivoFuente = new File("shojumaru-regular.ttf");
+            InputStream is = getClass().getResourceAsStream("shojumaru-regular.ttf");
+            return Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonCrearPartida;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JToggleButton botonUnirsePartida;
+    private javax.swing.JToggleButton btnCrearPartida;
+    private javax.swing.JButton btnUnirsePartida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
