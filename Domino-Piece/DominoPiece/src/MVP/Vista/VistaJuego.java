@@ -95,23 +95,23 @@ public class VistaJuego extends javax.swing.JFrame {
         JugadorPuntacion3 = new javax.swing.JPanel();
         lblJugadorP3 = new javax.swing.JLabel();
         lblAvatarP3 = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
         lblPuntosP3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         JugadorPuntacion2 = new javax.swing.JPanel();
         lblJugadorP2 = new javax.swing.JLabel();
         lblAvatarP2 = new javax.swing.JLabel();
-        jSeparator6 = new javax.swing.JSeparator();
         lblPuntosP2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         JugadorPuntacion4 = new javax.swing.JPanel();
         lblJugadorP4 = new javax.swing.JLabel();
         lblAvatarP4 = new javax.swing.JLabel();
-        jSeparator7 = new javax.swing.JSeparator();
         lblPuntosP4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         JugadorPuntacion1 = new javax.swing.JPanel();
         lblJugadorP1 = new javax.swing.JLabel();
         lblAvatarP1 = new javax.swing.JLabel();
-        jSeparator8 = new javax.swing.JSeparator();
         lblPuntosP1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         lblCoronitaBroce = new javax.swing.JLabel();
         lblCoronitaDorada = new javax.swing.JLabel();
@@ -121,7 +121,6 @@ public class VistaJuego extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 0));
         setMinimumSize(new java.awt.Dimension(1300, 590));
-        setPreferredSize(new java.awt.Dimension(1300, 590));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
@@ -361,12 +360,13 @@ public class VistaJuego extends javax.swing.JFrame {
         JugadorPuntacion3.add(lblJugadorP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 280, -1));
         JugadorPuntacion3.add(lblAvatarP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        JugadorPuntacion3.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 0, 50, 130));
-
         lblPuntosP3.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         lblPuntosP3.setText("Puntos Restantes:");
         JugadorPuntacion3.add(lblPuntosP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 190, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Group 2 (3).png"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        JugadorPuntacion3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, -1));
 
         pantallaPuntuaciones.add(JugadorPuntacion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, -1, 120));
 
@@ -379,12 +379,12 @@ public class VistaJuego extends javax.swing.JFrame {
         JugadorPuntacion2.add(lblJugadorP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 290, -1));
         JugadorPuntacion2.add(lblAvatarP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        JugadorPuntacion2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 50, 130));
-
         lblPuntosP2.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         lblPuntosP2.setText("Puntos Restantes:");
         JugadorPuntacion2.add(lblPuntosP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 190, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Group 2 (3).png"))); // NOI18N
+        JugadorPuntacion2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pantallaPuntuaciones.add(JugadorPuntacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, -1, 120));
 
@@ -397,12 +397,13 @@ public class VistaJuego extends javax.swing.JFrame {
         JugadorPuntacion4.add(lblJugadorP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 280, -1));
         JugadorPuntacion4.add(lblAvatarP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        JugadorPuntacion4.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 50, 130));
-
         lblPuntosP4.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         lblPuntosP4.setText("Puntos Restantes:");
         JugadorPuntacion4.add(lblPuntosP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 190, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Group 2 (3).png"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        JugadorPuntacion4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, -1));
 
         pantallaPuntuaciones.add(JugadorPuntacion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, -1, 120));
 
@@ -415,12 +416,12 @@ public class VistaJuego extends javax.swing.JFrame {
         JugadorPuntacion1.add(lblJugadorP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 290, -1));
         JugadorPuntacion1.add(lblAvatarP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jSeparator8.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        JugadorPuntacion1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 0, 50, 130));
-
         lblPuntosP1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         lblPuntosP1.setText("Puntos Restantes:");
         JugadorPuntacion1.add(lblPuntosP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 190, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Grafico/Botones/Group 2 (3).png"))); // NOI18N
+        JugadorPuntacion1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pantallaPuntuaciones.add(JugadorPuntacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, 120));
 
@@ -1017,13 +1018,13 @@ public class VistaJuego extends javax.swing.JFrame {
     private javax.swing.JButton btnSi;
     private javax.swing.JButton btnTerminar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lblAvatar1;
     private javax.swing.JLabel lblAvatar2;
     private javax.swing.JLabel lblAvatar3;
